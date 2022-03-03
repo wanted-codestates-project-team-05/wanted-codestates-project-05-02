@@ -24,13 +24,12 @@ function UserInfoPage() {
     });
     setUserData(user.data);
     setMatchData(matches.data);
-    console.log(matches.data);
-    console.log(user.data);
     setIsLoading(false);
   };
 
   useEffect(() => {
     getUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) return <div>Loading</div>;
