@@ -31,11 +31,11 @@ const getUserMatchListFailure = (error) => ({
   payload: error,
 });
 
-export const fetchUserMatchList = (userID) => async (dispatch) => {
+export const fetchUserMatchList = (useId) => async (dispatch) => {
   dispatch({ type: GET_USER_MATCH_LIST });
   const config = {
     method: 'get',
-    url: `api/kart/v1.0/users/${userID}/matches?start_date=&end_date= &offset=0&limit=200&match_types=`,
+    url: `api/kart/v1.0/users/${useId}/matches?start_date=&end_date= &offset=0&limit=200&match_types=`,
     headers: {
       Authorization:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTA5MTM5NjMxNyIsImF1dGhfaWQiOiIyIiwidG9rZW5fdHlwZSI6IkFjY2Vzc1Rva2VuIiwic2VydmljZV9pZCI6IjQzMDAxMTM5MyIsIlgtQXBwLVJhdGUtTGltaXQiOiI1MDA6MTAiLCJuYmYiOjE2NDYyODA4NDksImV4cCI6MTY2MTgzMjg0OSwiaWF0IjoxNjQ2MjgwODQ5fQ.hBFvBAU-cmF5sM4CdmXAIDqEsRwChvzcWnriUzR4Si8',
@@ -88,7 +88,7 @@ export const fetchMatchList = (matchType) => async (dispatch) => {
     });
 };
 
-export default function MatchList(state = initialState, action) {
+export default function matchList(state = initialState, action) {
   switch (action.type) {
     case GET_USER_MATCH_LIST:
       return {

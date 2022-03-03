@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import MatchList from './matchList';
+import matchList from './matchList';
+import matchDetail from './matchDetail';
 
 const rootReducer = combineReducers({
-  MatchList,
+  matchList,
+  matchDetail,
 });
 
 export default rootReducer;
