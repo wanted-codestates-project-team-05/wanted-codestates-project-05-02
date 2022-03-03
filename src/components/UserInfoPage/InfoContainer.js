@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import TrackTable from './TrackTable';
 import MatchListContainer from './MatchListContainer';
+import { useLocation } from 'react-router-dom';
+import QueryString from 'qs';
+import TabButton from './TabButton';
 
 export default function InfoContainer() {
+  const location = useLocation();
+  const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   return (
     <Container>
       <Left>
         <TabButton />
-        <TrackTable />
       </Left>
       <Right>
         <MatchListContainer />
@@ -16,39 +19,6 @@ export default function InfoContainer() {
     </Container>
   );
 }
-
-const TabButton = () => {
-  return (
-    <div>
-      <ul>
-        <Li>
-          <div>
-            <span>트랙</span>
-          </div>
-        </Li>
-        <Li>
-          <div>
-            <span>카트</span>
-          </div>
-        </Li>
-      </ul>
-    </div>
-  );
-};
-
-const Li = styled.li`
-  float: left;
-  & div {
-    box-sizing: border-box;
-    background-color: #ebebeb;
-    border-bottom: 2px solid #ebebeb;
-    width: 116px;
-    height: 38px;
-    line-height: 38px;
-    text-align: center;
-    font-size: 14px;
-  }
-`;
 
 const Container = styled.div`
   display: flex;

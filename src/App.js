@@ -1,5 +1,6 @@
 import InfoContainer from './components/UserInfoPage/InfoContainer';
 import HomePage from './pages/HomePage';
+import UserInfoPage from './pages/UserInfoPage';
 import './reset.css';
 import Routes from './Routes';
 import { Header } from './components/common/Header';
