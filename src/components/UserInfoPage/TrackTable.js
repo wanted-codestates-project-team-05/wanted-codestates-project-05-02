@@ -16,7 +16,7 @@ export default function TrackTable() {
             빌리지 운명의 다리 <span>기록분포</span>
           </p>
           {/* 변경부분 */}
-          <div></div>
+          <div>graph</div>
         </Div>
       </div>
       <TableWrapper>
@@ -92,7 +92,7 @@ const Div = styled.div`
     color: #a1a1a1;
   }
   & div {
-    padding: 10px 0;
+    margin: 10px 0;
     text-align: center;
     width: 378px;
     height: 258px;
