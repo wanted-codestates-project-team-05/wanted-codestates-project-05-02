@@ -7,11 +7,11 @@ const NetworkRequest = () => {
   const matchList = useSelector((state) => state.matchList);
   const matchDetail = useSelector((state) => state.matchDetail);
   const dispatch = useDispatch();
-  const handleGetMatchList = () => {
-    dispatch(fetchUserMatchList(1963163935));
-    dispatch(fetchMatchList('soloData'));
-    dispatch(fetchMatchList('teamData'));
-    dispatch(fetchMatchDetail('00b2000b40fdff27'));
+  const handleGetMatchList = async () => {
+    await dispatch(fetchUserMatchList(1963163935));
+    await dispatch(fetchMatchList('soloData'));
+    await dispatch(fetchMatchList('teamData'));
+    await dispatch(fetchMatchDetail('00b2000b40fdff27'));
   };
   return (
     <div>
