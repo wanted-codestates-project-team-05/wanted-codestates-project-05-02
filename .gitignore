@@ -1,9 +1,8 @@
-/node_modules
 # Created by https://www.toptal.com/developers/gitignore/api/webstorm,macos,windows,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=webstorm,macos,windows,visualstudiocode
-
 ### macOS ###
 # General
+/node_modules
 .DS_Store
 .AppleDouble
 .LSOverride
