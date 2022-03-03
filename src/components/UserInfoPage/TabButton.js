@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import KartTable from './KartTable';
 import TrackTable from './TrackTable';
 
-const TabButton = () => {
+const TabButton = ({ matchData, userData }) => {
   const [tab, setTab] = useState('track');
   return (
     <>
@@ -25,7 +25,11 @@ const TabButton = () => {
           </Li>
         </ul>
       </div>
-      {tab === 'track' ? <TrackTable /> : <KartTable />}
+      {tab === 'track' ? (
+        <TrackTable matchData={matchData} userData={userData} />
+      ) : (
+        <KartTable matchData={matchData} userData={userData} />
+      )}
     </>
   );
 };
