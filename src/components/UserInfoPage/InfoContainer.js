@@ -1,20 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import MatchListContainer from './MatchListContainer';
-import { useLocation } from 'react-router-dom';
-import QueryString from 'qs';
 import TabButton from './TabButton';
 
-export default function InfoContainer() {
-  const location = useLocation();
-  const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
+export default function InfoContainer({ userData, matchData }) {
   return (
     <Container>
       <Left>
-        <TabButton />
+        <TabButton matchData={matchData} userData={userData} />
       </Left>
       <Right>
-        <MatchListContainer />
+        <MatchListContainer matchData={matchData} userData={userData} />
       </Right>
     </Container>
   );
@@ -33,6 +29,7 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const Right = styled.div`
   flex: 2;
   padding-top: 40px;

@@ -3,17 +3,22 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import MatchDetail from './MatchDetail';
 
-export default function Match() {
+export default function Match({ matchData, userData }) {
   const [show, setShow] = useState(false);
-  const matchWin = '';
+
   return (
     <Section>
-      <Div matchWin={''}>
+      <Div matchWin={matchData.matchResult}>
         <TypeP>1일 전</TypeP>
-        <ResultP matchWin={''}>
-          {matchWin === ''
-            ? '#리타이어'
-            : `${`#2`}${(<span style={{ marginLeft: '5px', fontSize: '16px' }}>/8</span>)}`}
+        <ResultP matchWin={matchData.matchResult}>
+          {matchData.matchResult === '' ? (
+            '#리타이어'
+          ) : (
+            <>
+              <span>{`#${matchData.player.matchRank}`}</span>
+              <span style={{ marginLeft: '5px', fontSize: '16px' }}>{`/${matchData.playerCount}`}</span>
+            </>
+          )}
         </ResultP>
         <TrackP>마비노기 티르 코네일 &nbsp;</TrackP>
         <KartP>뉴 골든 세이버 LE &nbsp;</KartP>
