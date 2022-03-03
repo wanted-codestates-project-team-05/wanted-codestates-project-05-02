@@ -17,9 +17,9 @@ const initialState = {
 const GET_USER_MATCH_LIST = 'GET_USER_MATCH_LIST';
 const GET_USER_MATCH_LIST_SUCCESS = 'GET_USER_MATCH_LIST_SUCCESS';
 const GET_USER_MATCH_LIST_FAILURE = 'GET_USER_MATCH_LIST_FAILURE';
-const GET_MATCH_LIST = 'GET_USER_MATCH_LIST';
-const GET_MATCH_LIST_SUCCESS = 'GET_USER_MATCH_LIST_SUCCESS';
-const GET_MATCH_LIST_FAILURE = 'GET_USER_MATCH_LIST_FAILURE';
+const GET_MATCH_LIST = 'GET_MATCH_LIST';
+const GET_MATCH_LIST_SUCCESS = 'GET_MATCH_LIST_SUCCESS';
+const GET_MATCH_LIST_FAILURE = 'GET_MATCH_LIST_FAILURE';
 
 const getUserMatchListSuccess = (data) => ({
   type: GET_USER_MATCH_LIST_SUCCESS,
@@ -69,7 +69,7 @@ export const fetchMatchList = (matchType) => async (dispatch) => {
   dispatch({ type: GET_MATCH_LIST });
   const config = {
     method: 'get',
-    url: `api/kart/v1.0/matches/all?start_date=&end_date=&offset=0&limit=10&match_types=${matchTypeId}`,
+    url: `api/kart/v1.0/matches/all?start_date=&end_date=&offset=0&limit=200&match_types=${matchTypeId}`,
     headers: {
       Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
     },
