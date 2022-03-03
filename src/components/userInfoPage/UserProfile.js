@@ -1,10 +1,9 @@
-
 import QueryString from 'qs';
 import { useLocation, useNavigate } from 'react-router';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { FaInfoCircle, FaUser, FaUsers, FaRedo, FaBell, FaShareAlt, FaEye } from 'react-icons/fa';
-import CharterInfo from '../assets/character.json';
+import CharterInfo from '../../assets/character.json';
 import ModalUserReport from './ModalUserReport';
 import UserMatch from './UserMatch';
 import ModalShare from './ModalShare';
@@ -30,9 +29,9 @@ const UserProfile = () => {
     let icon = e.target.nodeName;
 
     if (name === '개인전' || txt === '개인전' || icon === 'svg') {
-      navigate('/user?nick=BBEESSTT&matchType=indi');
+      navigate(`/user?nick=${nickName}&matchType=indi`);
     } else if (name === '팀전' || txt === '팀전' || icon === 'path') { 
-      navigate('/user?nick=BBEESSTT&matchType=team');
+      navigate(`/user?nick=${nickName}&matchType=team`);
     }
   };
   
@@ -53,6 +52,7 @@ const UserProfile = () => {
   // matches.character;
   return (
     <>
+      {isShare && <ModalShare share={setIsShare} />}
       <ProfileContainer>
         <div class="match-info">
           <FaInfoCircle size="13px" />
@@ -119,13 +119,12 @@ const UserProfile = () => {
           <div className="page-view">
             <FaEye size="14px" />
             <span>페이지뷰</span>
-            <p>1,024</p>
+            <p className="view-num">1,024</p>
           </div>
         </ProfileInfo>
         <UserMatch nick={nickName} />
       </ProfileContainer>
       {isReport && <ModalUserReport report={setIsReport} />}
-      {isShare && <ModalShare share={setIsShare} />}
     </>
   );
 };
@@ -134,6 +133,7 @@ const ProfileContainer = styled.div`
   width: 1000px;
   margin: 0 auto;
   .match-info {
+    padding-top: 20px;
     span {
       font-size: 12px;
     }
@@ -175,9 +175,13 @@ const ProfileInfo = styled.article`
       margin-left: 3px;
       font-size: 14px;
     }
-    p {
+    .view-num {
       margin-top: 5px;
       font-size: 20px;
+      transition: transform ease .4s;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 `;
@@ -236,5 +240,7 @@ const Ul = styled.ul`
     }
   }
 `;
+
+
 
 export default UserProfile;
