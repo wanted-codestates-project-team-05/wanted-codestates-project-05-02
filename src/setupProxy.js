@@ -1,16 +1,13 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-module.exports = function (app) {
+module.exports = function(app){
   app.use(
-    createProxyMiddleware('/users', {
-      target: 'https://api.nexon.co.kr/kart/v1.0',
+    createProxyMiddleware('/api', {
+      target: 'https://api.nexon.co.kr',
       changeOrigin: true,
+      pathRewrite: {
+        '^/api': '' // URL ^/api -> 공백 변경
+      }
     })
-  );
-  app.use(
-    createProxyMiddleware('/matches', {
-      target: 'https://api.nexon.co.kr/kart/v1.0',
-      changeOrigin: true,
-    })
-  );
+  )
 };
