@@ -11,31 +11,24 @@ const GET_MATCH_LIST_FAILURE = 'GET_MATCH_LIST_FAILURE';
 
 export const fetchMatchList = () => async (dispatch) => {
   dispatch({ type: GET_MATCH_LIST });
-  try {
-    const axios = require('axios');
-    const config = {
-      method: 'get',
-      url: 'api/kart/v1.0/users/1963163935/matches?start_date=&end_date= &offset=0&limit=200&match_types=',
-      headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTA5MTM5NjMxNyIsImF1dGhfaWQiOiIyIiwidG9rZW5fdHlwZSI6IkFjY2Vzc1Rva2VuIiwic2VydmljZV9pZCI6IjQzMDAxMTM5MyIsIlgtQXBwLVJhdGUtTGltaXQiOiI1MDA6MTAiLCJuYmYiOjE2NDYyODA4NDksImV4cCI6MTY2MTgzMjg0OSwiaWF0IjoxNjQ2MjgwODQ5fQ.hBFvBAU-cmF5sM4CdmXAIDqEsRwChvzcWnriUzR4Si8',
-      },
-    };
-
-    const res = axios(config)
-      .then(function (response) {
-        dispatch(getMatchListSuccess(response.data));
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        dispatch(getMatchListFailure(error));
-        console.log(error);
-      });
-    const data = res.data;
-    await console.log(data);
-  } catch (err) {
-    await console.log(err);
-  }
+  const axios = require('axios');
+  const config = {
+    method: 'get',
+    url: 'api/kart/v1.0/users/1963163935/matches?start_date=&end_date= &offset=0&limit=200&match_types=',
+    headers: {
+      Authorization:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTA5MTM5NjMxNyIsImF1dGhfaWQiOiIyIiwidG9rZW5fdHlwZSI6IkFjY2Vzc1Rva2VuIiwic2VydmljZV9pZCI6IjQzMDAxMTM5MyIsIlgtQXBwLVJhdGUtTGltaXQiOiI1MDA6MTAiLCJuYmYiOjE2NDYyODA4NDksImV4cCI6MTY2MTgzMjg0OSwiaWF0IjoxNjQ2MjgwODQ5fQ.hBFvBAU-cmF5sM4CdmXAIDqEsRwChvzcWnriUzR4Si8',
+    },
+  };
+  await axios(config)
+    .then(function (response) {
+      dispatch(getMatchListSuccess(response.data));
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      dispatch(getMatchListFailure(error));
+      console.log(error);
+    });
 };
 
 const getMatchListSuccess = (data) => ({
