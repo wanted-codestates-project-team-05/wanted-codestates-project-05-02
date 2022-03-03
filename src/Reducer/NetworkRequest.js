@@ -11,7 +11,7 @@ const NetworkRequest = () => {
   return (
     <div>
       <button onClick={handleGetMatchList}>네트워크 요청</button>
-      <p>{matchList}</p>
+      <p>{matchList.data?.nickName}</p>
     </div>
   );
 };
