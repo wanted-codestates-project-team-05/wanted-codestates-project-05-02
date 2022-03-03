@@ -1,41 +1,54 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useState } from 'react';
+import MatchDetail from './MatchDetail';
 
 export default function Match() {
+  const [show, setShow] = useState(false);
+  const matchWin = '';
   return (
     <Section>
-      <Div>
+      <Div matchWin={''}>
         <TypeP>1일 전</TypeP>
-        <ResultP>
-          #2<span style={{ marginLeft: '5px', fontSize: '16px' }}>/8</span>
+        <ResultP matchWin={''}>
+          {matchWin === ''
+            ? '#리타이어'
+            : `${`#2`}${(<span style={{ marginLeft: '5px', fontSize: '16px' }}>/8</span>)}`}
         </ResultP>
-        <TrackP>마비노기 티르 코네일 </TrackP>
-        <KartP>뉴 골든 세이버 LE </KartP>
+        <TrackP>마비노기 티르 코네일 &nbsp;</TrackP>
+        <KartP>뉴 골든 세이버 LE &nbsp;</KartP>
         <TimeP>1'15'07</TimeP>
-        <OpenP>
+        <OpenP onClick={() => setShow((prev) => !prev)}>
           <Triangle />
         </OpenP>
       </Div>
+      {show ? <MatchDetail /> : null}
     </Section>
   );
 }
 
 const Section = styled.section`
-  background-color: black;
+  width: 100%;
 `;
 
 const Div = styled.div`
   position: relative;
   display: table;
-  box-sizing: border-box;
   margin-bottom: 5px;
   width: 100%;
   height: 88px;
   font-size: 16px;
-  background-color: #fff;
   border-width: 1px 1px 1px 4px;
-  border-color: #f2f2f2 #f2f2f2 #f2f2f2 #a1a1a1;
   border-style: solid;
+  ${(props) =>
+    props.matchWin === '0'
+      ? `border-color: #f2f2f2 #f2f2f2 #f2f2f2 #a1a1a1;
+  background-color: #fff;`
+      : props.matchWin === '1'
+      ? `background-color: rgba(0,119,255,.05);
+  border-color: #f2f2f2 #f2f2f2 #f2f2f2 #07f;`
+      : `background-color: rgba(246,36,89,.05);
+  border-color: #f2f2f2 #f2f2f2 #f2f2f2 #f62459;`}
 `;
 
 const P = styled.p`
@@ -51,9 +64,9 @@ const TrackP = styled(P)`
   position: relative;
   font-weight: 400;
   text-align: center;
-  &:after {
+  &::after {
     content: '';
-    position: abolute;
+    position: absolute;
     display: inline-block;
     top: 38px;
     right: 0;
@@ -69,7 +82,7 @@ const KartP = styled(P)`
   text-align: center;
   &:after {
     content: '';
-    position: abolute;
+    position: absolute;
     display: inline-block;
     top: 38px;
     right: 0;
@@ -92,7 +105,14 @@ const ResultP = styled(P)`
   font-weight: 500;
   font-style: italic;
   text-align: left;
-  opacity: 0.5;
+  ${(props) =>
+    props.matchWin === '0'
+      ? `opacity: 0.5;`
+      : props.matchWin === '1'
+      ? `color: #07f;
+      opacity: 1;`
+      : `color: #f62459;
+      opacity: 1;`}
 `;
 
 const TypeP = styled(P)`
