@@ -60,11 +60,7 @@ const Wrapper = styled.div`
   width: 1300px;
   margin: 0 auto;
   padding-top: 50px;
-<<<<<<< HEAD
   background-color: #fafafa;
-=======
-  background-color: transparent;
->>>>>>> d3af537d (design: info ui design)
 `;
 
 export default UserInfoPage;
