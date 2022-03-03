@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const CardContainer = ({ firstTitle, secondTitle, des, children }) => {
   return (
@@ -15,6 +16,13 @@ const CardContainer = ({ firstTitle, secondTitle, des, children }) => {
 };
 
 export default CardContainer;
+
+CardContainer.propTypes = {
+  firstTitle: PropTypes.string,
+  secondTitle: PropTypes.string,
+  des: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
 
 const Wrap = styled.div`
   display: flex;
