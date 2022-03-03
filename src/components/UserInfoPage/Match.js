@@ -2,16 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 import MatchDetail from './MatchDetail';
+import trackData from '../../assets/track.json';
+import kartData from '../../assets/kart.json';
+import timeConvert from '../../lib/timeConvert';
+import calcDateDiff from '../../lib/calcDateDiff';
 
 export default function Match({ matchData, userData }) {
   const [show, setShow] = useState(false);
+  const trackName = trackData.filter((item) => item.id === matchData.trackId);
+  const kartName = kartData.filter((item) => item.id === matchData.player.kart);
 
   return (
     <Section>
-      <Div matchWin={matchData.matchResult}>
-        <TypeP>1일 전</TypeP>
-        <ResultP matchWin={matchData.matchResult}>
-          {matchData.matchResult === '' ? (
+      <Div matchRank={matchData.player.matchRank}>
+        <TypeP>{calcDateDiff(matchData.endTime)}</TypeP>
+        <ResultP matchRank={matchData.player.matchRank}>
+          {matchData.matchResult === '' || matchData.player.matchRank === '99' ? (
             '#리타이어'
           ) : (
             <>
@@ -20,14 +26,14 @@ export default function Match({ matchData, userData }) {
             </>
           )}
         </ResultP>
-        <TrackP>마비노기 티르 코네일 &nbsp;</TrackP>
-        <KartP>뉴 골든 세이버 LE &nbsp;</KartP>
-        <TimeP>1'15'07</TimeP>
+        <TrackP>{trackName[0].name} &nbsp;</TrackP>
+        <KartP>{kartName[0].name} &nbsp;</KartP>
+        <TimeP>{timeConvert(matchData.player.matchTime)}</TimeP>
         <OpenP onClick={() => setShow((prev) => !prev)}>
           <Triangle />
         </OpenP>
       </Div>
-      {show ? <MatchDetail /> : null}
+      {show ? <MatchDetail userData={userData} matchData={matchData} /> : null}
     </Section>
   );
 }
@@ -45,15 +51,15 @@ const Div = styled.div`
   font-size: 16px;
   border-width: 1px 1px 1px 4px;
   border-style: solid;
-  ${(props) =>
-    props.matchWin === '0'
-      ? `border-color: #f2f2f2 #f2f2f2 #f2f2f2 #a1a1a1;
-  background-color: #fff;`
-      : props.matchWin === '1'
+  ${({ matchRank }) =>
+    matchRank === '1'
       ? `background-color: rgba(0,119,255,.05);
   border-color: #f2f2f2 #f2f2f2 #f2f2f2 #07f;`
-      : `background-color: rgba(246,36,89,.05);
-  border-color: #f2f2f2 #f2f2f2 #f2f2f2 #f62459;`}
+      : matchRank === '' || matchRank === '99'
+      ? `background-color: rgba(246,36,89,.05);
+  border-color: #f2f2f2 #f2f2f2 #f2f2f2 #f62459;`
+      : `border-color: #f2f2f2 #f2f2f2 #f2f2f2 #a1a1a1;
+  background-color: #fff;`}
 `;
 
 const P = styled.p`
@@ -110,14 +116,14 @@ const ResultP = styled(P)`
   font-weight: 500;
   font-style: italic;
   text-align: left;
-  ${(props) =>
-    props.matchWin === '0'
-      ? `opacity: 0.5;`
-      : props.matchWin === '1'
+  ${({ matchRank }) =>
+    matchRank === '1'
       ? `color: #07f;
       opacity: 1;`
-      : `color: #f62459;
-      opacity: 1;`}
+      : matchRank === '' || matchRank === '99'
+      ? `color: #f62459;
+      opacity: 1;`
+      : `opacity: 0.5`}
 `;
 
 const TypeP = styled(P)`
