@@ -189,4 +189,6 @@ $RECYCLE.BIN/
 
 node_modules/
 
+.env
+
 # End of https://www.toptal.com/developers/gitignore/api/webstorm,macos,windows,visualstudiocode
