@@ -29,7 +29,6 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 const Right = styled.div`
   flex: 2;
   padding-top: 40px;
