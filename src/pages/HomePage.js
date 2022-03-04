@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Rank from '../components/homepage/Rank';
 import Total from '../components/homepage/Total';
-import CheerChat from '../components/userInfoPage/CheerChat';
+import CheerChat from '../components/UserInfoPage/CheerChat';
 
 function HomePage({ userMatchList }) {
   const [win, setWin] = useState();
