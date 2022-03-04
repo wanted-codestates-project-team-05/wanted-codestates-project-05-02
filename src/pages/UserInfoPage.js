@@ -7,15 +7,12 @@ import UserProfile from '../components/UserInfoPage/UserProfile';
 import HomePage from './HomePage';
 import { fetchUserMatchList } from '../Reducer/matchList';
 import { useDispatch, useSelector } from 'react-redux';
-import { Header } from '../components/common/Header';
+import Loading from '../components/common/Loading';
 
 function UserInfoPage() {
   //리덕스
-  // const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
-  // const query = { nick: 'BBEESSTT' };
   const dispatch = useDispatch();
   const matchList = useSelector((state) => state.matchList);
-
   const getData = async () => {
     const user = await axios.get(
       `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/users/nickname/${query.nick}`,
@@ -27,8 +24,14 @@ function UserInfoPage() {
     );
     await dispatch(fetchUserMatchList(user.data.accessId));
   };
+
+  const RequestData = async () => {
+    setIsLoading(true);
+    await getData();
+    setIsLoading(false);
+  };
   useEffect(() => {
-    getData();
+    RequestData();
   }, []);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -37,15 +40,14 @@ function UserInfoPage() {
   const location = useLocation();
   const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
 
-  // if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <Loading message="데이터를 준비중입니다..." />;
   return (
     <Wrap>
-      <Header />
-      {console.log(matchList.userMatchList.data?.matches[0].matches, 'data')}
       {matchList.userMatchList.data && (
         <Content>
           <UserProfile char={matchList.userMatchList.data?.matches[0].matches[0].character} />
           <HomePage userMatchList={matchList.userMatchList.data?.matches[0].matches} />
+          {/*<InfoContainer userData={user.data} matchData={matchList.userMatchList.data?.matches[0].matches} />*/}
         </Content>
       )}
     </Wrap>
