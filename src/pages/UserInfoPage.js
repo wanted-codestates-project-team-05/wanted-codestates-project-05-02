@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import QueryString from 'qs';
-import InfoContainer from '../components/userInfoPage/InfoContainer';
+import InfoContainer from '../components/UserInfoPage/InfoContainer';
 
 function UserInfoPage() {
   const [isLoading, setIsLoading] = useState(false);
