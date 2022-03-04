@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaUserAlt, FaUsers } from 'react-icons/fa';
-import React from 'react';
-import styled from 'styled-components';
-import { FaUserAlt, FaUsers } from 'react-icons/fa';
 
 const tabs = ['개인전', '팀전'];
 function RankTab({ TabHandler, tabNum }) {
