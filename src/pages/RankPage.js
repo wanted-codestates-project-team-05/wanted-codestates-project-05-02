@@ -27,20 +27,21 @@ function RankPage() {
   const [isModal, setIsModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const TabHandler = (index) => {
+    setIsLoading(true);
     setTabNum(index);
     if (index === 0) navigate('/rank?mode=indi&speed=speedIndiCombine');
     else navigate('/rank?mode=team&speed=speedTeamCombine');
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   };
   const ModalHanlder = () => {
-    setIsLoading(true);
     setIsModal((prev) => !prev);
-    setIsLoading(false);
   };
-
+  if (isLoading) return <Loading message={'데이터를 불러오는 중입니다.'} />;
   return (
     <Container isModal={isModal}>
       {isModal && <GuideModal isModal={isModal} ModalHanlder={ModalHanlder} />}
-
       <Bannerbg>
         <Banner>
           <PageName>3월 TMI 랭킹</PageName>

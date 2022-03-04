@@ -6,7 +6,7 @@ function Loading({ message }) {
   return (
     <Container>
       <TailSpin color="#4b4b4b" height={150} width={100} />
-      <Contents>{message}...</Contents>
+      <Contents>{message}</Contents>
     </Container>
   );
 }
@@ -16,7 +16,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 80vw;
   height: 80vh;
 `;
 
