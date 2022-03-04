@@ -16,13 +16,16 @@ function UserInfoPage() {
 
   const getUserData = async () => {
     setIsLoading(true);
-    const user = await axios.get(`/kart/v1.0/users/nickname/${query.nick}`, {
-      headers: {
-        Authorization: apiKey,
-      },
-    });
+    const user = await axios.get(
+      `https://cors-anywhere.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/users/nickname/${query.nick}`,
+      {
+        headers: {
+          Authorization: apiKey,
+        },
+      }
+    );
     const matches = await axios.get(
-      `/kart/v1.0/users/${user.data.accessId}/matches?limit=200&matchType=${query.matchType}`,
+      `https://cors-anywhere.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/users/${user.data.accessId}/matches?limit=200&matchType=${query.matchType}`,
       {
         headers: {
           Authorization: apiKey,

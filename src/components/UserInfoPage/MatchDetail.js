@@ -23,9 +23,12 @@ export default function MatchDetail({ matchData, userData }) {
 
   const getMatch = async () => {
     setIsLoading(true);
-    const matches = await axios.get(`/kart/v1.0/matches/${matchData.matchId}`, {
-      headers: { Authorization: apiKey },
-    });
+    const matches = await axios.get(
+      `https://cors-anywhere.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/matches/${matchData.matchId}`,
+      {
+        headers: { Authorization: apiKey },
+      }
+    );
     const length = matches.data.players.length;
     matches.data.players.forEach((item) => {
       if (item.matchRank === '0') {

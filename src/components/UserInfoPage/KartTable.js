@@ -92,10 +92,10 @@ export default function KartTable({ matchData, userData }) {
             </Thumbnail>
             <Record>
               <ul>
-                {records.map((record, idx) => {
+                {records?.map((record, idx) => {
                   if (idx < 4) {
                     return (
-                      <Li>
+                      <Li key={idx}>
                         <img
                           src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/kartimg/Category/korea_1.png"
                           alt=""

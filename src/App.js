@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage';
 
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
-import CheerChat from './components/userInfoPage/CheerChat';
+import CheerChat from './components/UserInfoPage/CheerChat';
 import NetworkRequest from './Reducer/NetworkRequest';
 
 function App() {
