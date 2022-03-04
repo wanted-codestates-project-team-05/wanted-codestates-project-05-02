@@ -1,6 +1,17 @@
 import React from 'react';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, getDocs, query, limit } from 'firebase/firestore';
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  onSnapshot,
+  collection,
+  getDocs,
+  query,
+  limit,
+  orderBy,
+} from 'firebase/firestore';
 
 const firebaseApp = initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -24,7 +35,7 @@ export const writeCheering = async (cheeringId, docData) => {
 };
 
 export const queryForDocument = async () => {
-  const cheerChatQuery = query(collection(firestore, 'cheeringList'), limit(30));
+  const cheerChatQuery = query(collection(firestore, 'cheeringList'), limit(20), orderBy('data', 'desc'));
 
   const querySnapShot = await getDocs(cheerChatQuery);
   const cheers = [];
@@ -32,6 +43,5 @@ export const queryForDocument = async () => {
     const data = snap.data();
     cheers.push({ ...data, id: snap.id });
   });
-  cheers.reverse();
   return cheers;
 };

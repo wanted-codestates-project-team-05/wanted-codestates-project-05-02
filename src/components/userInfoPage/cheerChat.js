@@ -53,7 +53,15 @@ const CheerChat = () => {
     if (oneWord !== '') {
       await AddCheer(nickname, oneWord);
       await getData();
+      await deleteInput();
     } else return;
+  };
+
+  const deleteInput = () => {
+    setInputs({
+      nickname: '',
+      oneWord: '',
+    });
   };
 
   const handleChange = (e) => {
