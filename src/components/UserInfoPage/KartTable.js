@@ -103,7 +103,7 @@ export default function KartTable({ matchData, userData }) {
                           src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/kartimg/Category/korea_1.png"
                           alt=""
                         />
-                        <span>{record.id}</span>
+                        <RaceName>{record.id}</RaceName>
                         <Span>{timeConvert(record.record)}</Span>
                       </Li>
                     );
@@ -185,13 +185,18 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   border-top: 1px solid #ccc;
-  margin: 0 25px 0 25px;
+  margin: 0 5px;
   padding-top: 15px;
   padding-bottom: 15px;
   p {
     color: #1f334a;
     font-size: 14px;
   }
+`;
+
+const RaceName = styled.span`
+  font-size: 12px;
+  letter-spacing: -1px;
 `;
 
 const KartBox = styled.div`
