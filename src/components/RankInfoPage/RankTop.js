@@ -21,8 +21,7 @@ function RankTop({ tabNum, indiDatas, teamDatas }) {
                 <Character
                   alt=""
                   // 이미지 변경 해야 됨
-                  // src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${char}.png"
-                  src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/201c61527a04d85cd2de0dad75ab0878ee4125129e57aabe47b3d3ac06df8d67.png"
+                  src={`https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${user.character}.png`}
                 />
               </div>
               <div className="section">

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 function RankList({ indiDatas, teamDatas, tabNum }) {
+
   return (
     <Ranklist>
       <li>
@@ -26,6 +27,10 @@ function RankList({ indiDatas, teamDatas, tabNum }) {
               </div>
             </li>
           ))
+        : indiDatas.map((user, index) => (
+            <li key={index}>
+              <div>
+                <span className="number">{index + 1}</span>
         : teamDatas.slice(3).map((user, index) => (
             <li key={index}>
               <div>

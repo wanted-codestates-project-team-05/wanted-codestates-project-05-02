@@ -6,6 +6,7 @@ import axios from 'axios';
 export const RankIndiData = () => {
   const [list, setList] = useState([]);
   const [playerList, setPlayerList] = useState([]);
+  const [playerMap, setPlayerMap] = useState([]);
   const dispatch = useDispatch();
   const matchList = useSelector((state) => state.matchList.matchList.soloData?.matches[0].matches);
 
@@ -19,19 +20,20 @@ export const RankIndiData = () => {
       await Promise.all(
         list?.map(async (match) => {
           await axios
-            .get(`api/kart/v1.0/matches/${match}`, {
+          .get(`/kart/v1.0/matches/${match}`, {
               headers: {
-                Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
-              },
-            })
-            .then((res) => {
-              res.data.players.map((item) => {
-                playerArray.push({
-                  characterName: item.characterName,
-                  matchRank: item.matchRank,
-                });
+                  Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
+                },
+              })
+          .then((res) => {
+            res.data.players.map((item) => {
+              playerArray.push({
+                characterName: item.characterName,
+                character: item.character,
+                matchRank: item.matchRank,
               });
             });
+          });
           // console.log(matchDetailLoading)
         })
       );
@@ -52,7 +54,6 @@ export const RankIndiData = () => {
     getDetailData();
   }, [list, matchList]);
 
-  const [playerMap, setPlayerMap] = useState([]);
 
   //playerData 한번에 넘겨줘야함
   const setting = (playerData) => {
@@ -92,6 +93,7 @@ export const RankIndiData = () => {
         arr.push({
           characterName,
           score,
+          character: item.character,
           count: count + 1,
           rankSum: parseInt(item.matchRank === '99' || item.matchRank === '0' ? '8' : item.matchRank),
         });
@@ -104,5 +106,5 @@ export const RankIndiData = () => {
     setting(playerList);
   }, [playerList]);
 
-  return playerMap;
+  return playerMap.sort((a,b) => b.score - a.score);
 };
