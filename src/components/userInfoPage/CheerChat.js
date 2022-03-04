@@ -76,7 +76,6 @@ const CheerChat = () => {
 
   return (
     <CardContainer firstTitle="응원" secondTitle="한마디" des={`오늘 ${todayDataCount}개 전체 ${cheers.length}개`}>
-      {console.log(todayDataCount)}
       <Content>{cheers.length !== 0 ? cheers : null}</Content>
       <Form onSubmit={handleSubmit}>
         <NicknameInput placeholder="닉네임" value={nickname} name="nickname" onChange={handleChange} />
