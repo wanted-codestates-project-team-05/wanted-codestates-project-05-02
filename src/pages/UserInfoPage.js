@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import InfoContainer from '../components/UserInfoPage/InfoContainer';
 import { useLocation } from 'react-router-dom';
 import QueryString from 'qs';
+import InfoContainer from '../components/userInfoPage/InfoContainer';
 
 function UserInfoPage() {
   const [isLoading, setIsLoading] = useState(false);
