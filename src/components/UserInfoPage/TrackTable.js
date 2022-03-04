@@ -201,7 +201,11 @@ const Thead = styled.thead`
 
 const HeadTr = styled.tr`
   box-sizing: border-box;
+<<<<<<< HEAD
   th:not(:last-child)::after {
+=======
+  & th:not(:last-child)::after {
+>>>>>>> 3668584b041aaa65faef6f1722401300d546f284
     content: '';
     position: absolute;
     top: 10px;
@@ -214,7 +218,11 @@ const HeadTr = styled.tr`
 `;
 
 const BodyTr = styled.tr`
+<<<<<<< HEAD
   ${({ selected }) => (selected ? 'border: 1px solid #07f' : '')};
+=======
+  border: ${(props) => (props.active ? `${'1px solid #07f'}` : '')};
+>>>>>>> 3668584b041aaa65faef6f1722401300d546f284
 `;
 
 const Th = styled.th`
@@ -235,7 +243,11 @@ const A = styled.a`
   text-decoration: none;
   color: #1f334a;
   cursor: pointer;
+<<<<<<< HEAD
   img {
+=======
+  & img {
+>>>>>>> 3668584b041aaa65faef6f1722401300d546f284
     height: 27px;
     vertical-align: middle;
   }

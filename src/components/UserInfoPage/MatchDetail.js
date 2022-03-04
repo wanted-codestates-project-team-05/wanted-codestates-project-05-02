@@ -147,10 +147,13 @@ const Kart = styled.div`
 const User = styled.div`
   height: 17px;
   line-height: 17px;
+<<<<<<< HEAD
   span {
     font-weight: ${({ nick, name }) => (nick !== name ? '500' : '700')};
     cursor: pointer;
   }
+=======
+>>>>>>> 3668584b041aaa65faef6f1722401300d546f284
 `;
 
 const Record = styled.div`

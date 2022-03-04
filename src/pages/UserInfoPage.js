@@ -37,7 +37,11 @@ function UserInfoPage() {
   useEffect(() => {
     getUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+<<<<<<< HEAD
   }, [location.search]);
+=======
+  }, []);
+>>>>>>> 3668584b041aaa65faef6f1722401300d546f284
 
   if (isLoading) return <div>Loading</div>;
   return (
