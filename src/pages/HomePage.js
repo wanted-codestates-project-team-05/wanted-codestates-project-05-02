@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Track from '../components/homepage/Track';
 import Rank from '../components/homepage/Rank';
 import Total from '../components/homepage/Total';
-import CheerChat from '../components/UserInfoPage/CheerChat';
+import CheerChat from '../components/userInfoPage/CheerChat';
 
 function HomePage({ userMatchList }) {
   const [win, setWin] = useState();
