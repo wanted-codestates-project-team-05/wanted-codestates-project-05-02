@@ -2,8 +2,6 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 import styled from 'styled-components';
 
-// props: dataAvg(number), dataLabel(string)
-
 const RadialChart = (props) => {
   const options = {
     chart: {
@@ -16,7 +14,6 @@ const RadialChart = (props) => {
         hollow: {
           margin: 15,
           size: '60%',
-          // background: 'red', // bar 굵기
         },
         dataLabels: {
           showOn: 'always',
@@ -40,13 +37,9 @@ const RadialChart = (props) => {
     fill: {
       type: 'solid',
       colors: [props.color],
-      // stroke: {
-      //   lineCap: 'round',
-      // },
-      // labels: [`70%`],
     },
   };
-  const series = [70]; // %
+  const series = [props.percent];
 
   return (
     <RaidalContainer>

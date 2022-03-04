@@ -2,12 +2,12 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 import styled from 'styled-components';
 
-const LineChart = (props) => {
+const RankChart = (props) => {
   const options = {
     series: [
       {
         name: '순위',
-        data: [1, 4, 5, 2, 3, 2, 7, 4, 5, 6, 7, 8],
+        data: [...props.match],
       },
     ],
     chart: {
@@ -78,7 +78,7 @@ const LineChart = (props) => {
   );
 };
 
-export default LineChart;
+export default RankChart;
 
 const LineContainer = styled.div`
   width: 300px;

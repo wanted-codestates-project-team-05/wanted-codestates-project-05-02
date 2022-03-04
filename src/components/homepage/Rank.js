@@ -1,8 +1,79 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { fetchMatchDetail } from '../../Reducer/matchDetail';
+import { fetchMatchList, fetchUserMatchList } from '../../Reducer/matchList';
 import RankChart from '../chart/RankChart';
 
-const Rank = () => {
-  return (
+const matchUrl = 'pi/kart/v1.0/matches/1963163935';
+const date = new Date();
+const startDate = new Date(+new Date(date.setHours(0, 0, 0, 0)) + 3240 * 10000)
+  .toISOString()
+  .replace('T', '')
+  .replace(/\..*/, '');
+const endDate = new Date(+new Date(date.setHours(23, 59, 59, 999)) + 3240 * 10000)
+  .toISOString()
+  .replace('T', ' ')
+  .replace(/\..*/, '');
+
+const match_types = '7b9f0fd5377c38514dbb78ebe63ac6c3b81009d5a31dd569d1cff8f005aa881a';
+
+const Rank = (props) => {
+  const [loading, setLoading] = useState(false);
+  const [win, setWin] = useState();
+  const [totals, setTotals] = useState([]);
+
+  let winCount;
+  useEffect(async () => {
+    const config = {
+      method: 'get',
+      url: `kart/v1.0/users/1963163935/matches?start_date=${startDate}&end_date=${endDate}&limit=200&match_types=${match_types}`,
+      headers: {
+        Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
+      },
+    };
+    axios(config)
+      .then((res) => {
+        const tempArr = res.data.matches[0].matches.filter((data) => data.player.matchWin === '1');
+        // console.log(res.data.matches[0].matches.map((data) => (data.player.matchWin === '1' ? (winCount += 1) : '')));
+        setWin(tempArr.length);
+      })
+      .catch((err) => console.profile(err));
+  }, []);
+
+  // const matchList = useSelector((state) => state.matchList);
+  // const { userMatchList } = useSelector(
+  //   (state) => ({
+  //     userMatchList: state.matchList.userMatchList,
+  //   }),
+  //   shallowEqual
+  // );
+  // const matchDetail = useSelector((state) => state.matchDetail);
+  // const dispatch = useDispatch();
+
+  // let winCount;
+  // useEffect(async () => {
+
+  //   try {
+  //     await dispatch(fetchUserMatchList(1963163935));
+  //     // rank = userMatchList.data?.matches[0].matches[1].player.matchRank;
+  //     userMatchList.data?.matches[0].map((match) => (match.player.matchWin === '1' ? (winCount += 1) : ''));
+  //     setWin(winCount);
+  //     console.log(userMatchList.data.matches[0]);
+  //     setLoading(false);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
+  // setTotals(props.match);
+  // let avr = totals.reduce((sum, curVal) => {
+  //   return sum + curVal;
+  // });
+
+  return loading ? (
+    <div>loading</div>
+  ) : (
     <Container>
       <Title>
         <span>
@@ -11,12 +82,12 @@ const Rank = () => {
         </span>
         <span style={{ fontSize: '11px' }}>
           <span>지난 200경기 </span>
-          <span style={{ color: '#5198FF' }}>2.92위 </span>
+          <span style={{ color: '#5198FF' }}>{props.avr}위 </span>
           <span>최근 50경기 </span>
-          <span style={{ color: '#5198FF' }}>3.14위</span>
+          <span style={{ color: '#5198FF' }}>{props.avr}위</span>
         </span>
       </Title>
-      <RankChart size={'200px'} />
+      <RankChart match={props.match} size={'200px'} />
     </Container>
   );
 };

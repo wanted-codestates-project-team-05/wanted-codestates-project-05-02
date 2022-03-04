@@ -8,20 +8,22 @@ const Total = (props) => {
         <span>
           <span style={{ color: '#5198FF' }}>종합</span> <span>전적</span>
         </span>
-        <span style={{ fontSize: '13px' }}>200전 70승 130패</span>
+        <span style={{ fontSize: '13px' }}>
+          200전 {props.winCount}승 {200 - props.winCount}패
+        </span>
       </Title>
       <ChartContainer>
         <div>
           <ChartTitle>승률</ChartTitle>
-          <RadialChart color="#0A5CFF" size="150px" />
+          <RadialChart percent={(props.winCount / 2).toFixed(0)} color="#0A5CFF" size="150px" />
         </div>
         <CenterChart>
           <ChartTitle>완주율</ChartTitle>
-          <RadialChart color="#8CD31F" size="150px" />
+          <RadialChart percent={((200 - props.retired) / 2).toFixed(0)} color="#8CD31F" size="150px" />
         </CenterChart>
         <div>
           <ChartTitle>리타이어율</ChartTitle>
-          <RadialChart color="#F00047" size="150px" />
+          <RadialChart percent={(props.retired / 2).toFixed(0)} color="#F00047" size="150px" />
         </div>
       </ChartContainer>
       <Footer>
