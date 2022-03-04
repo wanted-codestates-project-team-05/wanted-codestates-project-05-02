@@ -4,15 +4,14 @@ import { useLocation, useNavigate } from 'react-router';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { FaInfoCircle, FaUser, FaUsers, FaRedo, FaBell, FaShareAlt, FaEye } from 'react-icons/fa';
+<<<<<<< HEAD:src/pages/UserProfile.js
 import CharterInfo from '../assets/character.json';
+=======
+>>>>>>> 834abb53 (feat: 모달 확인시 모달 전부 사라지게 하는 기능 구현, style: 페이지 뷰 호버 시 크기 커짐, 유저 캐릭터 호버시 캡션 보여짐):src/components/userInfoPage/UserProfile.js
 import ModalUserReport from './ModalUserReport';
 import UserMatch from './UserMatch';
 import ModalShare from './ModalShare';
-
-
-const character = '42c729e64e31aea803e4881432f7b95129ce97535c29e4f9a72919a9f267b418';
-const imgUrl = `https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${character}.png`;
-
+import characterName from'../../assets/character.json' 
 
 const UserProfile = () => {
   const location = useLocation();
@@ -20,6 +19,17 @@ const UserProfile = () => {
   const nickName = queryData.nick;
   const matchType = queryData.matchType;
   const navigate = useNavigate();
+
+  // 캐릭터 이미지 값 하드코딩 한 부분입니다.
+  // char 위치에 있는 값이 필요합니다.
+  // char 값을 넣어서 최종 url을 img src에 넣고 있습니다.
+  // char 값으로 charachter.json 에서 해당 id가 있으면 캐릭터 이름을 가지고 와서 img alt값 넣어주고
+  // 캡션에도 사용하고 있습니다
+  const char = '42c729e64e31aea803e4881432f7b95129ce97535c29e4f9a72919a9f267b418';
+  const url = `https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${char}.png`;
+  //const char = matchList.userMatchList.data.matches[0].matches[0].character;
+  const charName = characterName.find((el) => el.id === char ? el : '캐릭터');
+  console.log(charName.name);
 
   const [isReport, setIsReport] = useState(false);
   const [isShare, setIsShare] = useState(false);
@@ -37,20 +47,9 @@ const UserProfile = () => {
   };
   
   const onClickTotalReset = () => {
-    console.log('reset')
+    //handleGetMatchList();
   }
   
-  
-  
-  console.log(nickName);
-  console.log(matchType);
-
-  let imgName = CharterInfo.filter((characters) => characters.id === character);
-
-  //console.log(imgName[0].name);
-  
-
-  // matches.character;
   return (
     <>
       <ProfileContainer>
@@ -59,7 +58,10 @@ const UserProfile = () => {
           <span>카트라이더 매치데이터는 최근 1년치 데이터만 확인할 수 있습니다.</span>
         </div>
         <ProfileInfo>
-          <img src={imgUrl} alt={imgName + '캐릭터'} className="user-img" />
+          <figure className="figure">
+            <img src={url} alt={charName.name + '캐릭터'} className="user-img" />
+            <figcaption className="hide">{charName.name}</figcaption>
+          </figure>
           <div className="user-total">
             <div>
               <h1 className="user-nick">{nickName}</h1>
@@ -152,10 +154,27 @@ const ProfileInfo = styled.article`
   border: 1px solid #ededed;
   border-left: 4px solid #0077ff;
   box-sizing: border-box;
-  .user-img {
-    width: 164px;
-    height: 123px;
-    object-fit: cover;
+  .figure {
+    position: relative;
+    cursor: pointer;
+    .hide {
+      opacity: 0;
+      transition: opacity ease 0.4s;
+      position: absolute;
+      z-index: 10;
+      left: 50px;
+      font-size: 14px;
+    }
+    &:hover {
+      .hide {
+        opacity: 1;
+      }
+    }
+    .user-img {
+      width: 164px;
+      height: 123px;
+      object-fit: cover;
+    }
   }
   .user-total {
     flex: 3;
@@ -178,6 +197,13 @@ const ProfileInfo = styled.article`
     p {
       margin-top: 5px;
       font-size: 20px;
+<<<<<<< HEAD:src/pages/UserProfile.js
+=======
+      transition: transform ease 0.4s;
+      &:hover {
+        transform: scale(1.1);
+      }
+>>>>>>> 834abb53 (feat: 모달 확인시 모달 전부 사라지게 하는 기능 구현, style: 페이지 뷰 호버 시 크기 커짐, 유저 캐릭터 호버시 캡션 보여짐):src/components/userInfoPage/UserProfile.js
     }
   }
 `;
