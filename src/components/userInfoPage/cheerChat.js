@@ -124,6 +124,7 @@ const Nickname = styled.span`
 `;
 
 const MarkToday = styled.div`
+  margin-left: 10px;
   background-color: ${({ theme }) => theme.color.red};
   width: 10px;
   height: 10px;
@@ -131,6 +132,7 @@ const MarkToday = styled.div`
 `;
 
 const SpeechBubble = styled.div`
+  flex: 2.5;
   margin-left: 15px;
   position: relative;
   width: 210px;
