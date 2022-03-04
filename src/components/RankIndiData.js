@@ -20,7 +20,7 @@ export const RankIndiData = () => {
       await Promise.all(
         list?.map(async (match) => {
           await axios
-            .get(`/kart/v1.0/matches/${match}`, {
+            .get(`https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/matches/${match}`, {
               headers: {
                 Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
               },

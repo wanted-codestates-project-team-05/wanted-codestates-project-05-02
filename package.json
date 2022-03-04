@@ -55,5 +55,5 @@
   },
   "devDependencies": {
     "axios": "^0.26.0"
-  },
+  }
 }

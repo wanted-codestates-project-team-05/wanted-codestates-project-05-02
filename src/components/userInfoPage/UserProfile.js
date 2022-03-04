@@ -52,7 +52,7 @@ const UserProfile = ({ char }) => {
     <>
       {isShare && <ModalShare share={setIsShare} />}
       <ProfileContainer>
-        <div class="match-info">
+        <div className="match-info">
           <FaInfoCircle size="13px" />
           <span>카트라이더 매치데이터는 최근 1년치 데이터만 확인할 수 있습니다.</span>
         </div>
