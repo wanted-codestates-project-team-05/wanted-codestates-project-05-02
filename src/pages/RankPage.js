@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import GuideModal from '../components/RankInfoPage/GuideModal';
 import Loading from '../components/common/Loading';
 import { RankIndiData } from '../components/RankIndiData';
+
 const datas = [
   {
     id: '1',
@@ -30,6 +31,7 @@ function RankPage() {
   const [tabNum, setTabNum] = useState(0);
   const [isModal, setIsModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   // 로딩 처리
   useEffect(() => {
     setIsLoading(true);
@@ -43,6 +45,7 @@ function RankPage() {
     setTabNum(index);
     if (index === 0) navigate('/rank?mode=indi&speed=speedIndiCombine');
     else navigate('/rank?mode=team&speed=speedTeamCombine');
+
     setIsLoading(false);
   };
   // 모달 핸들러

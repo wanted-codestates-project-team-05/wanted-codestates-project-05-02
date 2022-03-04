@@ -67,11 +67,9 @@ const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
   svg {
     transition: 0.5s;
     color: rgba(255, 255, 255, 0.5);
-
     &:hover {
       color: rgba(255, 255, 255, 1);
     }
