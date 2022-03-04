@@ -164,7 +164,6 @@ const Container = styled.div`
     }
   }
 `;
-
 const Medal = styled.img`
   position: absolute;
   top: -10px;
@@ -172,7 +171,6 @@ const Medal = styled.img`
     width: 30px;
   }
 `;
-
 const Character = styled.img`
   position: absolute;
   top: 10px;

@@ -5,7 +5,6 @@ function TrackPage() {
 	
 	return (
 		<div>
-			
 		</div>
 	)
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import RankTop from '../components/RankInfoPage/RankTop';
 import RankTab from '../components/RankInfoPage/RankTab';
 import RankList from '../components/RankInfoPage/RankList';
@@ -30,7 +30,14 @@ function RankPage() {
   const [tabNum, setTabNum] = useState(0);
   const [isModal, setIsModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  // 로딩 처리
+  useEffect(() => {
+    setIsLoading(true);
+    if (indiDatas.length !== 0) {
+      setIsLoading(false);
+    }
+  }, [indiDatas]);
+  // 로딩 및 URL 헨들러
   const TabHandler = (index) => {
     setIsLoading(true);
     setTabNum(index);
@@ -38,15 +45,11 @@ function RankPage() {
     else navigate('/rank?mode=team&speed=speedTeamCombine');
     setIsLoading(false);
   };
+  // 모달 핸들러
   const ModalHanlder = () => {
     setIsModal((prev) => !prev);
   };
-  useEffect(() => {
-    setIsLoading(true);
-    if (indiDatas.length !== 0) {
-      setIsLoading(false);
-    }
-  }, [indiDatas]);
+  // 로딩 모달
   if (isLoading) return <Loading message={'데이터를 불러오는 중입니다.'} />;
   return (
     <Container isModal={isModal}>

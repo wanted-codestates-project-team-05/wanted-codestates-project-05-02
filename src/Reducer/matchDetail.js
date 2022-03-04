@@ -24,9 +24,9 @@ export const fetchMatchDetail = (matchId) => async (dispatch) => {
   dispatch({ type: GET_MATCH_DETAIL });
   const config = {
     method: 'get',
-    url: `api/kart/v1.0/matches/${matchId}`,
+    url: `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/matches/${matchId}`,
     headers: {
-      Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION
+      Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
     },
   };
   await axios(config)

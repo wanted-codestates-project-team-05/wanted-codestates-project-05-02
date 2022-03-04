@@ -35,7 +35,7 @@ export const fetchUserMatchList = (useId) => async (dispatch) => {
   dispatch({ type: GET_USER_MATCH_LIST });
   const config = {
     method: 'get',
-    url: `api/kart/v1.0/users/${useId}/matches?start_date=&end_date= &offset=0&limit=200&match_types=`,
+    url: `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/users/${useId}/matches?start_date=&end_date= &offset=0&limit=200&match_types=`,
     headers: {
       Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
     },
@@ -69,7 +69,7 @@ export const fetchMatchList = (matchType) => async (dispatch) => {
   dispatch({ type: GET_MATCH_LIST });
   const config = {
     method: 'get',
-    url: `api/kart/v1.0/matches/all?start_date=&end_date=&offset=0&limit=200&match_types=${matchTypeId}`,
+    url: `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/matches/all?start_date=&end_date=&offset=0&limit=200&match_types=${matchTypeId}`,
     headers: {
       Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
     },

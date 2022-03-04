@@ -1,6 +1,6 @@
 import React from 'react';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, setDoc, getDoc, onSnapshot } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 const firebaseApp = initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -12,50 +12,25 @@ const firebaseApp = initializeApp({
 });
 
 const firestore = getFirestore();
-const cheeringList = doc(firestore, 'Nexon/cheeringList');
-const writeCheering = async () => {
-  const docDate = {
-    data: '2022-03-03',
-    oneWord: '너무하네',
-    nickName: '개발자',
-  };
+
+export const writeCheering = async (cheeringId, docData) => {
+  const cheerItem = doc(firestore, `cheeringList/${cheeringId}`);
   try {
-    await setDoc(cheeringList, docDate, { merge: true });
+    await setDoc(cheerItem, docData, { merge: true });
     console.log('setDocSuccess');
   } catch (error) {
     console.log('setDocError', error);
   }
 };
 
-const readSingleDocument = async () => {
-  const mySnapShot = await getDoc(cheeringList);
-  if (mySnapShot.exists()) {
-    const docData = mySnapShot.data();
-    console.log('decData', JSON.stringify(docData));
-  }
-};
+export const queryForDocument = async () => {
+  const cheerChatQuery = query(collection(firestore, 'cheeringList'), orderBy('data', 'desc'));
 
-let dailySpecialUnsubscribe;
-
-const listenToADocument = async () => {
-  dailySpecialUnsubscribe = onSnapshot(cheeringList, (docSnapshot) => {
-    if (docSnapshot.exists()) {
-      const docData = docSnapshot.data();
-      console.log('realTime Data', JSON.stringify(docData));
-    }
+  const querySnapShot = await getDocs(cheerChatQuery);
+  const cheers = [];
+  querySnapShot.forEach((snap) => {
+    const data = snap.data();
+    cheers.push({ ...data, id: snap.id });
   });
+  return cheers;
 };
-
-const cancelMyListenerAtAppropriateTime = () => {
-  dailySpecialUnsubscribe();
-};
-
-const EditFirebaseDb = () => {
-  writeCheering();
-  readSingleDocument();
-  listenToADocument();
-
-  return <div>EditFirebaseDb</div>;
-};
-
-export default EditFirebaseDb;
