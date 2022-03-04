@@ -22,7 +22,7 @@ function RankList({ indiDatas, teamDatas, tabNum }) {
                 <span className="characterName">{user.characterName}</span>
                 <span className="score">{user.score} PT</span>
                 <span className="count">{user.count} 회</span>
-                <span className="rankSum">{user.rankSum} 위</span>
+                <span className="rankSum">{user.rankSum / user.count} 위</span>
               </div>
             </li>
           ))
@@ -33,7 +33,7 @@ function RankList({ indiDatas, teamDatas, tabNum }) {
                 <span className="characterName">{user.characterName}</span>
                 <span className="score">{user.score} PT</span>
                 <span className="count">{user.count} 회</span>
-                <span className="rankSum">{user.rankSum} 위</span>
+                <span className="rankSum">{user.rankSum / user.count} 위</span>
               </div>
             </li>
           ))}

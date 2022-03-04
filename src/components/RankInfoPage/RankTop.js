@@ -13,7 +13,7 @@ function RankTop({ tabNum, indiDatas, teamDatas }) {
                 {index === 2 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_bronzemedal.png" />}
                 <p className="characterName">{user.characterName}</p>
                 <p className="rankSum">
-                  순위 <span>{user.rankSum}</span>
+                  순위 <span>{index + 1}</span>
                 </p>
                 <p className="score">
                   누적 포인트 <span>{user.score}</span>
@@ -45,7 +45,7 @@ function RankTop({ tabNum, indiDatas, teamDatas }) {
                 {index === 2 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_bronzemedal.png" />}
                 <p className="characterName">{user.characterName}</p>
                 <p className="rankSum">
-                  순위 <span>{user.rankSum}</span>
+                  순위 <span>{user.score}</span>
                 </p>
                 <p className="score">
                   누적 포인트 <span>{user.score}</span>
