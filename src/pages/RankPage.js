@@ -33,12 +33,12 @@ function RankPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   // 로딩 처리
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   if (indiDatas.length !== 0) {
-  //     setIsLoading(false);
-  //   }
-  // }, [indiDatas]);
+  useEffect(() => {
+    setIsLoading(true);
+    if (indiDatas.length !== 0) {
+      setIsLoading(false);
+    }
+  }, [indiDatas]);
   // 로딩 및 URL 헨들러
   const TabHandler = (index) => {
     setIsLoading(true);

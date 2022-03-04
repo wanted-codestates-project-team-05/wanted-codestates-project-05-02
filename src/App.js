@@ -3,7 +3,7 @@ import Routes from './Routes';
 import { Header } from './components/common/Header';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
-import CheerChat from './components/userInfoPage/cheerChat';
+import CheerChat from './components/userInfoPage/CheerChat';
 import NetworkRequest from './Reducer/NetworkRequest';
 
 function App() {
