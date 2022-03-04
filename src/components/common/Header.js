@@ -16,22 +16,22 @@ export const Header = () => {
     <Container>
       <InnerContainer>
         <Contents className={currentNav === 'home' ? 'active' : ''} onClick={() => handleActive('home')}>
-          <span>홈</span>
+          <span className="btn">홈</span>
           <div className="line" />
           <div className="line-right" />
         </Contents>
         <Contents className={currentNav === 'rank' ? 'active' : ''} onClick={() => handleActive('rank')}>
-          <span>랭킹</span>
+          <span className="btn">랭킹</span>
           <div className="line" />
           <div className="line-right" />
         </Contents>
         <Contents className={currentNav === 'kart' ? 'active' : ''} onClick={() => handleActive('kart')}>
-          <span>카트</span>
+          <span className="btn">카트</span>
           <div className="line" />
           <div className="line-right" />
         </Contents>
         <Contents className={currentNav === 'track' ? 'active' : ''} onClick={() => handleActive('track')}>
-          <span>트랙</span>
+          <span className="btn">트랙</span>
           <div className="line" />
           <div className="line-right" />
         </Contents>
@@ -55,10 +55,11 @@ const InnerContainer = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
-
+  @media all and (max-width: 820px) {
+    width: auto;
+  }
   .active {
     opacity: 1 !important;
-
     .line {
       width: 100%;
     }
@@ -76,7 +77,17 @@ const Contents = styled.div`
   margin-right: 40px;
   position: relative;
   animation-fill-mode: forwards;
-
+  @media all and (max-width: 820px) {
+    width: 50px;
+  }
+  @media all and (max-width: 420px) {
+    line-height: 30px;
+    margin-right: 0px;
+    padding-bottom: 6px;
+  }
+  .btn {
+    width: 30px;
+  }
   &:hover {
     opacity: 1;
     transition: opacity 0.25s ease-in-out;

@@ -13,7 +13,7 @@ function RankTop({ tabNum, indiDatas, teamDatas }) {
                 {index === 2 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_bronzemedal.png" />}
                 <p className="characterName">{user.characterName}</p>
                 <p className="rankSum">
-                  순위 <span>{user.rankSum}</span>
+                  순위 <span>{index + 1}</span>
                 </p>
                 <p className="score">
                   누적 포인트 <span>{user.score}</span>
@@ -45,7 +45,7 @@ function RankTop({ tabNum, indiDatas, teamDatas }) {
                 {index === 2 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_bronzemedal.png" />}
                 <p className="characterName">{user.characterName}</p>
                 <p className="rankSum">
-                  순위 <span>{user.rankSum}</span>
+                  순위 <span>{user.score}</span>
                 </p>
                 <p className="score">
                   누적 포인트 <span>{user.score}</span>
@@ -79,7 +79,7 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 400px;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 420px) {
     margin-top: 10px;
     flex-direction: column;
     height: auto;
@@ -92,7 +92,7 @@ const Container = styled.div`
     &:not(:last-child) {
       margin-right: 50px;
     }
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 420px) {
       width: 100%;
       margin: 20px 0;
       &:not(:last-child) {
@@ -179,7 +179,7 @@ const Character = styled.img`
   @media screen and (max-width: 820px) {
     display: none;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 420px) {
     display: inline-block;
     margin-right: 30px;
   }
