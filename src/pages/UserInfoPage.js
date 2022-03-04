@@ -9,6 +9,7 @@ import HomePage from './HomePage';
 import CheerChat from '../components/UserInfoPage/CheerChat';
 import { fetchUserMatchList } from '../Reducer/matchList';
 import { useDispatch, useSelector } from 'react-redux';
+import { Header } from '../components/common/Header';
 
 function UserInfoPage() {
   //리덕스
@@ -41,6 +42,7 @@ function UserInfoPage() {
   // if (isLoading) return <div>Loading</div>;
   return (
     <Wrap>
+      <Header />
       {console.log(matchList.userMatchList.data?.matches[0].matches, 'data')}
       {matchList.userMatchList.data && (
         <Content>

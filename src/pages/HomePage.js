@@ -3,10 +3,6 @@ import styled from 'styled-components';
 import Track from '../components/homepage/Track';
 import Rank from '../components/homepage/Rank';
 import Total from '../components/homepage/Total';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchMatchList, fetchUserMatchList } from '../Reducer/matchList';
-// import { fetchMatchDetail } from '../Reducer/matchDetail';
-import axios from 'axios';
 import CheerChat from '../components/UserInfoPage/CheerChat';
 
 function HomePage({ userMatchList }) {
