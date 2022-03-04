@@ -30,7 +30,6 @@ const Wrap = styled.div`
   justify-content: space-between;
   border: 1px solid ${({ theme }) => theme.color.border};
   background-color: ${({ theme }) => theme.color.white};
-  //임시
   width: 324px;
   height: 263px;
 `;

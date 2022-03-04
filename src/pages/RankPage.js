@@ -17,14 +17,12 @@ function RankPage() {
   const [isModal, setIsModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // 로딩 처리
   useEffect(() => {
     setIsLoading(true);
     if (indiDatas.length !== 0) {
       setIsLoading(false);
     }
   }, [indiDatas]);
-  // 로딩 및 URL 헨들러
   const TabHandler = (index) => {
     setIsLoading(true);
     setTabNum(index);
@@ -33,11 +31,9 @@ function RankPage() {
 
     setIsLoading(false);
   };
-  // 모달 핸들러
   const ModalHanlder = () => {
     setIsModal((prev) => !prev);
   };
-  // 로딩 모달
   if (isLoading) return <Loading message={'데이터를 불러오는 중입니다.'} />;
   return (
     <Container isModal={isModal}>

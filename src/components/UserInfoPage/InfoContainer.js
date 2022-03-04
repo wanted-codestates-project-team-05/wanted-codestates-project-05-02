@@ -37,7 +37,6 @@ export default function InfoContainer() {
 
   useEffect(() => {
     getUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
   return (

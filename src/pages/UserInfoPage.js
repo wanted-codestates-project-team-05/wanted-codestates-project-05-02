@@ -11,7 +11,6 @@ import Profile from '../components/UserInfoPage/Profile';
 import InfoContainer from '../components/UserInfoPage/InfoContainer';
 
 function UserInfoPage() {
-  //리덕스
   const dispatch = useDispatch();
   const matchList = useSelector((state) => state.matchList);
   const [isLoading, setIsLoading] = useState(false);

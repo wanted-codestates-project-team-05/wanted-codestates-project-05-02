@@ -52,7 +52,6 @@ export const RankIndiData = () => {
     getDetailData();
   }, [list, matchList]);
 
-  //playerData 한번에 넘겨줘야함
   const setting = (playerData) => {
     let arr = [];
     playerData.map((item) => {
@@ -80,7 +79,6 @@ export const RankIndiData = () => {
         score = -5;
       }
 
-      //플레이어가 존재하면 score를 원래잇던 플레이어에게 덮어씌운다.
       if (arr.find((findItem) => findItem.characterName === characterName)) {
         const indexValue = arr.findIndex((findIndexItem) => findIndexItem.characterName === characterName);
         arr[indexValue].score += score;

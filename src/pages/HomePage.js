@@ -9,7 +9,6 @@ function HomePage({ userMatchList }) {
   const [win, setWin] = useState();
   const [retired, setRetired] = useState();
   const [match50, setMatch50] = useState([]);
-  // const [match200, setMatch200] = useState([]);
   const [avr50, setAvr50] = useState();
   const [avr200, setAvr200] = useState();
   const navigate = useNavigate();
@@ -28,7 +27,6 @@ function HomePage({ userMatchList }) {
     setWin(winArr.length);
     setRetired(retiredArr.length);
     setMatch50(matchArr50);
-    // setMatch200(match200);
     const totals50 = matchArr50.reduce((sum, curVal) => {
       return sum + curVal;
     });

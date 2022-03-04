@@ -6,7 +6,6 @@ import QueryString from 'qs';
 import axios from 'axios';
 
 const NetworkRequest = () => {
-  // const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   const query = { nick: 'BBEESSTT' };
 
   const getData = async () => {

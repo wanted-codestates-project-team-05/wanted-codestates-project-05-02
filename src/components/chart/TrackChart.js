@@ -75,9 +75,6 @@ const TrackChart = (props) => {
       },
       labels: {
         show: true,
-        // minWidth: 1,
-        // maxWidth: 10,
-        // formatter: (s) => s.toFixed(1),
       },
     },
   };
