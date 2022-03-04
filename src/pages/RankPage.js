@@ -7,34 +7,46 @@ import { useNavigate } from 'react-router-dom';
 import GuideModal from '../components/RankInfoPage/GuideModal';
 import Loading from '../components/common/Loading';
 import { RankIndiData } from '../components/RankIndiData';
+const datas = [
+  {
+    id: '1',
+    characterName: '1234Kcm',
+    score: '40',
+    count: '213',
+    Rank: '1.1',
+  },
+  {
+    id: '2',
+    characterName: '1234Kcm',
+    score: '40',
+    count: '213',
+    rankSum: '1.1',
+  },
+];
 
 function RankPage() {
   const indiDatas = RankIndiData();
-  console.log(indiDatas.length);
   const navigate = useNavigate();
   const [tabNum, setTabNum] = useState(0);
   const [isModal, setIsModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
 
   const TabHandler = (index) => {
     setIsLoading(true);
     setTabNum(index);
     if (index === 0) navigate('/rank?mode=indi&speed=speedIndiCombine');
     else navigate('/rank?mode=team&speed=speedTeamCombine');
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+    setIsLoading(false);
   };
   const ModalHanlder = () => {
     setIsModal((prev) => !prev);
   };
+  useEffect(() => {
+    setIsLoading(true);
+    if (indiDatas.length !== 0) {
+      setIsLoading(false);
+    }
+  }, [indiDatas]);
   if (isLoading) return <Loading message={'데이터를 불러오는 중입니다.'} />;
   return (
     <Container isModal={isModal}>
@@ -51,10 +63,10 @@ function RankPage() {
             <GuideBtn onClick={ModalHanlder}>랭킹 가이드</GuideBtn>
           </Info>
           <RankTab tabNum={tabNum} TabHandler={TabHandler} />
-          <RankTop indiDatas={indiDatas} />
+          <RankTop tabNum={tabNum} indiDatas={indiDatas} teamDatas={datas} />
         </Banner>
       </Bannerbg>
-      <RankList indiDatas={indiDatas} tabNum={tabNum} />
+      <RankList tabNum={tabNum} indiDatas={indiDatas} teamDatas={datas} />
     </Container>
   );
 }
@@ -76,7 +88,7 @@ const Banner = styled.div`
   max-width: 62.5rem;
   width: 80%;
   margin: 0 auto;
-  padding-top: 50px;
+  padding: 50px;
 `;
 const PageName = styled.h1`
   font-size: 22px;

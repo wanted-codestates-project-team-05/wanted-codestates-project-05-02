@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function RankList({ indiDatas, tabNum }) {
+function RankList({ indiDatas, teamDatas, tabNum }) {
   return (
     <Ranklist>
       <li>
@@ -13,12 +13,12 @@ function RankList({ indiDatas, tabNum }) {
           <span className="rankSum">평균순위</span>
         </div>
       </li>
-      {/* tabNum이 0이면 개인, 1이면 팀*/}
+      {/* tabNum === 0 개인 , tabNum === 1 Group */}
       {tabNum === 0
-        ? indiDatas.map((user, index) => (
+        ? indiDatas.slice(3).map((user, index) => (
             <li key={index}>
               <div>
-                <span className="number">{index + 1}</span>
+                <span className="number">{index + 4}</span>
                 <span className="characterName">{user.characterName}</span>
                 <span className="score">{user.score} PT</span>
                 <span className="count">{user.count} 회</span>
@@ -26,10 +26,10 @@ function RankList({ indiDatas, tabNum }) {
               </div>
             </li>
           ))
-        : indiDatas.map((user, index) => (
+        : teamDatas.slice(3).map((user, index) => (
             <li key={index}>
               <div>
-                <span className="number">{index + 1}</span>
+                <span className="number">{index + 4}</span>
                 <span className="characterName">{user.characterName}</span>
                 <span className="score">{user.score} PT</span>
                 <span className="count">{user.count} 회</span>
@@ -67,7 +67,7 @@ const Ranklist = styled.ul`
     }
     .title {
       color: #fff;
-      @media screen and (max-width: 820px) {
+      @media screen and (max-width: 400px) {
         color: black;
       }
     }
