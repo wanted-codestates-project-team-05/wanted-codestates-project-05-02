@@ -10,18 +10,21 @@ const CheerChat = () => {
     oneWord: '',
   });
   const { nickname, oneWord } = inputs;
+  const [todayDataCount, setTodayDataCount] = useState(0);
   const getData = async () => {
     const Cheers = [];
     await Promise.all(await queryForDocument()).then((res) => {
-      res.map((item) =>
+      res.map((item) => {
+        const todayData = item.data === Today ? true : false;
+        todayData && setTodayDataCount((todayData) => todayData + 1);
         Cheers.push(
           <SpeechContainer key={item.id}>
             <Nickname>{item.nickname}</Nickname>
-            {item.data === Today ? <MarkToday /> : null}
+            {todayData ? <MarkToday /> : null}
             <SpeechBubble>{item.oneWord}</SpeechBubble>
           </SpeechContainer>
-        )
-      );
+        );
+      });
     });
     setCheers(Cheers);
   };
@@ -59,7 +62,7 @@ const CheerChat = () => {
 
   const deleteInput = () => {
     setInputs({
-      nickname: '',
+      ...inputs,
       oneWord: '',
     });
   };
@@ -72,7 +75,8 @@ const CheerChat = () => {
   };
 
   return (
-    <CardContainer firstTitle="응원" secondTitle="한마디" des="오늘 6개 전체 13개">
+    <CardContainer firstTitle="응원" secondTitle="한마디" des={`오늘 ${todayDataCount}개 전체 ${cheers.length}개`}>
+      {console.log(todayDataCount)}
       <Content>{cheers.length !== 0 ? cheers : null}</Content>
       <Form onSubmit={handleSubmit}>
         <NicknameInput placeholder="닉네임" value={nickname} name="nickname" onChange={handleChange} />
