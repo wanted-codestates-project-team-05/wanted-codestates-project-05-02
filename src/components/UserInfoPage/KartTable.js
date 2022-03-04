@@ -57,10 +57,6 @@ export default function KartTable({ matchData, userData }) {
     }
   }, [id, kartInfo, matchData.matches]);
 
-  useEffect(() => {
-    console.log(records);
-  }, [records]);
-
   function compare(a, b, reverse = false) {
     let x = reverse ? 1 : -1;
     let y = reverse ? -1 : 1;

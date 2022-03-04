@@ -34,11 +34,9 @@ export const RankIndiData = () => {
                 });
               });
             });
-          // console.log(matchDetailLoading)
         })
       );
     }
-    // console.log(responseDataList);
     setPlayerList(playerArray);
   };
 

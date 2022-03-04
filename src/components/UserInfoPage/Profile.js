@@ -15,15 +15,7 @@ const Profile = ({ char }) => {
   const matchType = queryData.matchType;
   const navigate = useNavigate();
   const url = `https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${char}.png`;
-
   const charName = characterName.find((el) => (el.id === char ? el : '캐릭터'));
-  console.log(charName.name);
-
-  // 전적 갱신하기 버튼 클릭시 작동하는 함수입니다. 데이터 요청을 다시 한번 받아야 하는데
-  // 여기서도 어떻게 해야 할지 모르겠습니다 ㅠㅠ
-  const onClickTotalReset = () => {
-    // 데이터 요청 다시하기
-  };
 
   const [isReport, setIsReport] = useState(false);
   const [isShare, setIsShare] = useState(false);
@@ -80,7 +72,7 @@ const Profile = ({ char }) => {
                 </button>
               </li>
               <li>
-                <button className="other-btn" onClick={onClickTotalReset}>
+                <button className="other-btn">
                   <FaRedo size="11px" />
                   <span>전적갱신</span>
                 </button>

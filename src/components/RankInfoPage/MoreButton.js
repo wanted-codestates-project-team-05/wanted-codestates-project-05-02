@@ -8,7 +8,6 @@ export const MoreButton = (props) => {
   const perContents = 30;
 
   const handleMoreButton = () => {
-    console.log(dataNum);
     setTimeout(() => {
       setButtonLoading(true);
       setDataNum(dataNum + perContents);

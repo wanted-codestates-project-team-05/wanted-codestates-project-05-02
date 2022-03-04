@@ -17,7 +17,6 @@ export const writeCheering = async (cheeringId, docData) => {
   const cheerItem = doc(firestore, `cheeringList/${cheeringId}`);
   try {
     await setDoc(cheerItem, docData, { merge: true });
-    console.log('setDocSuccess');
   } catch (error) {
     console.log('setDocError', error);
   }

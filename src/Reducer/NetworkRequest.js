@@ -19,7 +19,6 @@ const NetworkRequest = () => {
       }
     );
     await dispatch(fetchUserMatchList(user.data.accessId));
-    console.log(matchList.userMatchList.data?.matches[0].matches, 'data');
   };
   useEffect(() => {
     getData();
@@ -34,7 +33,6 @@ const NetworkRequest = () => {
   };
   return (
     <div>
-      {console.log(matchList.userMatchList.data?.matches[0].matches, 'data')}
       <button onClick={handleGetMatchList}>네트워크 요청</button>
       <p>{matchList.userMatchList.data?.nickName}</p>
     </div>

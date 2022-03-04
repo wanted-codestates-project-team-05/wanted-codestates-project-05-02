@@ -33,11 +33,9 @@ export const RankTeamData = () => {
 							})
 						})
 					})
-				// console.log(matchDetailLoading)
 				})
 			)
 		}
-		// console.log(responseDataList)
 		setPlayerList(playerArray)
 	}
 
@@ -82,7 +80,7 @@ export const RankTeamData = () => {
 			} else {
 				score = -5;
 			}
-			
+
 			//플레이어가 존재하면 score를 원래잇던 플레이어에게 덮어씌운다.
 			if(arr.find((findItem) => findItem.characterName === characterName)) {
 				const indexValue = arr.findIndex((findIndexItem) => findIndexItem.characterName === characterName);
@@ -98,7 +96,7 @@ export const RankTeamData = () => {
 					rankSum: parseInt(item.matchRank === '99' || item.matchRank === '0' ? '8' : item.matchRank)
 				})
 			}
-		
+
 		})
 		setPlayerMap(arr)
 	}
