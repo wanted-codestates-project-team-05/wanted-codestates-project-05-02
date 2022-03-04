@@ -93,7 +93,7 @@ export default function KartTable({ matchData, userData }) {
             <Record>
               <ul>
                 {records.map((record, idx) => {
-                  if (idx < 5) {
+                  if (idx < 4) {
                     return (
                       <Li>
                         <img
@@ -105,6 +105,7 @@ export default function KartTable({ matchData, userData }) {
                       </Li>
                     );
                   }
+                  return null;
                 })}
               </ul>
             </Record>
