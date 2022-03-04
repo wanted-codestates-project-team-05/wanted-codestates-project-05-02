@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import GuideModal from '../components/RankInfoPage/GuideModal';
 import Loading from '../components/common/Loading';
 import { RankIndiData } from '../components/RankIndiData';
-
+import { MoreButton } from '../components/RankInfoPage/MoreButton';
 const datas = [
   {
     id: '1',
@@ -33,12 +33,12 @@ function RankPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   // 로딩 처리
-  useEffect(() => {
-    setIsLoading(true);
-    if (indiDatas.length !== 0) {
-      setIsLoading(false);
-    }
-  }, [indiDatas]);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   if (indiDatas.length !== 0) {
+  //     setIsLoading(false);
+  //   }
+  // }, [indiDatas]);
   // 로딩 및 URL 헨들러
   const TabHandler = (index) => {
     setIsLoading(true);

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { MoreButton } from './MoreButton';
 
 function RankList({ indiDatas, teamDatas, tabNum }) {
-
+  const [indiNum, setIndiNum] = useState(30);
+  const [TeamNum, setTeamNum] = useState(30);
   return (
     <Ranklist>
       <li>
@@ -16,32 +18,40 @@ function RankList({ indiDatas, teamDatas, tabNum }) {
       </li>
       {/* tabNum === 0 개인 , tabNum === 1 Group */}
       {tabNum === 0
-        ? indiDatas.slice(3).map((user, index) => (
-            <li key={index}>
-              <div>
-                <span className="number">{index + 4}</span>
-                <span className="characterName">{user.characterName}</span>
-                <span className="score">{user.score} PT</span>
-                <span className="count">{user.count} 회</span>
-                <span className="rankSum">{user.rankSum / user.count} 위</span>
-              </div>
-            </li>
-          ))
-        : indiDatas.map((user, index) => (
-            <li key={index}>
-              <div>
-                <span className="number">{index + 1}</span>
-        : teamDatas.slice(3).map((user, index) => (
-            <li key={index}>
-              <div>
-                <span className="number">{index + 4}</span>
-                <span className="characterName">{user.characterName}</span>
-                <span className="score">{user.score} PT</span>
-                <span className="count">{user.count} 회</span>
-                <span className="rankSum">{user.rankSum / user.count} 위</span>
-              </div>
-            </li>
-          ))}
+        ? indiDatas
+            .filter((data, index) => index < indiNum)
+            .slice(3)
+            .map((user, index) => (
+              <li key={index}>
+                <div>
+                  <span className="number">{index + 4}</span>
+                  <span className="characterName">{user.characterName}</span>
+                  <span className="score">{user.score} PT</span>
+                  <span className="count">{user.count} 회</span>
+                  <span className="rankSum">{user.rankSum / user.count} 위</span>
+                </div>
+              </li>
+            ))
+        : teamDatas
+            .filter((data, index) => index < TeamNum)
+            .slice(3)
+            .map((user, index) => (
+              <li key={index}>
+                <div>
+                  <span className="number">{index + 4}</span>
+                  <span className="characterName">{user.characterName}</span>
+                  <span className="score">{user.score} PT</span>
+                  <span className="count">{user.count} 회</span>
+                  <span className="rankSum">{user.rankSum / user.count} 위</span>
+                </div>
+              </li>
+            ))}
+
+      {tabNum === 0 ? (
+        <MoreButton dataNum={indiNum} setDataNum={setIndiNum} />
+      ) : (
+        <MoreButton dataNum={TeamNum} setDataNum={setTeamNum} />
+      )}
     </Ranklist>
   );
 }
