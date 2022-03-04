@@ -20,20 +20,20 @@ export const RankIndiData = () => {
       await Promise.all(
         list?.map(async (match) => {
           await axios
-          .get(`/kart/v1.0/matches/${match}`, {
+            .get(`/kart/v1.0/matches/${match}`, {
               headers: {
-                  Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
-                },
-              })
-          .then((res) => {
-            res.data.players.map((item) => {
-              playerArray.push({
-                characterName: item.characterName,
-                character: item.character,
-                matchRank: item.matchRank,
+                Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
+              },
+            })
+            .then((res) => {
+              res.data?.players.map((item) => {
+                playerArray.push({
+                  characterName: item.characterName,
+                  character: item.character,
+                  matchRank: item.matchRank,
+                });
               });
             });
-          });
           // console.log(matchDetailLoading)
         })
       );
@@ -53,7 +53,6 @@ export const RankIndiData = () => {
   useEffect(() => {
     getDetailData();
   }, [list, matchList]);
-
 
   //playerData 한번에 넘겨줘야함
   const setting = (playerData) => {
@@ -106,5 +105,5 @@ export const RankIndiData = () => {
     setting(playerList);
   }, [playerList]);
 
-  return playerMap.sort((a,b) => b.score - a.score);
+  return playerMap.sort((a, b) => b.score - a.score);
 };
