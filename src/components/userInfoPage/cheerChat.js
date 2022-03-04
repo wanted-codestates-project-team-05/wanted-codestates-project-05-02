@@ -10,18 +10,21 @@ const CheerChat = () => {
     oneWord: '',
   });
   const { nickname, oneWord } = inputs;
+  const [todayDataCount, setTodayDataCount] = useState(0);
   const getData = async () => {
     const Cheers = [];
     await Promise.all(await queryForDocument()).then((res) => {
-      res.map((item) =>
+      res.map((item) => {
+        const todayData = item.data === Today ? true : false;
+        todayData && setTodayDataCount((todayData) => todayData + 1);
         Cheers.push(
           <SpeechContainer key={item.id}>
             <Nickname>{item.nickname}</Nickname>
-            {item.data === Today ? <MarkToday /> : null}
+            {todayData ? <MarkToday /> : null}
             <SpeechBubble>{item.oneWord}</SpeechBubble>
           </SpeechContainer>
-        )
-      );
+        );
+      });
     });
     setCheers(Cheers);
   };
@@ -53,7 +56,15 @@ const CheerChat = () => {
     if (oneWord !== '') {
       await AddCheer(nickname, oneWord);
       await getData();
+      await deleteInput();
     } else return;
+  };
+
+  const deleteInput = () => {
+    setInputs({
+      ...inputs,
+      oneWord: '',
+    });
   };
 
   const handleChange = (e) => {
@@ -64,7 +75,8 @@ const CheerChat = () => {
   };
 
   return (
-    <CardContainer firstTitle="응원" secondTitle="한마디" des="오늘 6개 전체 13개">
+    <CardContainer firstTitle="응원" secondTitle="한마디" des={`오늘 ${todayDataCount}개 전체 ${cheers.length}개`}>
+      {console.log(todayDataCount)}
       <Content>{cheers.length !== 0 ? cheers : null}</Content>
       <Form onSubmit={handleSubmit}>
         <NicknameInput placeholder="닉네임" value={nickname} name="nickname" onChange={handleChange} />
@@ -77,22 +89,34 @@ const CheerChat = () => {
 export default CheerChat;
 
 const Content = styled.div`
+  position: relative;
   overflow-y: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   height: 159px;
-  margin: 10px 12px;
+  margin: 0 12px;
   border-bottom: 1px solid ${({ theme }) => theme.color.lightGrey};
 `;
 
 const SpeechContainer = styled.div`
+  @keyframes move {
+    0% {
+      transform: translateX(70px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  animation: move 1.5s;
   margin: 6px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const Nickname = styled.span`
@@ -112,11 +136,11 @@ const SpeechBubble = styled.div`
   width: 210px;
   border: 1px solid #c3ced5;
   border-radius: 15px;
-  padding: 15px 10px;
+  padding: 13px 10px;
   &::before {
     content: '';
     position: absolute;
-    top: 14px;
+    top: 12px;
     bottom: auto;
     left: -8px;
     border-style: solid;
@@ -128,7 +152,7 @@ const SpeechBubble = styled.div`
   &::after {
     content: '';
     position: absolute;
-    top: 14px;
+    top: 12px;
     bottom: auto;
     left: -7px;
     border-style: solid;

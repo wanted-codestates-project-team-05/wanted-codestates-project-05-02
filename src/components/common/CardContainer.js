@@ -40,7 +40,7 @@ const TitleContainer = styled.div`
   padding: 0 8px;
   font-size: 14px;
   line-height: 40px;
-  font-weight: 700;
+  font-weight: 500;
   border-bottom: 1px solid ${({ theme }) => theme.color.conTour};
   color: ${({ theme }) => theme.color.black};
 `;
