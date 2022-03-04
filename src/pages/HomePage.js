@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Track from '../components/homepage/Track';
 import Rank from '../components/homepage/Rank';
 import Total from '../components/homepage/Total';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchMatchList, fetchUserMatchList } from '../Reducer/matchList';
-import { fetchMatchDetail } from '../Reducer/matchDetail';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchMatchList, fetchUserMatchList } from '../Reducer/matchList';
+// import { fetchMatchDetail } from '../Reducer/matchDetail';
 import axios from 'axios';
 
 const date = new Date();
@@ -54,17 +54,14 @@ function HomePage() {
           .filter((data) => +data.player.matchRank <= 8)
           .map((data) => +data.player.matchRank)
           .filter((data) => data > 0);
-        // console.log(res.data.matches[0].matches.map((data) => (data.player.matchWin === '1' ? (winCount += 1) : '')));
         setWin(tempArr.length);
         setRetired(tempArr2.length);
         setMatch(tempArr3);
-        // console.log(win);
-        // console.log(retired);
-        // console.log(tempArr3);
         const totals = tempArr3.reduce((sum, curVal) => {
           return sum + curVal;
         });
         setAvr((totals / tempArr3.length).toFixed(2));
+        console.log(tempArr);
       })
       .catch((err) => console.profile(err));
   }, []);

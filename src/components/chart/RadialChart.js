@@ -8,7 +8,7 @@ const RadialChart = (props) => {
       height: 250,
       type: 'radialBar',
     },
-    color: ['red'],
+    color: [props.color],
     plotOptions: {
       radialBar: {
         hollow: {

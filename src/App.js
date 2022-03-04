@@ -4,11 +4,21 @@ import { Header } from './components/common/Header';
 import RadialChart from './components/chart/RadialChart';
 import HomePage from './pages/HomePage';
 
+import { ThemeProvider } from 'styled-components';
+import theme from './theme';
+import CheerChat from './components/userInfoPage/CheerChat';
+import NetworkRequest from './Reducer/NetworkRequest';
+
 function App() {
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Header />
+        <Routes />
+        <CheerChat />
+        <NetworkRequest />
+      </div>
+    </ThemeProvider>
   );
 }
 

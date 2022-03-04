@@ -36,40 +36,10 @@ const Rank = (props) => {
     axios(config)
       .then((res) => {
         const tempArr = res.data.matches[0].matches.filter((data) => data.player.matchWin === '1');
-        // console.log(res.data.matches[0].matches.map((data) => (data.player.matchWin === '1' ? (winCount += 1) : '')));
         setWin(tempArr.length);
       })
       .catch((err) => console.profile(err));
   }, []);
-
-  // const matchList = useSelector((state) => state.matchList);
-  // const { userMatchList } = useSelector(
-  //   (state) => ({
-  //     userMatchList: state.matchList.userMatchList,
-  //   }),
-  //   shallowEqual
-  // );
-  // const matchDetail = useSelector((state) => state.matchDetail);
-  // const dispatch = useDispatch();
-
-  // let winCount;
-  // useEffect(async () => {
-
-  //   try {
-  //     await dispatch(fetchUserMatchList(1963163935));
-  //     // rank = userMatchList.data?.matches[0].matches[1].player.matchRank;
-  //     userMatchList.data?.matches[0].map((match) => (match.player.matchWin === '1' ? (winCount += 1) : ''));
-  //     setWin(winCount);
-  //     console.log(userMatchList.data.matches[0]);
-  //     setLoading(false);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }, []);
-  // setTotals(props.match);
-  // let avr = totals.reduce((sum, curVal) => {
-  //   return sum + curVal;
-  // });
 
   return loading ? (
     <div>loading</div>

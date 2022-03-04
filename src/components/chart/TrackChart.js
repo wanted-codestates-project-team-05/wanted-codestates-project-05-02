@@ -9,7 +9,7 @@ const TrackChart = (props) => {
     series: [
       {
         name: '순위',
-        data: [0.11, 4.3, 3.2, 2.2, 1.2, 2.2],
+        data: [2.49, 2.0, 2.19, 1.45, 1.1],
       },
     ],
     chart: {
