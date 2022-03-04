@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Rank from '../components/homepage/Rank';
 import Total from '../components/homepage/Total';
 import CheerChat from '../components/UserInfoPage/CheerChat';
+import { useNavigate } from 'react-router-dom';
 
 function HomePage({ userMatchList }) {
   const [win, setWin] = useState();
@@ -11,6 +12,7 @@ function HomePage({ userMatchList }) {
   // const [match200, setMatch200] = useState([]);
   const [avr50, setAvr50] = useState();
   const [avr200, setAvr200] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
     const winArr = userMatchList.filter((data) => data.player.matchWin === '1');
     const retiredArr = userMatchList.filter((data) => data.player.matchRetired === '1');

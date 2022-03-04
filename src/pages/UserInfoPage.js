@@ -14,6 +14,9 @@ function UserInfoPage() {
   //리덕스
   const dispatch = useDispatch();
   const matchList = useSelector((state) => state.matchList);
+  const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
+  const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   const getData = async () => {
     const user = await axios.get(
       `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/users/nickname/${query.nick}`,
@@ -33,13 +36,7 @@ function UserInfoPage() {
   };
   useEffect(() => {
     RequestData();
-  }, []);
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [userData, setUserData] = useState({});
-  const [matchData, setMatchData] = useState({});
-  const location = useLocation();
-  const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
+  }, [location.pathname]);
 
   if (isLoading) return <Loading message="데이터를 준비중입니다..." />;
   return (
