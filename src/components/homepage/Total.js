@@ -1,17 +1,11 @@
 import styled from 'styled-components';
 import RadialChart from '../chart/RadialChart';
+import CardContainer from '../common/CardContainer';
+import React from 'react';
 
 const Total = (props) => {
   return (
-    <Container>
-      <Title>
-        <span>
-          <span style={{ color: '#5198FF' }}>종합</span> <span>전적</span>
-        </span>
-        <span style={{ fontSize: '13px' }}>
-          200전 {props.winCount}승 {200 - props.winCount}패
-        </span>
-      </Title>
+    <CardContainer firstTitle="종합" secondTitle="전적" des={`200전 ${props.winCount}승 ${200 - props.winCount}패`}>
       <ChartContainer>
         <div>
           <ChartTitle>승률</ChartTitle>
@@ -31,10 +25,9 @@ const Total = (props) => {
           <span style={{ color: '#5198FF' }}>최다주행 </span>
           <span>모드</span>
         </span>
-
         <span style={{ fontSize: '20px', font: 'bold', fontWeight: '600' }}>통합</span>
       </Footer>
-    </Container>
+    </CardContainer>
   );
 };
 
@@ -67,9 +60,15 @@ const CenterChart = styled.div`
 const ChartContainer = styled.div`
   display: flex;
   padding: 5px;
+  height: 159px;
+  margin: 0 12px;
+  border-bottom: 1px solid ${({ theme }) => theme.color.lightGrey};
 `;
 
 const Footer = styled.div`
+  height: 100%;
+  align-items: center;
+  margin: 0 12px;
   display: flex;
   font-size: 15px;
   justify-content: space-between;

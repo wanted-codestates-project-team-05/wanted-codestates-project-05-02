@@ -7,6 +7,7 @@ import Total from '../components/homepage/Total';
 // import { fetchMatchList, fetchUserMatchList } from '../Reducer/matchList';
 // import { fetchMatchDetail } from '../Reducer/matchDetail';
 import axios from 'axios';
+import CheerChat from '../components/UserInfoPage/CheerChat';
 
 const date = new Date();
 const startDate = new Date(+new Date(date.setHours(0, 0, 0, 0)) + 3240 * 10000)
@@ -71,7 +72,8 @@ function HomePage() {
       <DataContainer>
         <Total winCount={win} retired={retired} />
         <Rank match={match} avr={avr} />
-        <Track />
+        <CheerChat />
+        {/*<Track />*/}
       </DataContainer>
     </>
   );

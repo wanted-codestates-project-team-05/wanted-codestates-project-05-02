@@ -1,9 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { Profiler, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import QueryString from 'qs';
 import InfoContainer from '../components/UserInfoPage/InfoContainer';
+import UserProfile from '../components/UserInfoPage/UserProfile';
+import HomePage from './HomePage';
+import CheerChat from '../components/UserInfoPage/CheerChat';
 
 function UserInfoPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,25 +42,26 @@ function UserInfoPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
-  if (isLoading) return <div>Loading</div>;
+  // if (isLoading) return <div>Loading</div>;
   return (
-    <Container>
-      <Wrapper>
-        <InfoContainer userData={userData} matchData={matchData} />
-      </Wrapper>
-    </Container>
+    <Wrap>
+      <Content>
+        <UserProfile />
+        <HomePage />
+      </Content>
+    </Wrap>
   );
 }
 
-const Container = styled.div`
+const Wrap = styled.div`
   position: relative;
   background-color: #fafafa;
   padding-bottom: 100px;
   min-height: 800px;
 `;
 
-const Wrapper = styled.div`
-  width: 1300px;
+const Content = styled.div`
+  width: 1000px;
   margin: 0 auto;
   padding-top: 50px;
   background-color: #fafafa;
