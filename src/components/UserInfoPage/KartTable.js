@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-export default function KartTable() {
+export default function KartTable({ matchData, userData }) {
   return (
     <Container>
       <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>

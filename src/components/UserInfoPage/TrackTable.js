@@ -1,7 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import trackData from '../../assets/track.json';
+import timeConvert from '../../lib/timeConvert';
 
-export default function TrackTable() {
+export default function TrackTable({ userData, matchData }) {
+  const [trackInfo, setTrackInfo] = useState();
+  const [current, setCurrent] = useState('');
+
+  useEffect(() => {
+    if (matchData.nickName) {
+      const result = matchData.matches[0].matches.map((item) => item.trackId);
+      const trackId = Array.from(new Set(result));
+      const info = trackId.map((id) => {
+        const arr = matchData.matches[0].matches.filter((match) => match.trackId === id);
+        const trackName = trackData.find((item) => item.id === id);
+        return {
+          id,
+          win: arr.filter((match) => match.matchResult === '1').length,
+          count: arr.length,
+          record: arr.map((match) => Number(match.player.matchTime)),
+          trackN: trackName.name,
+        };
+      });
+      setTrackInfo(info.sort((a, b) => compare(a.count, b.count)));
+    }
+  }, [matchData]);
+
+  function compare(a, b) {
+    if (Number(a) > Number(b)) {
+      return -1;
+    }
+    if (Number(a) < Number(b)) {
+      return +1;
+    }
+    return 0;
+  }
+
   return (
     <Container>
       <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -9,11 +43,11 @@ export default function TrackTable() {
           <span>트랙</span> 전적
         </H5>
         <P>
-          평균 상위 <span>7.65</span>&nbsp;%
+          평균 상위 <span>??</span>&nbsp;%
         </P>
         <Div>
           <p>
-            빌리지 운명의 다리 <span>기록분포</span>
+            {current || trackInfo?.[0].trackN} <span>기록분포</span>
           </p>
           {/* 변경부분 */}
           <div>graph</div>
@@ -32,13 +66,15 @@ export default function TrackTable() {
             </HeadTr>
           </Thead>
           <Tbody>
-            <TableBody />
-            <TableBody />
-            <TableBody />
-            <TableBody />
-            <TableBody />
-            <TableBody />
-            <TableBody />
+            {trackInfo?.map((track, idx) => (
+              <TableBody
+                track={track}
+                key={idx}
+                index={idx}
+                setName={setCurrent}
+                name={current || trackInfo?.[0].trackN}
+              />
+            ))}
           </Tbody>
         </Table>
       </TableWrapper>
@@ -46,14 +82,31 @@ export default function TrackTable() {
   );
 }
 
-function TableBody() {
-  const [active, setActive] = useState(false);
+function TableBody({ track, setName, name, index }) {
+  const [record, setRecord] = useState();
+
+  useEffect(() => {
+    if (track) {
+      const arr = track.record.filter((item) => item !== 0);
+      if (arr.length !== 0) {
+        setRecord(arr);
+      } else {
+        setRecord([0]);
+      }
+    }
+  }, [track]);
 
   return (
     <>
-      <BodyTr active={active}>
+      <BodyTr selected={track.trackN === name}>
         <td>
-          <Input type={'radio'} name={'check'} />
+          <Input
+            type={'radio'}
+            name={'check'}
+            value={track.trackN}
+            defaultChecked={index === 0}
+            onChange={(e) => setName(e.target.value)}
+          />
         </td>
         <td style={{ textAlign: 'left', paddingLeft: '10px' }}>
           <A>
@@ -61,13 +114,13 @@ function TableBody() {
               alt=""
               src={'https://s3-ap-northeast-1.amazonaws.com/solution-userstats/kartimg/Category/village_1.png'}
             />{' '}
-            빌리지 운명의 다리
+            {track?.trackN}
           </A>
         </td>
-        <td>12</td>
-        <td>17%</td>
-        <td>2'09'10</td>
-        <td>10%</td>
+        <td>{track?.count}</td>
+        <td>{`${Math.round((track.win / track.count) * 100)}%`}</td>
+        <td>{timeConvert(Math.min.apply(null, record))}</td>
+        <td>???</td>
       </BodyTr>
     </>
   );
@@ -148,7 +201,7 @@ const Thead = styled.thead`
 
 const HeadTr = styled.tr`
   box-sizing: border-box;
-  & th:not(:last-child)::after {
+  th:not(:last-child)::after {
     content: '';
     position: absolute;
     top: 10px;
@@ -161,7 +214,7 @@ const HeadTr = styled.tr`
 `;
 
 const BodyTr = styled.tr`
-  border: ${(props) => (props.active ? `${'1px solid #07f'}` : '')};
+  ${({ selected }) => (selected ? 'border: 1px solid #07f' : '')};
 `;
 
 const Th = styled.th`
@@ -182,7 +235,7 @@ const A = styled.a`
   text-decoration: none;
   color: #1f334a;
   cursor: pointer;
-  & img {
+  img {
     height: 27px;
     vertical-align: middle;
   }

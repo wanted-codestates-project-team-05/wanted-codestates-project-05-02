@@ -9,7 +9,7 @@ export default function MatchDetail({ matchData, userData }) {
   const [match, setMatch] = useState({});
   const navigate = useNavigate();
   let apiKey =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTE3NTcxODMwIiwiYXV0aF9pZCI6IjIiLCJ0b2tlbl90eXBlIjoiQWNjZXNzVG9rZW4iLCJzZXJ2aWNlX2lkIjoiNDMwMDExMzkzIiwiWC1BcHAtUmF0ZS1MaW1pdCI6IjUwMDoxMCIsIm5iZiI6MTY0NjI3ODA3NywiZXhwIjoxNjYxODMwMDc3LCJpYXQiOjE2NDYyNzgwNzd9.6zBFVMmC8McG1l_-k5YkKkaY3Grn12ZM_jFRMK8fkSY';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTE3NTcxODMwIiwiYXV0aF9pZCI6IjIiLCJ0b2tlbl90eXBlIjoiQWNjZXNzVG9rZW4iLCJzZXJ2aWNlX2lkIjoiNDMwMDExMzkzIiwiWC1BcHAtUmF0ZS1MaW1pdCI6IjUwMDoxMCIsIm5iZiI6MTY0NjM1MDE4OSwiZXhwIjoxNjYxOTAyMTg5LCJpYXQiOjE2NDYzNTAxODl9.s4p-oYKxegfkKTWHuSqS-CZ1rgf1n2OJkZ5YSgx1kWk';
 
   function compare(a, b) {
     if (Number(a['matchRank']) > Number(b['matchRank'])) {
@@ -23,7 +23,7 @@ export default function MatchDetail({ matchData, userData }) {
 
   const getMatch = async () => {
     setIsLoading(true);
-    const matches = await axios.get(`/matches/${matchData.matchId}`, {
+    const matches = await axios.get(`/kart/v1.0/matches/${matchData.matchId}`, {
       headers: { Authorization: apiKey },
     });
     const length = matches.data.players.length;
@@ -58,7 +58,7 @@ export default function MatchDetail({ matchData, userData }) {
         {match?.players?.map((item, idx) => {
           if (item) {
             return (
-              <Row>
+              <Row key={idx}>
                 <Rank>
                   {item.matchRank === '99' || item.matchRank === '0' ? <span>리타이어</span> : item.matchRank}
                 </Rank>
@@ -71,6 +71,8 @@ export default function MatchDetail({ matchData, userData }) {
                   />
                 </Kart>
                 <User
+                  nick={item.characterName}
+                  name={userData?.name}
                   onClick={() =>
                     navigate({
                       pathname: '/user',
@@ -78,14 +80,14 @@ export default function MatchDetail({ matchData, userData }) {
                     })
                   }
                 >
-                  {item.characterName}
+                  <span>{item.characterName}</span>
                 </User>
                 <Record>{timeConvert(item.matchTime)}</Record>
               </Row>
             );
           } else {
             return (
-              <Row>
+              <Row key={idx}>
                 <Rank>
                   <span>리타이어</span>
                 </Rank>
@@ -145,6 +147,10 @@ const Kart = styled.div`
 const User = styled.div`
   height: 17px;
   line-height: 17px;
+  span {
+    font-weight: ${({ nick, name }) => (nick !== name ? '500' : '700')};
+    cursor: pointer;
+  }
 `;
 
 const Record = styled.div`
