@@ -1,5 +1,5 @@
 import React from 'react';
-import UserProfile from '../components/UserInfoPage/UserProfile';
+import UserProfile from '../components/userInfoPage/UserProfile';
 
 function UserInfoPage() {
 
