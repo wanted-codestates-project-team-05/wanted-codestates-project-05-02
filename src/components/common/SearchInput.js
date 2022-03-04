@@ -34,6 +34,9 @@ const Container = styled.div`
   display: inline-flex;
   align-items: center;
   transition: 0.5s;
+  @media all and (max-width: 420px) {
+    width: 90%;
+  }
 
   &:hover {
     border-bottom: 1px solid rgba(255, 255, 255, 1);
@@ -51,7 +54,6 @@ const Container = styled.div`
     border: none;
     box-sizing: border-box;
     padding-left: 10px;
-
     ::placeholder {
       color: #fff;
       opacity: 0.5;
@@ -67,11 +69,9 @@ const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
   svg {
     transition: 0.5s;
     color: rgba(255, 255, 255, 0.5);
-
     &:hover {
       color: rgba(255, 255, 255, 1);
     }

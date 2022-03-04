@@ -23,6 +23,7 @@ const UserProfile = () => {
   const char = '42c729e64e31aea803e4881432f7b95129ce97535c29e4f9a72919a9f267b418';
   const url = `https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${char}.png`;
   //const char = matchList.userMatchList.data.matches[0].matches[0].character;
+
   const charName = characterName.find((el) => (el.id === char ? el : '캐릭터'));
   console.log(charName.name);
 
@@ -30,7 +31,7 @@ const UserProfile = () => {
   // 여기서도 어떻게 해야 할지 모르겠습니다 ㅠㅠ
   const onClickTotalReset = () => {
     // 데이터 요청 다시하기
-   };
+  };
 
 
   const [isReport, setIsReport] = useState(false);
@@ -47,8 +48,6 @@ const UserProfile = () => {
       navigate(`/user?nick=${nickName}&matchType=team`);
     }
   };
-
- 
 
   return (
     <>
@@ -136,7 +135,7 @@ const ProfileContainer = styled.div`
   width: 1000px;
   margin: 0 auto;
   .match-info {
-    padding-top: 20px;
+    margin-top: 24px;
     span {
       font-size: 12px;
     }
@@ -148,7 +147,7 @@ const ProfileInfo = styled.article`
   height: 177px;
   display: flex;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 16px;
   padding-top: 26px;
   background-image: url('/images/bg-profile.png');
   background-repeat: no-repeat;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 function RankList({ indiDatas, teamDatas, tabNum }) {
+
   return (
     <Ranklist>
       <li>
@@ -22,10 +23,14 @@ function RankList({ indiDatas, teamDatas, tabNum }) {
                 <span className="characterName">{user.characterName}</span>
                 <span className="score">{user.score} PT</span>
                 <span className="count">{user.count} 회</span>
-                <span className="rankSum">{user.rankSum} 위</span>
+                <span className="rankSum">{user.rankSum / user.count} 위</span>
               </div>
             </li>
           ))
+        : indiDatas.map((user, index) => (
+            <li key={index}>
+              <div>
+                <span className="number">{index + 1}</span>
         : teamDatas.slice(3).map((user, index) => (
             <li key={index}>
               <div>
@@ -33,7 +38,7 @@ function RankList({ indiDatas, teamDatas, tabNum }) {
                 <span className="characterName">{user.characterName}</span>
                 <span className="score">{user.score} PT</span>
                 <span className="count">{user.count} 회</span>
-                <span className="rankSum">{user.rankSum} 위</span>
+                <span className="rankSum">{user.rankSum / user.count} 위</span>
               </div>
             </li>
           ))}
@@ -46,7 +51,7 @@ const Ranklist = styled.ul`
   top: 600px;
   max-width: 62.5rem;
   width: 80%;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 420px) {
     width: 100%;
     top: 1150px;
   }
@@ -67,7 +72,7 @@ const Ranklist = styled.ul`
     }
     .title {
       color: #fff;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 420px) {
         color: black;
       }
     }
@@ -82,7 +87,7 @@ const Ranklist = styled.ul`
       }
       .number {
         vertical-align: middle;
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 420px) {
           position: absolute;
           left: 10px;
         }
@@ -93,7 +98,7 @@ const Ranklist = styled.ul`
         @media screen and (max-width: 820px) {
           left: 120px;
         }
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 420px) {
           left: 30px;
         }
       }
@@ -106,7 +111,7 @@ const Ranklist = styled.ul`
         @media screen and (max-width: 820px) {
           right: 140px;
         }
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 420px) {
           width: 90px;
           right: 160px;
         }
@@ -117,14 +122,14 @@ const Ranklist = styled.ul`
         @media screen and (max-width: 820px) {
           right: 140px;
         }
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 420px) {
           right: 95px;
         }
       }
       .rankSum {
         position: absolute;
         right: 60px;
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 420px) {
           right: 20px;
         }
       }

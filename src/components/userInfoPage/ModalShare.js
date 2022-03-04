@@ -90,8 +90,8 @@ const Container = styled.div`
 
 const Modal = styled.div`
   position: absolute;
-  top: 200px;
-  left: calc(100% - 400px);
+  top: 215px;
+  left: calc(100% - 380px);
   width: 170px;
   padding: 10px;
   background-color: #fff;

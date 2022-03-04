@@ -32,5 +32,6 @@ export const queryForDocument = async () => {
     const data = snap.data();
     cheers.push({ ...data, id: snap.id });
   });
+
   return cheers;
 };
