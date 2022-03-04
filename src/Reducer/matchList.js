@@ -4,14 +4,14 @@ const initialState = {
   userMatchList: {
     loading: false,
     error: null,
-    data: null,
+    data: null
   },
-  matchList: {
+  allMatchList: {
     loading: false,
     error: null,
     soloData: null,
-    teamData: null,
-  },
+    teamData: null
+  }
 };
 
 const GET_USER_MATCH_LIST = 'GET_USER_MATCH_LIST';
@@ -23,12 +23,12 @@ const GET_MATCH_LIST_FAILURE = 'GET_MATCH_LIST_FAILURE';
 
 const getUserMatchListSuccess = (data) => ({
   type: GET_USER_MATCH_LIST_SUCCESS,
-  payload: data,
+  payload: data
 });
 
 const getUserMatchListFailure = (error) => ({
   type: GET_USER_MATCH_LIST_FAILURE,
-  payload: error,
+  payload: error
 });
 
 export const fetchUserMatchList = (useId) => async (dispatch) => {
@@ -37,14 +37,14 @@ export const fetchUserMatchList = (useId) => async (dispatch) => {
     method: 'get',
     url: `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/users/${useId}/matches?start_date=&end_date= &offset=0&limit=200&match_types=`,
     headers: {
-      Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
-    },
+      Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION
+    }
   };
   await axios(config)
-    .then(function (response) {
+    .then(function(response) {
       dispatch(getUserMatchListSuccess(response.data));
     })
-    .catch(function (error) {
+    .catch(function(error) {
       dispatch(getUserMatchListFailure(error));
       console.log(error);
     });
@@ -53,12 +53,12 @@ export const fetchUserMatchList = (useId) => async (dispatch) => {
 const getMatchListSuccess = (matchType, data) => ({
   type: GET_MATCH_LIST_SUCCESS,
   payload: data,
-  meta: matchType,
+  meta: matchType
 });
 
 const getMatchListFailure = (error) => ({
   type: GET_MATCH_LIST_FAILURE,
-  payload: error,
+  payload: error
 });
 
 export const fetchMatchList = (matchType) => async (dispatch) => {
@@ -72,14 +72,14 @@ export const fetchMatchList = (matchType) => async (dispatch) => {
     url: `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/matches/all?start_date=&end_date=&offset=0&limit=200&match_types=${matchTypeId}`,
 
     headers: {
-      Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
-    },
+      Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION
+    }
   };
   await axios(config)
-    .then(function (response) {
+    .then(function(response) {
       dispatch(getMatchListSuccess(matchType, response.data));
     })
-    .catch(function (error) {
+    .catch(function(error) {
       dispatch(getMatchListFailure(error));
       console.log(error);
     });
@@ -92,8 +92,8 @@ export default function matchList(state = initialState, action) {
         ...state,
         userMatchList: {
           ...state,
-          loading: true,
-        },
+          loading: true
+        }
       };
     case GET_USER_MATCH_LIST_SUCCESS:
       return {
@@ -101,8 +101,8 @@ export default function matchList(state = initialState, action) {
         userMatchList: {
           ...state,
           loading: false,
-          data: action.payload,
-        },
+          data: action.payload
+        }
       };
     case GET_USER_MATCH_LIST_FAILURE:
       return {
@@ -111,35 +111,35 @@ export default function matchList(state = initialState, action) {
           ...state,
           loading: false,
           data: null,
-          error: action.payload,
-        },
+          error: action.payload
+        }
       };
     case GET_MATCH_LIST:
       return {
         ...state,
-        matchList: {
+        allMatchList: {
           ...state,
-          loading: true,
-        },
+          loading: true
+        }
       };
     case GET_MATCH_LIST_SUCCESS:
       return {
         ...state,
-        matchList: {
+        allMatchList: {
           ...state,
           loading: false,
-          [action.meta]: action.payload,
-        },
+          [action.meta]: action.payload
+        }
       };
     case GET_MATCH_LIST_FAILURE:
       return {
         ...state,
-        matchList: {
+        allMatchList: {
           ...state,
           loading: false,
           [action.meta]: null,
-          error: action.payload,
-        },
+          error: action.payload
+        }
       };
     default:
       return state;
