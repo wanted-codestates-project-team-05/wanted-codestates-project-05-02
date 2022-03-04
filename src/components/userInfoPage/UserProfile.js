@@ -31,7 +31,6 @@ const UserProfile = () => {
   // 여기서도 어떻게 해야 할지 모르겠습니다 ㅠㅠ
   const onClickTotalReset = () => {
     // 데이터 요청 다시하기
-
   };
 
 
@@ -49,6 +48,7 @@ const UserProfile = () => {
       navigate(`/user?nick=${nickName}&matchType=team`);
     }
   };
+
   return (
     <>
       {isShare && <ModalShare share={setIsShare} />}

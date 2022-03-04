@@ -40,15 +40,7 @@ const TitleContainer = styled.div`
   padding: 0 8px;
   font-size: 14px;
   line-height: 40px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  font-weight: 700;
-=======
   font-weight: 500;
->>>>>>> fa23ad034c0bf567ed383f05b8aafa0241edd540
-=======
-  font-weight: 500;
->>>>>>> b4d569a0cd28edeb7ed3b23747e41e5db7a67837
   border-bottom: 1px solid ${({ theme }) => theme.color.conTour};
   color: ${({ theme }) => theme.color.black};
 `;

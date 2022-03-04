@@ -5,29 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 export const SearchInput = (props) => {
   const { customWidth, customHeight } = props;
-<<<<<<< HEAD
-	const [inputValue, setInputValue] = useState('');
-
-	const navigate = useNavigate();
-	const findUser = (nickName) => {
-		navigate(`/user?nick=${nickName}&matchType=indi`);
-		setInputValue('');
-	}
-
-	const handleOnChange = (e) => {
-		setInputValue(e.target.value);
-	}
-
-	return (
-		<Container width={customWidth} height={customHeight}>
-			<input className='input-style' placeholder='닉네임 검색' onChange={handleOnChange}/>
-			<IconContainer onClick={() => findUser(inputValue)}>
-				<BiSearchAlt2/>
-			</IconContainer>
-		</Container>
-	)
-}
-=======
   const [inputValue, setInputValue] = useState('');
 
   const navigate = useNavigate();
@@ -49,7 +26,6 @@ export const SearchInput = (props) => {
     </Container>
   );
 };
->>>>>>> b4d569a0cd28edeb7ed3b23747e41e5db7a67837
 
 const Container = styled.div`
   width: ${(props) => (props.customWidth ? props.customWidth : '200px')};
@@ -91,11 +67,9 @@ const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
   svg {
     transition: 0.5s;
     color: rgba(255, 255, 255, 0.5);
-
     &:hover {
       color: rgba(255, 255, 255, 1);
     }

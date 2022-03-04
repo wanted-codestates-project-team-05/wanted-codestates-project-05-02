@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { FaUserAlt, FaUsers } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-=======
 import React from 'react';
 import styled from 'styled-components';
 import { FaUserAlt, FaUsers } from 'react-icons/fa';
->>>>>>> b4d569a0cd28edeb7ed3b23747e41e5db7a67837
+import React from 'react';
+import styled from 'styled-components';
+import { FaUserAlt, FaUsers } from 'react-icons/fa';
 
 const tabs = ['개인전', '팀전'];
 function RankTab({ TabHandler, tabNum }) {
