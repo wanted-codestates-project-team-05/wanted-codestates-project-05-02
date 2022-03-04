@@ -7,7 +7,7 @@ function UserInfoPage() {
     <>
       <UserProfile />
     </>
-	)
+  );
 }
 
 export default UserInfoPage;
