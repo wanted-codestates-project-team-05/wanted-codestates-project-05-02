@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const ModalTxt = (props) => {
+
   const onClickClose = () => {
     props.none(true);
     props.dune.report(false);

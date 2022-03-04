@@ -3,6 +3,7 @@ import Routes from './Routes';
 import { Header } from './components/common/Header';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
+import CheerChat from './components/UserInfoPage/cheerChat';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <div className="App">
         <Header />
         <Routes />
+        <CheerChat />
       </div>
     </ThemeProvider>
   );

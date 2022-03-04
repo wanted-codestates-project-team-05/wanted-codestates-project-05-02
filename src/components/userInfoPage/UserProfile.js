@@ -1,13 +1,12 @@
-
 import QueryString from 'qs';
 import { useLocation, useNavigate } from 'react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaInfoCircle, FaUser, FaUsers, FaRedo, FaBell, FaShareAlt, FaEye } from 'react-icons/fa';
 import ModalUserReport from './ModalUserReport';
 import UserMatch from './UserMatch';
 import ModalShare from './ModalShare';
-import characterName from'../../assets/character.json' 
+import characterName from '../../assets/character.json';
 
 const UserProfile = () => {
   const location = useLocation();
@@ -27,14 +26,13 @@ const UserProfile = () => {
   const charName = characterName.find((el) => el.id === char ? el : '캐릭터');
   console.log(charName.name);
 
-  // 전적 갱신 버튼 클릭시 작동하는 함수입니다. 데이터요청을 다시 해야 할거 같은데
-  // 어떻게 해야할 지 모르겠습니다.
+  // 전적 갱신하기 버튼 클릭시 작동하는 함수입니다. 데이터 요청을 다시 한번 받아야 하는데 
+  // 여기서도 어떻게 해야 할지 모르겠습니다 ㅠㅠ
   const onClickTotalReset = () => {
-     // 데이터 갱신
+    // 데이터 요청 다시하기
   };
- 
- 
- 
+
+
   const [isReport, setIsReport] = useState(false);
   const [isShare, setIsShare] = useState(false);
 
@@ -44,12 +42,11 @@ const UserProfile = () => {
     let icon = e.target.nodeName;
 
     if (name === '개인전' || txt === '개인전' || icon === 'svg') {
-      navigate('/user?nick=BBEESSTT&matchType=indi');
-    } else if (name === '팀전' || txt === '팀전' || icon === 'path') { 
-      navigate('/user?nick=BBEESSTT&matchType=team');
+      navigate(`/user?nick=${nickName}&matchType=indi`);
+    } else if (name === '팀전' || txt === '팀전' || icon === 'path') {
+      navigate(`/user?nick=${nickName}&matchType=team`);
     }
   };
-  
   
   return (
     <>

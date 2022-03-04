@@ -1,9 +1,14 @@
 import styled from 'styled-components';
+import { FaCalculator } from 'react-icons/fa';
 
 const UserMatch = (props) => {
   return (
     <Container>
       <p className="match-txt">1대 1매칭 시뮬레이터-'{props.nick}'와 가상대결을 펼쳐보세요.</p>
+      <button className="match-btn">
+        <FaCalculator size="10.5px" />
+        <span>매칭하기</span>
+      </button>
     </Container>
   );
 };
@@ -32,6 +37,23 @@ const Container = styled.div`
   .match-txt {
     display: inline-block;
     color: #fff;
+  }
+  .match-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 84px;
+    height: 27px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    color: #fff;
+    span {
+      margin-left: 3px;
+      font-size: 12px;
+    }
   }
 `;
 

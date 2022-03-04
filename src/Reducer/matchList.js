@@ -35,10 +35,9 @@ export const fetchUserMatchList = (useId) => async (dispatch) => {
   dispatch({ type: GET_USER_MATCH_LIST });
   const config = {
     method: 'get',
-    url: `api/kart/v1.0/users/${useId}/matches?start_date=&end_date= &offset=0&limit=200&match_types=`,
+    url: `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/users/${useId}/matches?start_date=&end_date= &offset=0&limit=200&match_types=`,
     headers: {
-      Authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTA5MTM5NjMxNyIsImF1dGhfaWQiOiIyIiwidG9rZW5fdHlwZSI6IkFjY2Vzc1Rva2VuIiwic2VydmljZV9pZCI6IjQzMDAxMTM5MyIsIlgtQXBwLVJhdGUtTGltaXQiOiI1MDA6MTAiLCJuYmYiOjE2NDYyODA4NDksImV4cCI6MTY2MTgzMjg0OSwiaWF0IjoxNjQ2MjgwODQ5fQ.hBFvBAU-cmF5sM4CdmXAIDqEsRwChvzcWnriUzR4Si8',
+      Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
     },
   };
   await axios(config)
@@ -70,7 +69,7 @@ export const fetchMatchList = (matchType) => async (dispatch) => {
   dispatch({ type: GET_MATCH_LIST });
   const config = {
     method: 'get',
-    url: `api/kart/v1.0/matches/all?start_date=&end_date=&offset=0&limit=200&match_types=${matchTypeId}`,
+    url: `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/matches/all?start_date=&end_date=&offset=0&limit=200&match_types=${matchTypeId}`,
     headers: {
       Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
     },

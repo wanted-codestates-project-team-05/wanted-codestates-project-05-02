@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
 
+
 const ModalUrlTxt = (props) => {
+
   const onClickClose = () => {
     props.check(false);
     props.dune.share(false);
@@ -25,15 +27,14 @@ const ModalUrlTxt = (props) => {
 };
 
 const ModalShare = (props) => {
-  const FACEBOOKSHAREURL =
-    'https://www.facebook.com/login.php?skip_api_login=1&api_key=966242223397117&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3Dhttps%253A%252F%252Ftmi.nexon.com%252Fkart%252Fuser%253Fnick%253DBBEESSTT%26matchType%3Dindi&cancel_url=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fclose_window%2F%3Fapp_id%3D966242223397117%26connect%3D0%23_%3D_&display=popup&locale=ko_KR';
+  const FACEBOOKSHAREURL = 'https://www.facebook.com/login.php?skip_api_login=1&api_key=966242223397117&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3Dhttps%253A%252F%252Ftmi.nexon.com%252Fkart%252Fuser%253Fnick%253DBBEESSTT%26matchType%3Dindi&cancel_url=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fclose_window%2F%3Fapp_id%3D966242223397117%26connect%3D0%23_%3D_&display=popup&locale=ko_KR';
   const [isUrl, setIsUrl] = useState(false);
 
   const onClickClose = () => {
     props.share(false);
   };
 
-  const onClickShareBtn = (e) => {
+  const onClickShareBtn = (e) => { 
     if (
       e.target.className === 'share-icon-fb' ||
       e.target.textContent === '페이스북' ||
@@ -47,7 +48,8 @@ const ModalShare = (props) => {
     ) {
       setIsUrl(true);
     }
-  };
+  }
+
 
   return (
     <>
@@ -75,7 +77,7 @@ const ModalShare = (props) => {
           </ul>
         </Modal>
       </Container>
-      {isUrl && <ModalUrlTxt check={setIsUrl} dune={props} />}
+      {isUrl && <ModalUrlTxt check={setIsUrl} dune={props}/>}
     </>
   );
 };
