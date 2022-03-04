@@ -1,31 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import RankTop from '../components/RankTop';
-import RankTab from '../components/RankTab';
-import RankList from '../components/RankList';
+import RankTop from '../components/RankInfoPage/RankTop';
+import RankTab from '../components/RankInfoPage/RankTab';
+import RankList from '../components/RankInfoPage/RankList';
 import { useNavigate } from 'react-router-dom';
-import GuideModal from '../components/GuideModal';
+import GuideModal from '../components/RankInfoPage/GuideModal';
 import Loading from '../components/common/Loading';
-const datas = [
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-  { characterName: '오직끝을향해', score: 679, count: 48, rankSum: 1.2 },
-];
+import { RankIndiData } from '../components/RankIndiData';
 
 function RankPage() {
+  const indiDatas = RankIndiData();
+  console.log(indiDatas.length);
   const navigate = useNavigate();
   const [tabNum, setTabNum] = useState(0);
   const [isModal, setIsModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
   const TabHandler = (index) => {
     setIsLoading(true);
     setTabNum(index);
@@ -33,7 +30,7 @@ function RankPage() {
     else navigate('/rank?mode=team&speed=speedTeamCombine');
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 3000);
   };
   const ModalHanlder = () => {
     setIsModal((prev) => !prev);
@@ -54,10 +51,10 @@ function RankPage() {
             <GuideBtn onClick={ModalHanlder}>랭킹 가이드</GuideBtn>
           </Info>
           <RankTab tabNum={tabNum} TabHandler={TabHandler} />
-          <RankTop datas={datas} />
+          <RankTop indiDatas={indiDatas} />
         </Banner>
       </Bannerbg>
-      <RankList datas={datas} tabNum={tabNum} />
+      <RankList indiDatas={indiDatas} tabNum={tabNum} />
     </Container>
   );
 }

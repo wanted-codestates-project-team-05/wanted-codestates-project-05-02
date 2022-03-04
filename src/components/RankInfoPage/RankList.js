@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function RankList({ datas, tabNum }) {
+function RankList({ indiDatas, tabNum }) {
   return (
     <Ranklist>
       <li>
@@ -15,7 +15,7 @@ function RankList({ datas, tabNum }) {
       </li>
       {/* tabNum이 0이면 개인, 1이면 팀*/}
       {tabNum === 0
-        ? datas.map((user, index) => (
+        ? indiDatas.map((user, index) => (
             <li key={index}>
               <div>
                 <span className="number">{index + 1}</span>
@@ -26,7 +26,7 @@ function RankList({ datas, tabNum }) {
               </div>
             </li>
           ))
-        : datas.map((user, index) => (
+        : indiDatas.map((user, index) => (
             <li key={index}>
               <div>
                 <span className="number">{index + 1}</span>

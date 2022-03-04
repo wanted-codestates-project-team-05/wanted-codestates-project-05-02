@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-function RankTop({ datas }) {
+function RankTop({ indiDatas }) {
   return (
     <Container>
-      {datas.slice(0, 3).map((user, index) => (
+      {indiDatas.slice(0, 3).map((user, index) => (
         <span className="wrapper" key={index}>
           <div className="section">
             {index === 0 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_goldmedal.png" />}
