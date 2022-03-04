@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import QueryString from 'qs';
 import HomePage from './HomePage';
@@ -51,7 +51,16 @@ function UserInfoPage() {
   );
 }
 
+const boxFade = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }`;
+
 const Wrap = styled.div`
+  animation: ${boxFade} 1s forwards;
   position: relative;
   background-color: #fafafa;
   padding-bottom: 100px;
