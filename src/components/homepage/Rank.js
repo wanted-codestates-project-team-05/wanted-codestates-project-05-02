@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { fetchMatchDetail } from '../../Reducer/matchDetail';
-import { fetchMatchList, fetchUserMatchList } from '../../Reducer/matchList';
 import RankChart from '../chart/RankChart';
+import CardContainer from '../common/CardContainer';
 
 const matchUrl = 'pi/kart/v1.0/matches/1963163935';
 const date = new Date();
@@ -44,21 +42,23 @@ const Rank = (props) => {
   return loading ? (
     <div>loading</div>
   ) : (
-    <Container>
-      <Title>
-        <span>
-          <span style={{ color: '#5198FF' }}>순위변동 </span>
-          <span>추이</span>
-        </span>
-        <span style={{ fontSize: '11px' }}>
-          <span>지난 200경기 </span>
-          <span style={{ color: '#5198FF' }}>{props.avr}위 </span>
-          <span>최근 50경기 </span>
-          <span style={{ color: '#5198FF' }}>{props.avr}위</span>
-        </span>
-      </Title>
-      <RankChart match={props.match} size={'200px'} />
-    </Container>
+    <CardContainer>
+      <Container>
+        <Title>
+          <span>
+            <span style={{ color: '#5198FF' }}>순위변동 </span>
+            <span>추이</span>
+          </span>
+          <span style={{ fontSize: '11px' }}>
+            <span>지난 200경기 </span>
+            <span style={{ color: '#5198FF' }}>{props.avr}위 </span>
+            <span>최근 50경기 </span>
+            <span style={{ color: '#5198FF' }}>{props.avr}위</span>
+          </span>
+        </Title>
+        <RankChart match={props.match} size={'230px'} />
+      </Container>
+    </CardContainer>
   );
 };
 
@@ -72,7 +72,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   display: flex;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   font-size: 15px;
   justify-content: space-between;
   border-bottom: 1px #e6e6e6 solid;

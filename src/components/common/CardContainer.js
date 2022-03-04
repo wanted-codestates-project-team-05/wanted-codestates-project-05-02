@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const CardContainer = ({ firstTitle, secondTitle, des, children }) => {
   return (
     <Wrap>
-      <TitleContainer>
+      <TitleContainer line={firstTitle}>
         <BlueTitle>{firstTitle} </BlueTitle>
         {secondTitle}
         <Des>{des}</Des>
@@ -41,7 +41,7 @@ const TitleContainer = styled.div`
   font-size: 14px;
   line-height: 40px;
   font-weight: 500;
-  border-bottom: 1px solid ${({ theme }) => theme.color.conTour};
+  border-bottom: 1px solid ${({ theme, line }) => (line ? theme.color.conTour : 'white')};
   color: ${({ theme }) => theme.color.black};
 `;
 const BlueTitle = styled.span`
