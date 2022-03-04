@@ -1,6 +1,9 @@
 import './reset.css';
 import Routes from './Routes';
 import { Header } from './components/common/Header';
+import RadialChart from './components/chart/RadialChart';
+import HomePage from './pages/HomePage';
+
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import CheerChat from './components/userInfoPage/CheerChat';

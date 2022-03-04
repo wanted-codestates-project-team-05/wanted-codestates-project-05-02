@@ -70,6 +70,7 @@ export const fetchMatchList = (matchType) => async (dispatch) => {
   const config = {
     method: 'get',
     url: `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/matches/all?start_date=&end_date=&offset=0&limit=200&match_types=${matchTypeId}`,
+
     headers: {
       Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION,
     },
