@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FaUserAlt, FaUsers } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 
 const tabs = ['개인전', '팀전'];
 function RankTab({ TabHandler, tabNum }) {

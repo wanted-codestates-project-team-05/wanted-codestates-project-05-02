@@ -5,27 +5,27 @@ import { useNavigate } from 'react-router-dom';
 
 export const SearchInput = (props) => {
   const { customWidth, customHeight } = props;
-	const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
-	const navigate = useNavigate();
-	const findUser = (nickName) => {
-		navigate(`/user?nick=${nickName}&matchType=indi`);
-		setInputValue('');
-	}
+  const navigate = useNavigate();
+  const findUser = (nickName) => {
+    navigate(`/user?nick=${nickName}&matchType=indi`);
+    setInputValue('');
+  };
 
-	const handleOnChange = (e) => {
-		setInputValue(e.target.value);
-	}
+  const handleOnChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
-	return (
-		<Container width={customWidth} height={customHeight}>
-			<input className='input-style' placeholder='닉네임 검색' onChange={handleOnChange}/>
-			<IconContainer onClick={() => findUser(inputValue)}>
-				<BiSearchAlt2/>
-			</IconContainer>
-		</Container>
-	)
-}
+  return (
+    <Container width={customWidth} height={customHeight}>
+      <input className="input-style" placeholder="닉네임 검색" onChange={handleOnChange} />
+      <IconContainer onClick={() => findUser(inputValue)}>
+        <BiSearchAlt2 />
+      </IconContainer>
+    </Container>
+  );
+};
 
 const Container = styled.div`
   width: ${(props) => (props.customWidth ? props.customWidth : '200px')};

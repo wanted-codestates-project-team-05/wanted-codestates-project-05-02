@@ -1,38 +1,74 @@
 import styled from 'styled-components';
 
-function RankTop({ indiDatas }) {
+function RankTop({ tabNum, indiDatas, teamDatas }) {
   return (
     <Container>
-      {indiDatas.slice(0, 3).map((user, index) => (
-        <span className="wrapper" key={index}>
-          <div className="section">
-            {index === 0 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_goldmedal.png" />}
-            {index === 1 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_silvermedal.png" />}
-            {index === 2 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_bronzemedal.png" />}
-            <p className="characterName">{user.characterName}</p>
-            <p className="rankSum">
-              순위 <span>{user.rankSum}</span>
-            </p>
-            <p className="score">
-              누적 포인트 <span>{user.score}</span>
-            </p>
-            <Character
-              alt=""
-              src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/201c61527a04d85cd2de0dad75ab0878ee4125129e57aabe47b3d3ac06df8d67.png"
-            />
-          </div>
-          <div className="section">
-            <div>
-              <p>승률</p>
-              <p>리타이어율</p>
-            </div>
-            <div>
-              <span className="anni"></span>
-              <span className="anni"></span>
-            </div>
-          </div>
-        </span>
-      ))}
+      {/* tabNum === 0 개인 , tabNum === 1 Group */}
+      {tabNum === 0
+        ? indiDatas.slice(0, 3).map((user, index) => (
+            <span className="wrapper" key={index}>
+              <div className="section">
+                {index === 0 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_goldmedal.png" />}
+                {index === 1 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_silvermedal.png" />}
+                {index === 2 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_bronzemedal.png" />}
+                <p className="characterName">{user.characterName}</p>
+                <p className="rankSum">
+                  순위 <span>{user.rankSum}</span>
+                </p>
+                <p className="score">
+                  누적 포인트 <span>{user.score}</span>
+                </p>
+                <Character
+                  alt=""
+                  // 이미지 변경 해야 됨
+                  // src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${char}.png"
+                  src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/201c61527a04d85cd2de0dad75ab0878ee4125129e57aabe47b3d3ac06df8d67.png"
+                />
+              </div>
+              <div className="section">
+                <div>
+                  <p>승률</p>
+                  <p>리타이어율</p>
+                </div>
+                <div>
+                  <span className="anni"></span>
+                  <span className="anni"></span>
+                </div>
+              </div>
+            </span>
+          ))
+        : teamDatas.slice(0, 3).map((user, index) => (
+            <span className="wrapper" key={index}>
+              <div className="section">
+                {index === 0 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_goldmedal.png" />}
+                {index === 1 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_silvermedal.png" />}
+                {index === 2 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_bronzemedal.png" />}
+                <p className="characterName">{user.characterName}</p>
+                <p className="rankSum">
+                  순위 <span>{user.rankSum}</span>
+                </p>
+                <p className="score">
+                  누적 포인트 <span>{user.score}</span>
+                </p>
+                <Character
+                  alt=""
+                  // 이미지 변경 해야 됨
+                  // src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${char}.png"
+                  src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/201c61527a04d85cd2de0dad75ab0878ee4125129e57aabe47b3d3ac06df8d67.png"
+                />
+              </div>
+              <div className="section">
+                <div>
+                  <p>승률</p>
+                  <p>리타이어율</p>
+                </div>
+                <div>
+                  <span className="anni"></span>
+                  <span className="anni"></span>
+                </div>
+              </div>
+            </span>
+          ))}
     </Container>
   );
 }
@@ -128,7 +164,6 @@ const Container = styled.div`
     }
   }
 `;
-
 const Medal = styled.img`
   position: absolute;
   top: -10px;
@@ -136,7 +171,6 @@ const Medal = styled.img`
     width: 30px;
   }
 `;
-
 const Character = styled.img`
   position: absolute;
   top: 10px;
