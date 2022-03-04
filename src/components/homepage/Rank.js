@@ -39,9 +39,7 @@ const Rank = (props) => {
       .catch((err) => console.profile(err));
   }, []);
 
-  return loading ? (
-    <div>loading</div>
-  ) : (
+  return (
     <CardContainer>
       <Container>
         <Title>
@@ -51,9 +49,9 @@ const Rank = (props) => {
           </span>
           <span style={{ fontSize: '11px' }}>
             <span>지난 200경기 </span>
-            <span style={{ color: '#5198FF' }}>{props.avr}위 </span>
+            <span style={{ color: '#5198FF' }}>{props.avr200}위 </span>
             <span>최근 50경기 </span>
-            <span style={{ color: '#5198FF' }}>{props.avr}위</span>
+            <span style={{ color: '#5198FF' }}>{props.avr50}위</span>
           </span>
         </Title>
         <RankChart match={props.match} size={'230px'} />
