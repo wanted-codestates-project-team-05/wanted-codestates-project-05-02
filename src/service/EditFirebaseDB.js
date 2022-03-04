@@ -24,7 +24,7 @@ export const writeCheering = async (cheeringId, docData) => {
 };
 
 export const queryForDocument = async () => {
-  const cheerChatQuery = query(collection(firestore, 'cheeringList'), limit(10));
+  const cheerChatQuery = query(collection(firestore, 'cheeringList'), limit(30));
 
   const querySnapShot = await getDocs(cheerChatQuery);
   const cheers = [];
