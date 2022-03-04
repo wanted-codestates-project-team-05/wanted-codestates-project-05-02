@@ -1,12 +1,12 @@
 import QueryString from 'qs';
 import { useLocation, useNavigate } from 'react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaInfoCircle, FaUser, FaUsers, FaRedo, FaBell, FaShareAlt, FaEye } from 'react-icons/fa';
 import ModalUserReport from './ModalUserReport';
 import UserMatch from './UserMatch';
 import ModalShare from './ModalShare';
-import characterName from'../../assets/character.json' 
+import characterName from '../../assets/character.json';
 
 const UserProfile = () => {
   const location = useLocation();
@@ -23,8 +23,15 @@ const UserProfile = () => {
   const char = '42c729e64e31aea803e4881432f7b95129ce97535c29e4f9a72919a9f267b418';
   const url = `https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${char}.png`;
   //const char = matchList.userMatchList.data.matches[0].matches[0].character;
-  const charName = characterName.find((el) => el.id === char ? el : '캐릭터');
+  const charName = characterName.find((el) => (el.id === char ? el : '캐릭터'));
   console.log(charName.name);
+
+  // 전적 갱신하기 버튼 클릭시 작동하는 함수입니다. 데이터 요청을 다시 한번 받아야 하는데 
+  // 여기서도 어떻게 해야 할지 모르겠습니다 ㅠㅠ
+  const onClickTotalReset = () => {
+    // 데이터 요청 다시하기
+   };
+
 
   const [isReport, setIsReport] = useState(false);
   const [isShare, setIsShare] = useState(false);
@@ -36,15 +43,13 @@ const UserProfile = () => {
 
     if (name === '개인전' || txt === '개인전' || icon === 'svg') {
       navigate(`/user?nick=${nickName}&matchType=indi`);
-    } else if (name === '팀전' || txt === '팀전' || icon === 'path') { 
+    } else if (name === '팀전' || txt === '팀전' || icon === 'path') {
       navigate(`/user?nick=${nickName}&matchType=team`);
     }
   };
-  
-  const onClickTotalReset = () => {
-    //handleGetMatchList();
-  }
-  
+
+ 
+
   return (
     <>
       {isShare && <ModalShare share={setIsShare} />}
@@ -144,6 +149,7 @@ const ProfileInfo = styled.article`
   display: flex;
   align-items: center;
   margin-top: 12px;
+  padding-top: 26px;
   background-image: url('/images/bg-profile.png');
   background-repeat: no-repeat;
   background-size: 1200px 200px;
@@ -152,19 +158,54 @@ const ProfileInfo = styled.article`
   box-sizing: border-box;
   .figure {
     position: relative;
+    float: left;
+    overflow: hidden;
+    margin: 0 20px 20px 0;
     cursor: pointer;
     .hide {
-      opacity: 0;
-      transition: opacity ease 0.4s;
       position: absolute;
-      z-index: 10;
-      left: 50px;
-      font-size: 14px;
+      bottom: 5px;
+      left: -20px;
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      padding: 5px 10px;
+      font-size: 12px;
+      opacity: 0;
+      transition: all 0.6s ease;
+      -webkit-transition: all 0.6s ease;
+      -moz-transition: all 0.6s ease;
+      -o-transition: all 0.6s ease;
     }
     &:hover {
       .hide {
         opacity: 1;
+        left: 20px;
       }
+    }
+    &::before {
+      content: '?';
+      position: absolute;
+      font-weight: 800;
+      background: black;
+      background: rgba(0, 0, 0, 0.4);
+      text-shadow: 0 0 5px white;
+      color: black;
+      width: 20px;
+      height: 20px;
+      bottom: 5px;
+      left: 20px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 14px;
+      line-height: 20px;
+      -moz-transition: all 1s ease;
+      transition: all 1s ease;
+      opacity: 0.75;
+    }
+    &:hover:before {
+      opacity: 0;
     }
     .user-img {
       width: 164px;
@@ -193,9 +234,9 @@ const ProfileInfo = styled.article`
     .view-num {
       margin-top: 5px;
       font-size: 20px;
-      transition: transform ease 0.4s;
+      transition: color ease 0.4s;
       &:hover {
-        transform: scale(1.1);
+        color: #0077ff;
       }
     }
   }
@@ -255,7 +296,5 @@ const Ul = styled.ul`
     }
   }
 `;
-
-
 
 export default UserProfile;
