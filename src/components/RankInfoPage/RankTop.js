@@ -1,6 +1,11 @@
 import styled from 'styled-components';
+import RadialChart from '../chart/RadialChart';
+
+const winData = ['58', '47', '60'];
+const loseData = ['10', '12', '1'];
 
 function RankTop({ tabNum, indiDatas, teamDatas }) {
+
   return (
     <Container>
       {/* tabNum === 0 개인 , tabNum === 1 Group */}
@@ -30,8 +35,12 @@ function RankTop({ tabNum, indiDatas, teamDatas }) {
                   <p>리타이어율</p>
                 </div>
                 <div>
-                  <span className="anni"></span>
-                  <span className="anni"></span>
+                  <span className="anni">
+                    <RadialChart color={'#0077ff'} size={'130px'} percent={winData[index]}/>
+                  </span>
+                  <span className="anni">
+                    <RadialChart color={'#F00047'} size={'130px'} percent={loseData[index]}/>
+                  </span>
                 </div>
               </div>
             </span>
@@ -62,8 +71,12 @@ function RankTop({ tabNum, indiDatas, teamDatas }) {
                   <p>리타이어율</p>
                 </div>
                 <div>
-                  <span className="anni"></span>
-                  <span className="anni"></span>
+                  <span className="anni">
+                    <RadialChart color={'#0077ff'} size={'130px'} percent={60}/>
+                  </span>
+                  <span className="anni">
+                  <RadialChart color={'#F00047'} size={'130px'} percent={60}/>
+                  </span>
                 </div>
               </div>
             </span>
@@ -105,6 +118,14 @@ const Container = styled.div`
       background-image: url(https://tmi.nexon.com/img/background_flag_rank.png);
       border-radius: 10px 10px 0 0;
       border-bottom: 1.5px solid #005fcc;
+      
+      .anni {
+        padding-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
       .characterName {
         padding-top: 40px;
         vertical-align: middle;
