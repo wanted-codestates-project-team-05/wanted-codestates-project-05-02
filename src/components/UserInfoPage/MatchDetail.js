@@ -23,9 +23,12 @@ export default function MatchDetail({ matchData, userData }) {
 
   const getMatch = async () => {
     setIsLoading(true);
-    const matches = await axios.get(`/kart/v1.0/matches/${matchData.matchId}`, {
-      headers: { Authorization: apiKey },
-    });
+    const matches = await axios.get(
+      `https://server-cors-wanted.herokuapp.com/https://api.nexon.co.kr/kart/v1.0/matches/${matchData.matchId}`,
+      {
+        headers: { Authorization: apiKey },
+      }
+    );
     const length = matches.data.players.length;
     matches.data.players.forEach((item) => {
       if (item.matchRank === '0') {
@@ -147,19 +150,10 @@ const Kart = styled.div`
 const User = styled.div`
   height: 17px;
   line-height: 17px;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 6d8b47508771f0c5ffcc785ab8f842007cdf3c53
   span {
     font-weight: ${({ nick, name }) => (nick !== name ? '500' : '700')};
     cursor: pointer;
   }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 3668584b041aaa65faef6f1722401300d546f284
->>>>>>> 6d8b47508771f0c5ffcc785ab8f842007cdf3c53
 `;
 
 const Record = styled.div`

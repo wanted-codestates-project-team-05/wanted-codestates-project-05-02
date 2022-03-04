@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { Profiler, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import QueryString from 'qs';
