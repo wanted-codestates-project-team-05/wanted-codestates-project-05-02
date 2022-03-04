@@ -19,8 +19,7 @@ export const RankTeamData = () => {
 		if(list !== undefined){
 			await Promise.all(
 				list?.map( async (match) => {
-		
-					await axios.get(`api/kart/v1.0/matches/${match}`, {
+					await axios.get(`/kart/v1.0/matches/${match}`, {
 						headers: {
 							Authorization: process.env.REACT_APP_NEXON_AUTHORIZATION
 						}
@@ -29,6 +28,7 @@ export const RankTeamData = () => {
 						res.data.players.map( (item) => {
 							playerArray.push({
 								characterName: item.characterName,
+								character: item.character,
 								matchRank: item.matchRank,
 							})
 						})
@@ -93,6 +93,7 @@ export const RankTeamData = () => {
 				arr.push({
 					characterName,
 					score,
+					character: item.character,
 					count: count+1,
 					rankSum: parseInt(item.matchRank === '99' || item.matchRank === '0' ? '8' : item.matchRank)
 				})
