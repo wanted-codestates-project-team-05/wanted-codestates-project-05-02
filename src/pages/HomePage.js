@@ -31,7 +31,7 @@ function HomePage({ userMatchList }) {
     const totals50 = matchArr50.reduce((sum, curVal) => {
       return sum + curVal;
     });
-    setAvr50((totals50 / matchArr200.length).toFixed(2));
+    setAvr50((totals50 / matchArr50.length).toFixed(2));
     const totals200 = matchArr200.reduce((sum, curVal) => {
       return sum + curVal;
     });

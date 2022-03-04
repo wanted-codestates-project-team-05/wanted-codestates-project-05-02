@@ -2,7 +2,6 @@ import './reset.css';
 import theme from './theme';
 import React from 'react';
 import Routes from './Routes';
-import UserInfoPage from './pages/UserInfoPage';
 import { ThemeProvider } from 'styled-components';
 
 function App() {

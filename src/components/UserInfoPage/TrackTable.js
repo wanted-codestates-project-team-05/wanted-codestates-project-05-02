@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import trackData from '../../assets/track.json';
 import timeConvert from '../../lib/timeConvert';
+import TrackChart from '../chart/TrackChart';
 
 export default function TrackTable({ userData, matchData }) {
   const [trackInfo, setTrackInfo] = useState();
@@ -49,8 +50,9 @@ export default function TrackTable({ userData, matchData }) {
           <p>
             {current || trackInfo?.[0].trackN} <span>기록분포</span>
           </p>
-          {/* 변경부분 */}
-          <div>graph</div>
+          <div>
+            <TrackChart size={'200px'} />
+          </div>
         </Div>
       </div>
       <TableWrapper>
@@ -145,11 +147,7 @@ const Div = styled.div`
     color: #a1a1a1;
   }
   & div {
-    margin: 10px 0;
     text-align: center;
-    width: 378px;
-    height: 258px;
-    border: 1px solid black;
   }
 `;
 
