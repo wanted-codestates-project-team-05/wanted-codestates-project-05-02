@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+<<<<<<< HEAD
 function RankList({ indiDatas, tabNum }) {
+=======
+function RankList({ indiDatas, teamDatas, tabNum }) {
+>>>>>>> b4d569a0cd28edeb7ed3b23747e41e5db7a67837
   return (
     <Ranklist>
       <li>
@@ -13,12 +17,21 @@ function RankList({ indiDatas, tabNum }) {
           <span className="rankSum">평균순위</span>
         </div>
       </li>
+<<<<<<< HEAD
       {/* tabNum이 0이면 개인, 1이면 팀*/}
       {tabNum === 0
         ? indiDatas.map((user, index) => (
             <li key={index}>
               <div>
                 <span className="number">{index + 1}</span>
+=======
+      {/* tabNum === 0 개인 , tabNum === 1 Group */}
+      {tabNum === 0
+        ? indiDatas.slice(3).map((user, index) => (
+            <li key={index}>
+              <div>
+                <span className="number">{index + 4}</span>
+>>>>>>> b4d569a0cd28edeb7ed3b23747e41e5db7a67837
                 <span className="characterName">{user.characterName}</span>
                 <span className="score">{user.score} PT</span>
                 <span className="count">{user.count} 회</span>
@@ -26,10 +39,17 @@ function RankList({ indiDatas, tabNum }) {
               </div>
             </li>
           ))
+<<<<<<< HEAD
         : indiDatas.map((user, index) => (
             <li key={index}>
               <div>
                 <span className="number">{index + 1}</span>
+=======
+        : teamDatas.slice(3).map((user, index) => (
+            <li key={index}>
+              <div>
+                <span className="number">{index + 4}</span>
+>>>>>>> b4d569a0cd28edeb7ed3b23747e41e5db7a67837
                 <span className="characterName">{user.characterName}</span>
                 <span className="score">{user.score} PT</span>
                 <span className="count">{user.count} 회</span>
@@ -67,7 +87,11 @@ const Ranklist = styled.ul`
     }
     .title {
       color: #fff;
+<<<<<<< HEAD
       @media screen and (max-width: 820px) {
+=======
+      @media screen and (max-width: 400px) {
+>>>>>>> b4d569a0cd28edeb7ed3b23747e41e5db7a67837
         color: black;
       }
     }

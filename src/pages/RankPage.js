@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import RankTop from '../components/RankInfoPage/RankTop';
 import RankTab from '../components/RankInfoPage/RankTab';
 import RankList from '../components/RankInfoPage/RankList';
@@ -8,33 +8,51 @@ import GuideModal from '../components/RankInfoPage/GuideModal';
 import Loading from '../components/common/Loading';
 import { RankIndiData } from '../components/RankIndiData';
 
+const datas = [
+  {
+    id: '1',
+    characterName: '1234Kcm',
+    score: '40',
+    count: '213',
+    Rank: '1.1',
+  },
+  {
+    id: '2',
+    characterName: '1234Kcm',
+    score: '40',
+    count: '213',
+    rankSum: '1.1',
+  },
+];
+
 function RankPage() {
   const indiDatas = RankIndiData();
-  console.log(indiDatas.length);
   const navigate = useNavigate();
   const [tabNum, setTabNum] = useState(0);
   const [isModal, setIsModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // 로딩 처리
   useEffect(() => {
     setIsLoading(true);
-    setTimeout(() => {
+    if (indiDatas.length !== 0) {
       setIsLoading(false);
-    }, 3000);
-  }, []);
-
+    }
+  }, [indiDatas]);
+  // 로딩 및 URL 헨들러
   const TabHandler = (index) => {
     setIsLoading(true);
     setTabNum(index);
     if (index === 0) navigate('/rank?mode=indi&speed=speedIndiCombine');
     else navigate('/rank?mode=team&speed=speedTeamCombine');
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+
+    setIsLoading(false);
   };
+  // 모달 핸들러
   const ModalHanlder = () => {
     setIsModal((prev) => !prev);
   };
+  // 로딩 모달
   if (isLoading) return <Loading message={'데이터를 불러오는 중입니다.'} />;
   return (
     <Container isModal={isModal}>
@@ -51,10 +69,10 @@ function RankPage() {
             <GuideBtn onClick={ModalHanlder}>랭킹 가이드</GuideBtn>
           </Info>
           <RankTab tabNum={tabNum} TabHandler={TabHandler} />
-          <RankTop indiDatas={indiDatas} />
+          <RankTop tabNum={tabNum} indiDatas={indiDatas} teamDatas={datas} />
         </Banner>
       </Bannerbg>
-      <RankList indiDatas={indiDatas} tabNum={tabNum} />
+      <RankList tabNum={tabNum} indiDatas={indiDatas} teamDatas={datas} />
     </Container>
   );
 }
@@ -76,7 +94,7 @@ const Banner = styled.div`
   max-width: 62.5rem;
   width: 80%;
   margin: 0 auto;
-  padding-top: 50px;
+  padding: 50px;
 `;
 const PageName = styled.h1`
   font-size: 22px;
