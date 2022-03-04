@@ -7,7 +7,7 @@ import HomePage from './HomePage';
 import { fetchUserMatchList } from '../Reducer/matchList';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../components/common/Loading';
-import UserProfile from '../components/UserInfoPage/UserProfile';
+import Profile from '../components/UserInfoPage/Profile';
 import InfoContainer from '../components/UserInfoPage/InfoContainer';
 
 function UserInfoPage() {
@@ -43,7 +43,7 @@ function UserInfoPage() {
     <Wrap>
       {matchList.userMatchList.data && (
         <Content>
-          <UserProfile char={matchList.userMatchList.data?.matches[0].matches[0].character} />
+          <Profile char={matchList.userMatchList.data?.matches[0].matches[0].character} />
           <HomePage userMatchList={matchList.userMatchList.data?.matches[0].matches} />
           <InfoContainer />
         </Content>

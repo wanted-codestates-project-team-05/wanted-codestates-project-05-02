@@ -8,21 +8,13 @@ import UserMatch from './UserMatch';
 import ModalShare from './ModalShare';
 import characterName from '../../assets/character.json';
 
-const UserProfile = ({ char }) => {
+const Profile = ({ char }) => {
   const location = useLocation();
   const queryData = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   const nickName = queryData.nick;
   const matchType = queryData.matchType;
   const navigate = useNavigate();
-
-  // 캐릭터 이미지 값 하드코딩 한 부분입니다.
-  // char 위치에 있는 값이 필요합니다.
-  // char 값을 넣어서 최종 url을 img src에 넣고 있습니다.
-  // char 값으로 charachter.json 에서 해당 id가 있으면 캐릭터 이름을 가지고 와서 img alt값 넣어주고
-  // 캡션에도 사용하고 있습니다
-  // const char = '42c729e64e31aea803e4881432f7b95129ce97535c29e4f9a72919a9f267b418';
   const url = `https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${char}.png`;
-  //const char = matchList.userMatchList.data.matches[0].matches[0].character;
 
   const charName = characterName.find((el) => (el.id === char ? el : '캐릭터'));
   console.log(charName.name);
@@ -295,4 +287,4 @@ const Ul = styled.ul`
   }
 `;
 
-export default UserProfile;
+export default Profile;
