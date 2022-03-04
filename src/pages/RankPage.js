@@ -132,7 +132,7 @@ const GuideBtn = styled.button`
     color: #005fcc;
     background-color: #fff;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 420px) {
     display: none;
   }
 `;
