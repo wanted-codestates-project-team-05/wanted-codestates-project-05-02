@@ -26,13 +26,8 @@ export default function Match({ matchData, userData }) {
             </>
           )}
         </ResultP>
-<<<<<<< HEAD
         <TrackP>{trackName[0]?.name} &nbsp;</TrackP>
         <KartP>{kartName[0]?.name} &nbsp;</KartP>
-=======
-        <TrackP>{trackName[0].name} &nbsp;</TrackP>
-        <KartP>{kartName[0].name} &nbsp;</KartP>
->>>>>>> 3668584b (feat: matchDetail & match in userinfo page)
         <TimeP>{timeConvert(matchData.player.matchTime)}</TimeP>
         <OpenP onClick={() => setShow((prev) => !prev)}>
           <Triangle />

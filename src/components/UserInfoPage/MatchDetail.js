@@ -9,11 +9,7 @@ export default function MatchDetail({ matchData, userData }) {
   const [match, setMatch] = useState({});
   const navigate = useNavigate();
   let apiKey =
-<<<<<<< HEAD
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTE3NTcxODMwIiwiYXV0aF9pZCI6IjIiLCJ0b2tlbl90eXBlIjoiQWNjZXNzVG9rZW4iLCJzZXJ2aWNlX2lkIjoiNDMwMDExMzkzIiwiWC1BcHAtUmF0ZS1MaW1pdCI6IjUwMDoxMCIsIm5iZiI6MTY0NjM1MDE4OSwiZXhwIjoxNjYxOTAyMTg5LCJpYXQiOjE2NDYzNTAxODl9.s4p-oYKxegfkKTWHuSqS-CZ1rgf1n2OJkZ5YSgx1kWk';
-=======
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTE3NTcxODMwIiwiYXV0aF9pZCI6IjIiLCJ0b2tlbl90eXBlIjoiQWNjZXNzVG9rZW4iLCJzZXJ2aWNlX2lkIjoiNDMwMDExMzkzIiwiWC1BcHAtUmF0ZS1MaW1pdCI6IjUwMDoxMCIsIm5iZiI6MTY0NjI3ODA3NywiZXhwIjoxNjYxODMwMDc3LCJpYXQiOjE2NDYyNzgwNzd9.6zBFVMmC8McG1l_-k5YkKkaY3Grn12ZM_jFRMK8fkSY';
->>>>>>> 3668584b (feat: matchDetail & match in userinfo page)
 
   function compare(a, b) {
     if (Number(a['matchRank']) > Number(b['matchRank'])) {
@@ -27,11 +23,7 @@ export default function MatchDetail({ matchData, userData }) {
 
   const getMatch = async () => {
     setIsLoading(true);
-<<<<<<< HEAD
     const matches = await axios.get(`/kart/v1.0/matches/${matchData.matchId}`, {
-=======
-    const matches = await axios.get(`/matches/${matchData.matchId}`, {
->>>>>>> 3668584b (feat: matchDetail & match in userinfo page)
       headers: { Authorization: apiKey },
     });
     const length = matches.data.players.length;
@@ -66,11 +58,7 @@ export default function MatchDetail({ matchData, userData }) {
         {match?.players?.map((item, idx) => {
           if (item) {
             return (
-<<<<<<< HEAD
               <Row key={idx}>
-=======
-              <Row>
->>>>>>> 3668584b (feat: matchDetail & match in userinfo page)
                 <Rank>
                   {item.matchRank === '99' || item.matchRank === '0' ? <span>리타이어</span> : item.matchRank}
                 </Rank>
@@ -83,11 +71,8 @@ export default function MatchDetail({ matchData, userData }) {
                   />
                 </Kart>
                 <User
-<<<<<<< HEAD
                   nick={item.characterName}
                   name={userData?.name}
-=======
->>>>>>> 3668584b (feat: matchDetail & match in userinfo page)
                   onClick={() =>
                     navigate({
                       pathname: '/user',
@@ -95,22 +80,14 @@ export default function MatchDetail({ matchData, userData }) {
                     })
                   }
                 >
-<<<<<<< HEAD
                   <span>{item.characterName}</span>
-=======
-                  {item.characterName}
->>>>>>> 3668584b (feat: matchDetail & match in userinfo page)
                 </User>
                 <Record>{timeConvert(item.matchTime)}</Record>
               </Row>
             );
           } else {
             return (
-<<<<<<< HEAD
               <Row key={idx}>
-=======
-              <Row>
->>>>>>> 3668584b (feat: matchDetail & match in userinfo page)
                 <Rank>
                   <span>리타이어</span>
                 </Rank>
