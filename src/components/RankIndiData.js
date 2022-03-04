@@ -8,7 +8,7 @@ export const RankIndiData = () => {
   const [playerList, setPlayerList] = useState([]);
   const [playerMap, setPlayerMap] = useState([]);
   const dispatch = useDispatch();
-  const matchList = useSelector((state) => state.matchList.allMatchList.soloData?.matches[0].matches);
+  const matchList = useSelector((state) => state.matchList.matchList.soloData?.matches[0].matches);
 
   const getData = async () => {
     await dispatch(fetchMatchList('soloData'));
@@ -26,7 +26,7 @@ export const RankIndiData = () => {
               },
             })
             .then((res) => {
-              res.data.players.map((item) => {
+              res.data?.players.map((item) => {
                 playerArray.push({
                   characterName: item.characterName,
                   character: item.character,

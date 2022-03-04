@@ -1,3 +1,5 @@
+import theme from './theme';
+import React from 'react';
 import './reset.css';
 import theme from './theme';
 import React from 'react';

@@ -7,23 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import GuideModal from '../components/RankInfoPage/GuideModal';
 import Loading from '../components/common/Loading';
 import { RankIndiData } from '../components/RankIndiData';
-
-const datas = [
-  {
-    id: '1',
-    characterName: '1234Kcm',
-    score: '40',
-    count: '213',
-    Rank: '1.1',
-  },
-  {
-    id: '2',
-    characterName: '1234Kcm',
-    score: '40',
-    count: '213',
-    rankSum: '1.1',
-  },
-];
+import { MoreButton } from '../components/RankInfoPage/MoreButton';
+import { datas } from '../components/RankInfoPage/FakeData';
 
 function RankPage() {
   const indiDatas = RankIndiData();
