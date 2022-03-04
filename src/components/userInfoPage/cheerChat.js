@@ -89,22 +89,34 @@ const CheerChat = () => {
 export default CheerChat;
 
 const Content = styled.div`
+  position: relative;
   overflow-y: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   height: 159px;
-  margin: 10px 12px;
+  margin: 0 12px;
   border-bottom: 1px solid ${({ theme }) => theme.color.lightGrey};
 `;
 
 const SpeechContainer = styled.div`
+  @keyframes move {
+    0% {
+      transform: translateX(70px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  animation: move 1.5s;
   margin: 6px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const Nickname = styled.span`
@@ -124,11 +136,11 @@ const SpeechBubble = styled.div`
   width: 210px;
   border: 1px solid #c3ced5;
   border-radius: 15px;
-  padding: 15px 10px;
+  padding: 13px 10px;
   &::before {
     content: '';
     position: absolute;
-    top: 14px;
+    top: 12px;
     bottom: auto;
     left: -8px;
     border-style: solid;
@@ -140,7 +152,7 @@ const SpeechBubble = styled.div`
   &::after {
     content: '';
     position: absolute;
-    top: 14px;
+    top: 12px;
     bottom: auto;
     left: -7px;
     border-style: solid;
