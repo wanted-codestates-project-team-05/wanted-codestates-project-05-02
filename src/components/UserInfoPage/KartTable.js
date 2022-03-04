@@ -21,7 +21,7 @@ export default function KartTable({ matchData, userData }) {
           id,
           win: arr.filter((match) => match.matchResult === '1').length,
           count: arr.length,
-          kartN: kartName.name,
+          kartN: kartName?.name,
           retire: arr.filter((match) => match.player.matchRetired === '1').length,
         };
       });
@@ -51,12 +51,15 @@ export default function KartTable({ matchData, userData }) {
           record: Number(match.player.matchTime),
         };
       });
-      console.log(result);
       const retire = result.filter((item) => item.record === 0);
       const complete = result.filter((item) => item.record !== 0);
       setRecords(complete.sort((a, b) => compare(a.record, b.record, true)).concat(retire));
     }
   }, [id, kartInfo, matchData.matches]);
+
+  useEffect(() => {
+    console.log(records);
+  }, [records]);
 
   function compare(a, b, reverse = false) {
     let x = reverse ? 1 : -1;
@@ -142,19 +145,6 @@ export default function KartTable({ matchData, userData }) {
 }
 
 function TableBody({ kart, setName, name, index, setId }) {
-  // const [record, setRecord] = useState();
-
-  // useEffect(() => {
-  //   if (kart) {
-  //     const arr = kart.record.filter((item) => item !== 0);
-  //     if (arr.length !== 0) {
-  //       setRecord(arr);
-  //     } else {
-  //       setRecord([0]);
-  //     }
-  //   }
-  // }, [kart]);
-
   return (
     <>
       <BodyTr selected={kart.kartN === name}>
