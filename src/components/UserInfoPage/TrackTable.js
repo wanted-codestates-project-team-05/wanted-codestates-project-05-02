@@ -31,7 +31,7 @@ export default function TrackTable({ userData, matchData }) {
       return -1;
     }
     if (Number(a) < Number(b)) {
-      return +1;
+      return 1;
     }
     return 0;
   }

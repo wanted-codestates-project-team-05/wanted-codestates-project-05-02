@@ -1,7 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import kartData from '../../assets/kart.json';
+import trackData from '../../assets/track.json';
+import timeConvert from '../../lib/timeConvert';
 
 export default function KartTable({ matchData, userData }) {
+  const [kartInfo, setKartInfo] = useState();
+  const [current, setCurrent] = useState();
+  const [records, setRecords] = useState();
+  const [id, setId] = useState();
+
+  useEffect(() => {
+    if (matchData.nickName) {
+      const result = matchData.matches[0].matches.map((item) => item.player.kart);
+      const KartId = Array.from(new Set(result));
+      const info = KartId.map((id) => {
+        const arr = matchData.matches[0].matches.filter((match) => match.player.kart === id);
+        const kartName = kartData.find((item) => item.id === id);
+        return {
+          id,
+          win: arr.filter((match) => match.matchResult === '1').length,
+          count: arr.length,
+          kartN: kartName.name,
+          retire: arr.filter((match) => match.player.matchRetired === '1').length,
+        };
+      });
+      setKartInfo(info.sort((a, b) => compare(a.count, b.count)));
+    }
+  }, [matchData]);
+
+  useEffect(() => {
+    if (id) {
+      const data = matchData.matches[0].matches.filter((match) => match.player.kart === id);
+      const result = data.map((match) => {
+        const track = trackData.find((track) => track.id === match.trackId);
+        return {
+          id: track.name,
+          record: Number(match.player.matchTime),
+        };
+      });
+      const retire = result.filter((item) => item.record === 0);
+      const complete = result.filter((item) => item.record !== 0);
+      setRecords(complete.sort((a, b) => compare(a.record, b.record, true)).concat(retire));
+    } else if (kartInfo?.length) {
+      const data = matchData.matches[0].matches.filter((match) => match.player.kart === kartInfo[0].id);
+      const result = data.map((match) => {
+        const track = trackData.find((track) => track.id === match.trackId);
+        return {
+          id: track.name,
+          record: Number(match.player.matchTime),
+        };
+      });
+      console.log(result);
+      const retire = result.filter((item) => item.record === 0);
+      const complete = result.filter((item) => item.record !== 0);
+      setRecords(complete.sort((a, b) => compare(a.record, b.record, true)).concat(retire));
+    }
+  }, [id, kartInfo, matchData.matches]);
+
+  function compare(a, b, reverse = false) {
+    let x = reverse ? 1 : -1;
+    let y = reverse ? -1 : 1;
+    if (Number(a) > Number(b)) {
+      return x;
+    }
+    if (Number(a) < Number(b)) {
+      return y;
+    }
+    return 0;
+  }
+
   return (
     <Container>
       <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -11,49 +79,33 @@ export default function KartTable({ matchData, userData }) {
         <Div>
           <p>
             <Badge>일반</Badge>
-            몬스터X LE
+            {current || kartInfo?.[0].kartN}
           </p>
           <KartBox>
             <Thumbnail>
               <img
-                src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/kart/0b41bf8620b5851d7dcc7eb33765d506e530b8d2e612e6c60823f2b890da3401.png?v=1646306934"
+                src={`https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/kart/${
+                  id || kartInfo?.[0].id
+                }.png?v=1646306934`}
                 alt=""
               />
             </Thumbnail>
             <Record>
               <ul>
-                <li>
-                  <img
-                    src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/kartimg/Category/korea_1.png"
-                    alt=""
-                  />
-                  <span>코리아 제주 해오름</span>
-                  <span>1'03'14</span>
-                </li>
-                <li>
-                  <img
-                    src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/kartimg/Category/korea_1.png"
-                    alt=""
-                  />
-                  <span>코리아 제주 해오름</span>
-                  <span>1'03'14</span>
-                </li>
-                <li>
-                  <img
-                    src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/kartimg/Category/korea_1.png"
-                    alt=""
-                  />
-                  <span>코리아 제주 해오름</span>
-                  <span>1'03'14</span>
-                </li>
-                <li>
-                  <img
-                    src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/kartimg/Category/korea_1.png"
-                    alt=""
-                  />
-                  <span>코리아 제주 해오름</span>
-                  <span>1'03'14</span>
-                </li>
+                {records.map((record, idx) => {
+                  if (idx < 5) {
+                    return (
+                      <Li>
+                        <img
+                          src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/kartimg/Category/korea_1.png"
+                          alt=""
+                        />
+                        <span>{record.id}</span>
+                        <Span>{timeConvert(record.record)}</Span>
+                      </Li>
+                    );
+                  }
+                })}
               </ul>
             </Record>
           </KartBox>
@@ -71,11 +123,16 @@ export default function KartTable({ matchData, userData }) {
             </HeadTr>
           </Thead>
           <Tbody>
-            <TableBody />
-            <TableBody />
-            <TableBody />
-            <TableBody />
-            <TableBody />
+            {kartInfo?.map((kart, idx) => (
+              <TableBody
+                key={idx}
+                kart={kart}
+                index={idx}
+                setName={setCurrent}
+                name={current || kartInfo?.[0].kartN}
+                setId={setId}
+              />
+            ))}
           </Tbody>
         </Table>
       </TableWrapper>
@@ -83,27 +140,47 @@ export default function KartTable({ matchData, userData }) {
   );
 }
 
-function TableBody() {
-  const [active, setActive] = useState(false);
+function TableBody({ kart, setName, name, index, setId }) {
+  // const [record, setRecord] = useState();
+
+  // useEffect(() => {
+  //   if (kart) {
+  //     const arr = kart.record.filter((item) => item !== 0);
+  //     if (arr.length !== 0) {
+  //       setRecord(arr);
+  //     } else {
+  //       setRecord([0]);
+  //     }
+  //   }
+  // }, [kart]);
 
   return (
     <>
-      <BodyTr active={active}>
+      <BodyTr selected={kart.kartN === name}>
         <td>
-          <Input type={'radio'} name={'check'} />
+          <Input
+            type={'radio'}
+            name={'check'}
+            value={kart.kartN}
+            defaultChecked={index === 0}
+            onChange={(e) => {
+              setName(e.target.value);
+              setId(kart.id);
+            }}
+          />
         </td>
         <td style={{ textAlign: 'left', paddingLeft: '10px' }}>
           <A>
             <img
-              src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/kart/0b41bf8620b5851d7dcc7eb33765d506e530b8d2e612e6c60823f2b890da3401.png?v=1646306934"
+              src={`https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/kart/${kart.id}.png?v=1646306934`}
               alt=""
             />{' '}
-            몬스터X LE
+            {kart.kartN}
           </A>
         </td>
-        <td>188</td>
-        <td>32%</td>
-        <td>6%</td>
+        <td>{kart.count}</td>
+        <td>{`${Math.round((kart.win / kart.count) * 100)}%`}</td>
+        <td>{`${Math.round((kart.retire / kart.count) * 100)}%`}</td>
       </BodyTr>
     </>
   );
@@ -120,12 +197,9 @@ const Div = styled.div`
   margin: 0 25px 0 25px;
   padding-top: 15px;
   padding-bottom: 15px;
-  & p {
+  p {
     color: #1f334a;
     font-size: 14px;
-  }
-  & span {
-    color: #a1a1a1;
   }
 `;
 
@@ -148,24 +222,36 @@ const Thumbnail = styled.div`
 
 const Record = styled.div`
   flex: 6;
+`;
 
-  li {
-    position: relative;
-    height: 33px;
-    line-height: 33px;
-    text-align: left;
-    padding-left: 10px;
+const Li = styled.li`
+  position: relative;
+  color: #1f334a;
+  font-size: 14px;
+  height: 33px;
+  line-height: 33px;
+  text-align: left;
+  padding-left: 10px;
 
-    img {
-      height: 23px;
-      vertical-align: middle;
-    }
-
-    span {
-      vertical-align: middle;
-      margin-left: 5px;
-    }
+  img {
+    height: 23px;
+    vertical-align: middle;
   }
+
+  span {
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+`;
+
+const Span = styled.span`
+  position: absolute;
+  right: 0;
+  color: #1f334a;
+  font-size: 13px;
+  height: 33px;
+  padding-top: 2px;
+  line-height: 33px;
 `;
 
 const H5 = styled.div`
@@ -236,7 +322,7 @@ const HeadTr = styled.tr`
 `;
 
 const BodyTr = styled.tr`
-  border: ${(props) => (props.active ? `${'1px solid #07f'}` : '')};
+  ${({ selected }) => (selected ? 'border: 1px solid #07f' : '')};
 `;
 
 const Th = styled.th`
