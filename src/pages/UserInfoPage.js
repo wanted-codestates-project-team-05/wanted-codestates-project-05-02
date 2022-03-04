@@ -1,11 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import UserProfile from '../components/userInfoPage/UserProfile';
 
 function UserInfoPage() {
 
 	return (
-		<div>UserInfoPage</div>
-	)
+    <>
+      <UserProfile />
+    </>
+  );
 }
 
 export default UserInfoPage;
