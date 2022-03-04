@@ -4,10 +4,6 @@ import { useLocation, useNavigate } from 'react-router';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { FaInfoCircle, FaUser, FaUsers, FaRedo, FaBell, FaShareAlt, FaEye } from 'react-icons/fa';
-<<<<<<< HEAD:src/pages/UserProfile.js
-import CharterInfo from '../assets/character.json';
-=======
->>>>>>> 834abb53 (feat: 모달 확인시 모달 전부 사라지게 하는 기능 구현, style: 페이지 뷰 호버 시 크기 커짐, 유저 캐릭터 호버시 캡션 보여짐):src/components/userInfoPage/UserProfile.js
 import ModalUserReport from './ModalUserReport';
 import UserMatch from './UserMatch';
 import ModalShare from './ModalShare';
@@ -31,6 +27,14 @@ const UserProfile = () => {
   const charName = characterName.find((el) => el.id === char ? el : '캐릭터');
   console.log(charName.name);
 
+  // 전적 갱신 버튼 클릭시 작동하는 함수입니다. 데이터요청을 다시 해야 할거 같은데
+  // 어떻게 해야할 지 모르겠습니다.
+  const onClickTotalReset = () => {
+     // 데이터 갱신
+  };
+ 
+ 
+ 
   const [isReport, setIsReport] = useState(false);
   const [isShare, setIsShare] = useState(false);
 
@@ -46,12 +50,10 @@ const UserProfile = () => {
     }
   };
   
-  const onClickTotalReset = () => {
-    //handleGetMatchList();
-  }
   
   return (
     <>
+      {isShare && <ModalShare share={setIsShare} />}
       <ProfileContainer>
         <div class="match-info">
           <FaInfoCircle size="13px" />
@@ -121,13 +123,12 @@ const UserProfile = () => {
           <div className="page-view">
             <FaEye size="14px" />
             <span>페이지뷰</span>
-            <p>1,024</p>
+            <p className="view-num">1,024</p>
           </div>
         </ProfileInfo>
         <UserMatch nick={nickName} />
       </ProfileContainer>
       {isReport && <ModalUserReport report={setIsReport} />}
-      {isShare && <ModalShare share={setIsShare} />}
     </>
   );
 };
@@ -136,6 +137,7 @@ const ProfileContainer = styled.div`
   width: 1000px;
   margin: 0 auto;
   .match-info {
+    margin-top: 24px;
     span {
       font-size: 12px;
     }
@@ -147,7 +149,8 @@ const ProfileInfo = styled.article`
   height: 177px;
   display: flex;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 16px;
+  padding-top: 26px;
   background-image: url('/images/bg-profile.png');
   background-repeat: no-repeat;
   background-size: 1200px 200px;
@@ -156,19 +159,54 @@ const ProfileInfo = styled.article`
   box-sizing: border-box;
   .figure {
     position: relative;
+    float: left;
+    overflow: hidden;
+    margin: 0 20px 20px 0;
     cursor: pointer;
     .hide {
-      opacity: 0;
-      transition: opacity ease 0.4s;
       position: absolute;
-      z-index: 10;
-      left: 50px;
-      font-size: 14px;
+      bottom: 5px;
+      left: -20px;
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      padding: 5px 10px;
+      font-size: 12px;
+      opacity: 0;
+      transition: all 0.6s ease;
+      -webkit-transition: all 0.6s ease;
+      -moz-transition: all 0.6s ease;
+      -o-transition: all 0.6s ease;
     }
     &:hover {
       .hide {
         opacity: 1;
+        left: 20px;
       }
+    }
+    &::before {
+      content: '?';
+      position: absolute;
+      font-weight: 800;
+      background: black;
+      background: rgba(0, 0, 0, 0.4);
+      text-shadow: 0 0 5px white;
+      color: black;
+      width: 20px;
+      height: 20px;
+      bottom: 5px;
+      left: 20px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 14px;
+      line-height: 20px;
+      -moz-transition: all 1s ease;
+      transition: all 1s ease;
+      opacity: 0.75;
+    }
+    &:hover:before {
+      opacity: 0;
     }
     .user-img {
       width: 164px;
@@ -194,16 +232,13 @@ const ProfileInfo = styled.article`
       margin-left: 3px;
       font-size: 14px;
     }
-    p {
+    .view-num {
       margin-top: 5px;
       font-size: 20px;
-<<<<<<< HEAD:src/pages/UserProfile.js
-=======
-      transition: transform ease 0.4s;
+      transition: color ease 0.4s;
       &:hover {
-        transform: scale(1.1);
+        color: #0077ff;
       }
->>>>>>> 834abb53 (feat: 모달 확인시 모달 전부 사라지게 하는 기능 구현, style: 페이지 뷰 호버 시 크기 커짐, 유저 캐릭터 호버시 캡션 보여짐):src/components/userInfoPage/UserProfile.js
     }
   }
 `;
