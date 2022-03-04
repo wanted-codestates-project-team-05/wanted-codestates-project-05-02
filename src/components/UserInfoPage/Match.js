@@ -26,8 +26,8 @@ export default function Match({ matchData, userData }) {
             </>
           )}
         </ResultP>
-        <TrackP>{trackName[0].name} &nbsp;</TrackP>
-        <KartP>{kartName[0].name} &nbsp;</KartP>
+        <TrackP>{trackName[0]?.name} &nbsp;</TrackP>
+        <KartP>{kartName[0]?.name} &nbsp;</KartP>
         <TimeP>{timeConvert(matchData.player.matchTime)}</TimeP>
         <OpenP onClick={() => setShow((prev) => !prev)}>
           <Triangle />

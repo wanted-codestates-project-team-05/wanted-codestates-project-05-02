@@ -12,16 +12,23 @@ function UserInfoPage() {
   const location = useLocation();
   const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   let apiKey =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTE3NTcxODMwIiwiYXV0aF9pZCI6IjIiLCJ0b2tlbl90eXBlIjoiQWNjZXNzVG9rZW4iLCJzZXJ2aWNlX2lkIjoiNDMwMDExMzkzIiwiWC1BcHAtUmF0ZS1MaW1pdCI6IjUwMDoxMCIsIm5iZiI6MTY0NjI3ODA3NywiZXhwIjoxNjYxODMwMDc3LCJpYXQiOjE2NDYyNzgwNzd9.6zBFVMmC8McG1l_-k5YkKkaY3Grn12ZM_jFRMK8fkSY';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMTE3NTcxODMwIiwiYXV0aF9pZCI6IjIiLCJ0b2tlbl90eXBlIjoiQWNjZXNzVG9rZW4iLCJzZXJ2aWNlX2lkIjoiNDMwMDExMzkzIiwiWC1BcHAtUmF0ZS1MaW1pdCI6IjUwMDoxMCIsIm5iZiI6MTY0NjM1MDE4OSwiZXhwIjoxNjYxOTAyMTg5LCJpYXQiOjE2NDYzNTAxODl9.s4p-oYKxegfkKTWHuSqS-CZ1rgf1n2OJkZ5YSgx1kWk';
 
   const getUserData = async () => {
     setIsLoading(true);
-    const user = await axios.get(`/users/nickname/${query.nick}`, {
-      headers: { Authorization: apiKey },
+    const user = await axios.get(`/kart/v1.0/users/nickname/${query.nick}`, {
+      headers: {
+        Authorization: apiKey,
+      },
     });
-    const matches = await axios.get(`/users/${user.data.accessId}/matches?limit=200`, {
-      headers: { Authorization: apiKey },
-    });
+    const matches = await axios.get(
+      `/kart/v1.0/users/${user.data.accessId}/matches?limit=200&matchType=${query.matchType}`,
+      {
+        headers: {
+          Authorization: apiKey,
+        },
+      }
+    );
     setUserData(user.data);
     setMatchData(matches.data);
     setIsLoading(false);
@@ -30,7 +37,7 @@ function UserInfoPage() {
   useEffect(() => {
     getUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [location.search]);
 
   if (isLoading) return <div>Loading</div>;
   return (
