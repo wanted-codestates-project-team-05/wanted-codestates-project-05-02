@@ -8093,6 +8093,7 @@
     "util-deprecate" "~1.0.1"
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
 "readable-stream@^3.0.6":
   "integrity" "sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA=="
@@ -8116,6 +8117,8 @@
     "string_decoder" "~1.1.1"
     "util-deprecate" "~1.0.1"
 >>>>>>> 841538e79e37146f68844708afac4553792275c5
+=======
+>>>>>>> 6d8b47508771f0c5ffcc785ab8f842007cdf3c53
 "readdirp@~3.6.0":
   "integrity" "sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA=="
   "resolved" "https://registry.npmjs.org/readdirp/-/readdirp-3.6.0.tgz"
