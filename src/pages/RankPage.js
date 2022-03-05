@@ -9,6 +9,7 @@ import Loading from '../components/common/Loading';
 import { RankIndiData } from '../components/RankIndiData';
 import { MoreButton } from '../components/RankInfoPage/MoreButton';
 import { datas } from '../components/RankInfoPage/FakeData';
+import Wave from 'react-wavify';
 
 function RankPage() {
   const indiDatas = RankIndiData();
@@ -17,12 +18,12 @@ function RankPage() {
   const [isModal, setIsModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    setIsLoading(true);
-    if (indiDatas.length !== 0) {
-      setIsLoading(false);
-    }
-  }, [indiDatas]);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   if (indiDatas.length !== 0) {
+  //     setIsLoading(false);
+  //   }
+  // }, [indiDatas]);
   const TabHandler = (index) => {
     setIsLoading(true);
     setTabNum(index);
@@ -52,6 +53,39 @@ function RankPage() {
           <RankTab tabNum={tabNum} TabHandler={TabHandler} />
           <RankTop tabNum={tabNum} indiDatas={indiDatas} teamDatas={datas} />
         </Banner>
+        <Wave
+          fill="#2e80db"
+          style={{ position: 'absolute', bottom: -1, left: 0, opacity: 0.7 }}
+          paused={false}
+          options={{
+            height: 80,
+            amplitude: 20,
+            speed: 0.15,
+            points: 4,
+          }}
+        />
+        <Wave
+          fill="#2861a1"
+          style={{ position: 'absolute', bottom: -1, left: 0, opacity: 0.6 }}
+          paused={false}
+          options={{
+            height: 40,
+            amplitude: 20,
+            speed: 0.3,
+            points: 3,
+          }}
+        />
+        <Wave
+          fill="#1e6fc9"
+          style={{ position: 'absolute', bottom: -1, left: 0, opacity: 0.4 }}
+          paused={false}
+          options={{
+            height: 2 > 3 ? 50 : 20,
+            amplitude: 50,
+            speed: 0.2,
+            points: 2,
+          }}
+        />
       </Bannerbg>
       <RankList tabNum={tabNum} indiDatas={indiDatas} teamDatas={datas} />
     </Container>
@@ -59,7 +93,6 @@ function RankPage() {
 }
 
 const Container = styled.div`
-  height: 200vh;
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
@@ -69,7 +102,9 @@ const Container = styled.div`
 const Bannerbg = styled.div`
   width: 100%;
   background-color: #005fcc;
+  position: relative;
   color: #fff;
+  z-index: 5;
 `;
 const Banner = styled.div`
   max-width: 62.5rem;

@@ -5,7 +5,6 @@ const winData = ['58', '47', '60'];
 const loseData = ['10', '12', '1'];
 
 function RankTop({ tabNum, indiDatas, teamDatas }) {
-
   return (
     <Container>
       {/* tabNum === 0 개인 , tabNum === 1 Group */}
@@ -35,10 +34,10 @@ function RankTop({ tabNum, indiDatas, teamDatas }) {
                 </div>
                 <div>
                   <span className="anni">
-                    <RadialChart color={'#0077ff'} size={'130px'} percent={winData[index]}/>
+                    <RadialChart color={'#0077ff'} size={'130px'} percent={winData[index]} />
                   </span>
                   <span className="anni">
-                    <RadialChart color={'#F00047'} size={'130px'} percent={loseData[index]}/>
+                    <RadialChart color={'#F00047'} size={'130px'} percent={loseData[index]} />
                   </span>
                 </div>
               </div>
@@ -52,14 +51,14 @@ function RankTop({ tabNum, indiDatas, teamDatas }) {
                 {index === 2 && <Medal alt="" src="https://tmi.nexon.com/img/assets/icon_bronzemedal.png" />}
                 <p className="characterName">{user.characterName}</p>
                 <p className="rankSum">
-                  순위 <span>{user.score}</span>
+                  순위 <span>{user.id}</span>
                 </p>
                 <p className="score">
                   누적 포인트 <span>{user.score}</span>
                 </p>
                 <Character
                   alt=""
-                  src="https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/201c61527a04d85cd2de0dad75ab0878ee4125129e57aabe47b3d3ac06df8d67.png"
+                  src={`https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${user.character}.png`}
                 />
               </div>
               <div className="section">
@@ -69,10 +68,10 @@ function RankTop({ tabNum, indiDatas, teamDatas }) {
                 </div>
                 <div>
                   <span className="anni">
-                    <RadialChart color={'#0077ff'} size={'130px'} percent={60}/>
+                    <RadialChart color={'#0077ff'} size={'130px'} percent={60} />
                   </span>
                   <span className="anni">
-                  <RadialChart color={'#F00047'} size={'130px'} percent={60}/>
+                    <RadialChart color={'#F00047'} size={'130px'} percent={60} />
                   </span>
                 </div>
               </div>
@@ -88,6 +87,7 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 400px;
+  z-index: 1;
   @media screen and (max-width: 420px) {
     margin-top: 10px;
     flex-direction: column;
@@ -115,7 +115,7 @@ const Container = styled.div`
       background-image: url(https://tmi.nexon.com/img/background_flag_rank.png);
       border-radius: 10px 10px 0 0;
       border-bottom: 1.5px solid #005fcc;
-      
+
       .anni {
         padding-top: 10px;
         display: flex;
@@ -198,7 +198,7 @@ const Character = styled.img`
   }
   @media screen and (max-width: 420px) {
     display: inline-block;
-    margin-right: 30px;
+    margin-right: 0px;
   }
 `;
 

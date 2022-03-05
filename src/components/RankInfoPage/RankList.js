@@ -7,7 +7,7 @@ function RankList({ indiDatas, teamDatas, tabNum }) {
   const [TeamNum, setTeamNum] = useState(30);
   return (
     <Ranklist>
-      <li>
+      <li className="title">
         <div className="title">
           <span className="number">#</span>
           <span className="characterName">닉네임(순위변동)</span>
@@ -58,30 +58,33 @@ function RankList({ indiDatas, teamDatas, tabNum }) {
 
 const Ranklist = styled.ul`
   position: absolute;
-  top: 600px;
+  top: 650px;
   max-width: 62.5rem;
   width: 80%;
+  color: #454343;
   @media screen and (max-width: 420px) {
     width: 100%;
     top: 1150px;
   }
   & > li:not(:nth-child(1)) {
-    background-color: white;
+    background-color: #fafafa;
+    box-shadow: 0, 0, 0, #e6e3e3;
   }
   & > li {
     position: relative;
     margin-bottom: 20px;
-    cursor: pointer;
     &:not(:nth-child(1)) {
       border: 1px solid white;
     }
     &:hover:not(:nth-child(1)) {
       transition: all 0.5s;
       border: 1px solid #005fcc;
+      cursor: pointer;
       color: #005fcc;
     }
     .title {
-      color: #fff;
+      font-weight: bold;
+      z-index: 999;
       @media screen and (max-width: 420px) {
         color: black;
       }
