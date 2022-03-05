@@ -6,16 +6,16 @@
 #### * React, Vuejs 두가지 중 하나의 프레임워크 사용하여 SPA로 구현
   * React를 사용하여 페이지를 구현하였습니다. 
 #### * 두 종류 이상의 그래프 포함 필수
-  * <img width="348" alt="스크린샷 2022-03-05 오후 10 51 10" src="https://user-images.githubusercontent.com/22316798/156886252-19cb0290-3441-4244-83fa-893faaf004d2.png">
-  * <img width="330" alt="스크린샷 2022-03-05 오후 10 51 16" src="https://user-images.githubusercontent.com/22316798/156886269-2a1d5723-6048-48b4-aab0-3aac3ecd0bb1.png">
-  * <img width="346" alt="스크린샷 2022-03-05 오후 10 51 29" src="https://user-images.githubusercontent.com/22316798/156886275-db928c4d-66bc-4993-ab81-1498d4fece2b.png">
+  <img width="348" alt="스크린샷 2022-03-05 오후 10 51 10" src="https://user-images.githubusercontent.com/22316798/156886252-19cb0290-3441-4244-83fa-893faaf004d2.png">
+  <img width="330" alt="스크린샷 2022-03-05 오후 10 51 16" src="https://user-images.githubusercontent.com/22316798/156886269-2a1d5723-6048-48b4-aab0-3aac3ecd0bb1.png">
+  <img width="346" alt="스크린샷 2022-03-05 오후 10 51 29" src="https://user-images.githubusercontent.com/22316798/156886275-db928c4d-66bc-4993-ab81-1498d4fece2b.png">
   * react-apexcharts를 이용하여 차트를 구현하였습니다. 
 #### * 다섯 종류 이상의 애니메이션 포함 필수
   * 그래프에는 모두 애니메이션이 포함되어 있고 아래와 같이 애니메이션이 적용되어 있습니다.
-  * ![애니메이션1](https://user-images.githubusercontent.com/22316798/156886701-4dfd4087-c24d-4077-8c44-f5abb943dbfe.gif)
-  * ![애니메이션2](https://user-images.githubusercontent.com/22316798/156886707-968d35ca-6304-40fb-8dc4-e7840ff8952e.gif)
-  * ![애니메이션3](https://user-images.githubusercontent.com/22316798/156886720-9791c0c3-1dbd-4e24-9505-065a71612967.gif)
-  * ![애니메이션4](https://user-images.githubusercontent.com/22316798/156886727-35b90ecd-f654-4f6f-bec7-6a8d8531d842.gif)
+  ![애니메이션1](https://user-images.githubusercontent.com/22316798/156886701-4dfd4087-c24d-4077-8c44-f5abb943dbfe.gif)
+  ![애니메이션2](https://user-images.githubusercontent.com/22316798/156886707-968d35ca-6304-40fb-8dc4-e7840ff8952e.gif)
+  ![애니메이션3](https://user-images.githubusercontent.com/22316798/156886720-9791c0c3-1dbd-4e24-9505-065a71612967.gif)
+  ![애니메이션4](https://user-images.githubusercontent.com/22316798/156886727-35b90ecd-f654-4f6f-bec7-6a8d8531d842.gif)
 
 #### * 필요한 경우 서버 개발은 가능하나 SSR 사용 불가
   * 서버는 따로 개발하지않았습니다. 다만 cors-anywhere를 이용하여 프록시 서버를 구성하였습니다.
@@ -47,15 +47,19 @@ npm run start
 ```
 
 # 기술스택
-<img src="https://img.shields.io/badge/react?style=for-the-badge&logo=react&logoColor=#61DAFB">
-<img src="https://img.shields.io/badge/react-router?style=for-the-badge&logo=react-router&logoColor=#CA4245">
-<img src="https://img.shields.io/badge/styled-components?style=for-the-badge&logo=styled-components&logoColor=#DB7093">
-<img src="https://img.shields.io/badge/vercel?style=for-the-badge&logo=vercel&logoColor=#000000">
+
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=plastic&logo=javascript&logoColor=white"/>
+<img src="https://img.shields.io/badge/ReactJs-61DAFB?style=plastic&logo=react&logoColor=white"/>
+<img src="https://img.shields.io/badge/styled-components-DB7093?style=plastic&logo=styled-components&logoColor=white">
+<img src="https://img.shields.io/badge/react-apexchart-FF6384?style=plastic&logo=react-apexchart&logoColor=white">
+<img src="https://img.shields.io/badge/vercel-000000?style=plastic&logo=vercel&logoColor=white">
+
+
 
 # 배포 링크
 https://wanted-codestates-project-05-02.vercel.app/
 
-## 주요화면
+# 주요화면
 ![page1](https://user-images.githubusercontent.com/22316798/156887888-e9a60581-f5b5-459b-82df-8cc8611cb13e.png)
 ![page2](https://user-images.githubusercontent.com/22316798/156887907-7283fa96-6c76-45f6-978f-d678ceac4299.png)
 
