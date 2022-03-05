@@ -56,8 +56,8 @@ npm run start
 https://wanted-codestates-project-05-02.vercel.app/
 
 # 주요화면
-![page1](https://user-images.githubusercontent.com/22316798/156887888-e9a60581-f5b5-459b-82df-8cc8611cb13e.png)
-![page2](https://user-images.githubusercontent.com/22316798/156887907-7283fa96-6c76-45f6-978f-d678ceac4299.png)
+<img width="1044" alt="스크린샷 2022-03-05 오후 11 59 20" src="https://user-images.githubusercontent.com/22316798/156888785-1d182528-ddf5-4fdb-92b2-f94e5940817b.png">
+<img width="991" alt="스크린샷 2022-03-05 오후 11 59 04" src="https://user-images.githubusercontent.com/22316798/156888790-35d21049-65e3-403c-aa0b-51bcbd3c0420.png">
 
 
 # 각 팀원의 구현한 방법과 간략한 설명
