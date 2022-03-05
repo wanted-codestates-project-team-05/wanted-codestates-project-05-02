@@ -48,11 +48,7 @@ npm run start
 
 # 기술스택
 
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=plastic&logo=javascript&logoColor=white"/>
-<img src="https://img.shields.io/badge/ReactJs-61DAFB?style=plastic&logo=react&logoColor=white"/>
-<img src="https://img.shields.io/badge/styled-components-DB7093?style=plastic&logo=styled-components&logoColor=white">
-<img src="https://img.shields.io/badge/react-apexchart-FF6384?style=plastic&logo=react-apexchart&logoColor=white">
-<img src="https://img.shields.io/badge/vercel-000000?style=plastic&logo=vercel&logoColor=white">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=white"/><img src="https://img.shields.io/badge/ReactJs-61DAFB?style=flat&logo=react&logoColor=white"/><img src="https://img.shields.io/badge/styled-components-DB7093?style=flat&logo=styled-components&logoColor=white"><img src="https://img.shields.io/badge/apexchart-FF6384?style=flat&logo=react-apexchart&logoColor=white"><img src="https://img.shields.io/badge/vercel-000000?style=flat&logo=vercel&logoColor=white">
 
 
 
