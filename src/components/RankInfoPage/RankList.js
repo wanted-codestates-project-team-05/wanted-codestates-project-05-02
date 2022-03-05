@@ -55,26 +55,26 @@ function RankList({ indiDatas, teamDatas, tabNum }) {
     </Ranklist>
   );
 }
-
 const Ranklist = styled.ul`
   position: absolute;
-  top: 650px;
+  top: 600px;
   max-width: 62.5rem;
   width: 80%;
   color: #454343;
+  z-index: 99;
   @media screen and (max-width: 420px) {
     width: 100%;
     top: 1150px;
   }
   & > li:not(:nth-child(1)) {
-    background-color: #fafafa;
+    background-color: #fff;
     box-shadow: 0, 0, 0, #e6e3e3;
   }
   & > li {
     position: relative;
     margin-bottom: 20px;
     &:not(:nth-child(1)) {
-      border: 1px solid white;
+      border: 1px solid #fff;
     }
     &:hover:not(:nth-child(1)) {
       transition: all 0.5s;
@@ -83,11 +83,8 @@ const Ranklist = styled.ul`
       color: #005fcc;
     }
     .title {
+      color: #fff;
       font-weight: bold;
-      z-index: 999;
-      @media screen and (max-width: 420px) {
-        color: black;
-      }
     }
     & > div {
       padding-left: 60px;
