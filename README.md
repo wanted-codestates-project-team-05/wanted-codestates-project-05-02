@@ -12,10 +12,10 @@
   * react-apexcharts를 이용하여 차트를 구현하였습니다. 
 #### * 다섯 종류 이상의 애니메이션 포함 필수
   * 그래프에는 모두 애니메이션이 포함되어 있고 아래와 같이 애니메이션이 적용되어 있습니다.
-  ![애니메이션1](https://user-images.githubusercontent.com/22316798/156886701-4dfd4087-c24d-4077-8c44-f5abb943dbfe.gif)
-  ![애니메이션2](https://user-images.githubusercontent.com/22316798/156886707-968d35ca-6304-40fb-8dc4-e7840ff8952e.gif)
-  ![애니메이션3](https://user-images.githubusercontent.com/22316798/156886720-9791c0c3-1dbd-4e24-9505-065a71612967.gif)
-  ![애니메이션4](https://user-images.githubusercontent.com/22316798/156886727-35b90ecd-f654-4f6f-bec7-6a8d8531d842.gif)
+  ![애니메이션3](https://user-images.githubusercontent.com/22316798/156908203-d6d67102-890f-4c76-a932-700f5aacff98.gif)
+  ![애니메이션2](https://user-images.githubusercontent.com/22316798/156908211-0709491b-f8f2-41be-9648-1b5c7486357a.gif)
+  ![애니메이션1](https://user-images.githubusercontent.com/22316798/156908224-236e83f4-7ca4-44c2-a87c-90362599e9e4.gif)
+  ![애니메이션4](https://user-images.githubusercontent.com/22316798/156908209-68cf3ede-9d5a-43b2-8e69-14ba2ac5e22d.gif)
 
 #### * 필요한 경우 서버 개발은 가능하나 SSR 사용 불가
   * 서버는 따로 개발하지않았습니다. 다만 cors-anywhere를 이용하여 프록시 서버를 구성하였습니다.
