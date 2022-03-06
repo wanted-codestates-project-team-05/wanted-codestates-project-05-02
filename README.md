@@ -9,9 +9,11 @@
   <img width="348" alt="스크린샷 2022-03-05 오후 10 51 10" src="https://user-images.githubusercontent.com/22316798/156886252-19cb0290-3441-4244-83fa-893faaf004d2.png">
   <img width="330" alt="스크린샷 2022-03-05 오후 10 51 16" src="https://user-images.githubusercontent.com/22316798/156886269-2a1d5723-6048-48b4-aab0-3aac3ecd0bb1.png">
   <img width="346" alt="스크린샷 2022-03-05 오후 10 51 29" src="https://user-images.githubusercontent.com/22316798/156886275-db928c4d-66bc-4993-ab81-1498d4fece2b.png">
-  * react-apexcharts를 이용하여 차트를 구현하였습니다. 
+  * react-apexcharts를 이용하여 차트를 구현하였습니다.
+
 #### * 다섯 종류 이상의 애니메이션 포함 필수
   * 그래프에는 모두 애니메이션이 포함되어 있고 아래와 같이 애니메이션이 적용되어 있습니다.
+
   <img width="346" alt="스크린샷 2022-03-06 오후 12 52 00" src="https://user-images.githubusercontent.com/22316798/156908400-b86aaf79-6913-4bac-87b4-c4de22949435.gif">
   <img width="346" alt="스크린샷 2022-03-06 오후 12 52 00" src="https://user-images.githubusercontent.com/22316798/156908408-1b01d070-1f79-40ed-b694-d850f06154ca.gif">
   <img width="346" alt="스크린샷 2022-03-06 오후 12 52 00" src="https://user-images.githubusercontent.com/22316798/156908409-8fb4b125-4b05-405c-94cb-5938a8f392e0.gif">
