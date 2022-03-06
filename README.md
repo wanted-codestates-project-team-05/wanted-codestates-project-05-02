@@ -69,7 +69,7 @@ https://wanted-codestates-project-05-02.vercel.app/
 - 누적포인트는 넥슨 전적페이지에서 랭킹가이드를 참고하여 matchRank를 비교하여 점수를 매겼습니다.
 - 총 판수는 조회된 매치 전적을 세어서 기록되었고 평균순위는 조회된 매치 전적안에서 순위합산을 한 다음 총 판수로 나누었습니다.
 - 마지막으로 데이터를 정렬하여 hooks화 시키고 rank.js에 값을 넘겨주었습니다.
-![스크린샷 2022-03-03 오후 10.09.42.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/043866d8-6f4d-4979-be28-9dd32c26e2f3/스크린샷_2022-03-03_오후_10.09.42.png)
+<img width="604" alt="스크린샷 2022-03-03 오후 10 09 42" src="https://user-images.githubusercontent.com/22316798/156908160-b9326410-784a-4147-971a-2e5da5a10041.png">
 
 ### 헤더 컴포넌트 구현
 - 공통 헤더 컴포넌트를 구현하였습니다.
