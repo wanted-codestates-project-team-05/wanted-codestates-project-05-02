@@ -15,11 +15,25 @@ const Profile = ({ char }) => {
   const matchType = queryData.matchType;
   const navigate = useNavigate();
   const url = `https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${char}.png`;
-  const charName = characterName.find((el) => (el.id === char ? el : '캐릭터'));
-
+  const character = characterName;
+  let name = [];
+  const characters = () => {
+      character.map((el) => {
+        if (el.id === char) {
+          name.push(el.name)
+          return el.name;
+        } else {
+          return '캐릭터';
+        }
+      })
+ }; 
+  console.log(characters())
+  console.log(name);
+ 
+  
   const [isReport, setIsReport] = useState(false);
   const [isShare, setIsShare] = useState(false);
-
+  
   const onClickMatchtype = (e) => {
     let name = e.target.name;
     let txt = e.target.textContent;
@@ -38,12 +52,12 @@ const Profile = ({ char }) => {
       <ProfileContainer>
         <div className="match-info">
           <FaInfoCircle size="13px" />
-          <span>카트라이더 매치데이터는 최근 1년치 데이터만 확인할 수 있습니다.</span>
+          <span className="match-info-txt">카트라이더 매치데이터는 최근 1년치 데이터만 확인할 수 있습니다.</span>
         </div>
         <ProfileInfo>
           <figure className="figure">
-            <img src={url} alt={charName.name + '캐릭터'} className="user-img" />
-            <figcaption className="hide">{charName.name}</figcaption>
+            <img src={url} alt="캐릭터" className="user-img" />
+            <figcaption className="hide">{name ? name : '캐릭터'}</figcaption>
           </figure>
           <div className="user-total">
             <div>
@@ -118,8 +132,10 @@ const ProfileContainer = styled.div`
   width: 1000px;
   margin: 0 auto;
   .match-info {
-    margin-top: 24px;
-    span {
+    padding-top: 24px;
+    display: flex;
+    .match-info-txt {
+      margin-left: 3px;
       font-size: 12px;
     }
   }

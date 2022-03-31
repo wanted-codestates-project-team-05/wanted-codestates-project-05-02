@@ -70,7 +70,6 @@ const Wrap = styled.div`
 const Content = styled.div`
   width: 1000px;
   margin: 0 auto;
-  padding-top: 50px;
   background-color: #fafafa;
 `;
 
