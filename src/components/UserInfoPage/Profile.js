@@ -16,21 +16,16 @@ const Profile = ({ char }) => {
   const navigate = useNavigate();
   const url = `https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character/${char}.png`;
   const character = characterName;
-  let name = [];
-  const characters = () => {
-      character.map((el) => {
-        if (el.id === char) {
-          name.push(el.name)
-          return el.name;
-        } else {
-          return '캐릭터';
-        }
-      })
- }; 
-  console.log(characters())
-  console.log(name);
- 
-  
+  const result = [];
+  const characterInfo = (() => {
+    character.map((el) => {
+      if (el.id === char) {
+        result.push(el.name);
+        return;
+      }
+    })
+  })();
+
   const [isReport, setIsReport] = useState(false);
   const [isShare, setIsShare] = useState(false);
   
@@ -57,7 +52,7 @@ const Profile = ({ char }) => {
         <ProfileInfo>
           <figure className="figure">
             <img src={url} alt="캐릭터" className="user-img" />
-            <figcaption className="hide">{name ? name : '캐릭터'}</figcaption>
+            <figcaption className="hide">{result[0] ? result[0] : '캐릭터'}</figcaption>
           </figure>
           <div className="user-total">
             <div>

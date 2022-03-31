@@ -19,7 +19,7 @@ export const SearchInput = (props) => {
 
   return (
     <Container width={customWidth} height={customHeight}>
-      <input className="input-style" placeholder="닉네임 검색" onChange={handleOnChange} />
+      <input className="input-style" placeholder="닉네임 검색" onChange={handleOnChange} value={inputValue} />
       <IconContainer onClick={() => findUser(inputValue)}>
         <BiSearchAlt2 />
       </IconContainer>
